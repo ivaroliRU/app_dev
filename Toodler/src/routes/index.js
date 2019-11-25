@@ -8,6 +8,17 @@ import Board from '../views/Board';
 
 //export the routes
 export default createAppContainer(createStackNavigator({
-    Main,
-    Board
-}));
+    Main: {
+      screen: Main,
+      navigationOptions: () => ({
+        title: `Home`,
+        headerBackTitle: null,
+      }),
+    },
+    Board: {
+      screen: Board,
+      navigationOptions: () => ({
+        title: `Board`,
+      }),
+    },
+ }));
