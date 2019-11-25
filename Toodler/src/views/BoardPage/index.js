@@ -5,7 +5,6 @@ import Toolbar from '../../components/Toolbar';
 import List from '../../components/List';
 import Data from '../../../assets/data.json';
 
-<<<<<<< HEAD:Toodler/src/views/Board/index.js
 class Board extends React.Component {
   render() {
     return (
@@ -19,3 +18,4 @@ class Board extends React.Component {
 };
 
 export default Board;
+
