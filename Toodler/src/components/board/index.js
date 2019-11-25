@@ -1,16 +1,33 @@
 import React from 'react';
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
-//import styles from './styles';
+import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+import styles from './styles';
 
 class Board extends React.Component {
     render() {
         return (
-            <Card
-                title='HELLO WORLD'>
-                <Button
-                    icon={<Icon name='code' color='#ffffff' />}
-                    buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                    title='VIEW NOW' />
+            <Card style={styles.card}>
+                <CardImage 
+                    source={{uri: this.props.board.thumbnailPhoto}}
+                    resizeMode="cover"
+                    style={styles.cardImage}
+                />
+                <CardTitle 
+                    title={this.props.board.name}
+                />
+                <CardAction 
+                    separator={true} 
+                    inColumn={false}>
+                        <CardButton
+                        onPress={() => {}}
+                        title="Open"
+                        color="blue"
+                        />
+                        <CardButton
+                        onPress={() => {}}
+                        title="Delete"
+                        color="red"
+                        />
+                </CardAction>
             </Card>
         );
     }
