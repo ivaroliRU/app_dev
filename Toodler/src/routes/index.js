@@ -9,7 +9,7 @@ import Boards from '../views/BoardPage';
 //export the routes
 export default createAppContainer(createStackNavigator({
     Main: {
-      screen: Board,
+      screen: Main,
       navigationOptions: () => ({
         title: `Home`,
         headerBackTitle: null,
@@ -20,5 +20,5 @@ export default createAppContainer(createStackNavigator({
       navigationOptions: () => ({
         title: `Board`,
       }),
-    },
+   },
  }));
