@@ -3,8 +3,8 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 //routes to views
-import Main from '../views/Main';
-import Board from '../views/Board';
+import Main from '../views/MainPage';
+import Boards from '../views/BoardPage';
 
 //export the routes
 export default createAppContainer(createStackNavigator({
@@ -16,7 +16,7 @@ export default createAppContainer(createStackNavigator({
       }),
     },
     Board: {
-      screen: Board,
+      screen: Boards,
       navigationOptions: () => ({
         title: `Board`,
       }),

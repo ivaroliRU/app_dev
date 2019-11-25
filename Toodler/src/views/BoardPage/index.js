@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const Board = ({ navigation: { navigate } }) => (
+const Boards = ({ navigation: { navigate } }) => (
     <View style={styles.container}>
       <Text>Board page</Text>
     </View>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default Board;
+export default Boards;
