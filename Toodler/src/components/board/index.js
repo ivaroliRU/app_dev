@@ -1,9 +1,11 @@
 import React from 'react';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 import styles from './styles';
+import { withNavigation } from 'react-navigation';
 
 class Board extends React.Component {
     render() {
+    const {navigate} = this.props.navigation;
         return (
             <Card style={styles.card}>
                 <CardImage 
@@ -18,7 +20,8 @@ class Board extends React.Component {
                     separator={true} 
                     inColumn={false}>
                         <CardButton
-                        onPress={() => {}}
+                        id = {this.props.id}
+                        onPress={() => this.props.navigation.navigate('Board')}
                         title="Open"
                         color="blue"
                         />
@@ -33,4 +36,4 @@ class Board extends React.Component {
     }
 }
 
-export default Board;
+export default withNavigation(Board);

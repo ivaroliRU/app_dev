@@ -21,5 +21,5 @@ export default createAppContainer(createStackNavigator({
       navigationOptions: () => ({
         title: `Board`,
       }),
-    },
+   },
  }));
