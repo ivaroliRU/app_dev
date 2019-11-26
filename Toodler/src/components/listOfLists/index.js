@@ -5,15 +5,13 @@ import { getAllListsFromBoard, getAllTasksFromList } from '../../services/taskSe
  
 class ListOfLists extends Component {
   render() {
-    var lists = getAllListsFromBoard(this.props.id);
-    console.log(lists);
-    
+    var lists = getAllListsFromBoard(this.props.id);    
 
     return (
         <React.Fragment>
             {
                 lists.map((l) => (
-                    <CollList listItems={getAllTasksFromList(l.id)} listName={l.name} key={l.id} />
+                    <CollList listId={l.id} listName={l.name} key={l.id} />
                 ))
             }
         </React.Fragment>

@@ -27,3 +27,11 @@ export function getAllTasksFromList(listId){
 
     return items;   
 }
+
+export function deleteTask(id){
+    for(var i = 0; i < boards.tasks.length; i++){
+        if(boards.tasks[i].id == id){
+            boards.tasks.splice(i, 1);
+        }
+    }
+}

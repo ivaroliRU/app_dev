@@ -8,7 +8,7 @@ class Task extends Component {
         <View style={styles.wrapperTasks}>
             <CheckBox checked={this.props.task.isFinished} />
             <Text style={styles.taskItem} >{this.props.task.name}</Text>
-            <Icon name='trash' type='font-awesome' />
+            <Icon name='trash' type='font-awesome' onPress={() => this.props.method(this.props.task.id)} />
         </View>
       );
     }

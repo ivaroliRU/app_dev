@@ -2,8 +2,20 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import CollapsibleList from "react-native-collapsible-list";
 import Task from '../task';
+import { deleteTask, getAllTasksFromList } from '../../services/taskService';
  
 class CollList extends Component {
+  constructor (props) {
+    super(props);
+    this.deleteTask = this.deleteTask.bind(this);
+    this.state = { lists: getAllTasksFromList(this.props.listId) };
+  }
+
+  deleteTask(id){
+    deleteTask(id);
+    this.setState({ lists: getAllTasksFromList(this.props.listId) });
+  }
+
   render() {
     return (
         <CollapsibleList
@@ -16,8 +28,8 @@ class CollList extends Component {
         }
       >
         {
-          this.props.listItems.map((l) => (
-            <Task task={l} key={l.id} />
+          this.state.lists.map((l) => (
+            <Task task={l} key={l.id} method={this.deleteTask} />
           ))
         }
     </CollapsibleList>
