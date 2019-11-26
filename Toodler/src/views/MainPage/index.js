@@ -6,14 +6,18 @@ import { View } from 'react-native';
 
 const boards = getAllBoards();
 
-const Main = ({ navigation: { navigate } }) => (
-  <SafeAreaView style={styles.container}>
-    <ScrollView style={styles.scrollView}>
-      <BoardList boards={boards} />
-    </ScrollView>
-  </SafeAreaView>
-  // <Button style={StyleSheet.Button} title="Add Board" />
-);
+class Main extends React.Component {
+    render(){
+      return(
+        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          <BoardList boards={boards} />
+        </ScrollView>
+      </SafeAreaView>
+      );
+    }
+}
+
 
 const styles = StyleSheet.create({
     container: {

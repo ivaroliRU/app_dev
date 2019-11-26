@@ -3,21 +3,32 @@ import { StyleSheet, Text, View } from "react-native";
 import CollapsibleList from "react-native-collapsible-list";
 import Task from '../task';
 import { deleteTask, getAllTasksFromList } from '../../services/taskService';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
  
 class CollList extends Component {
   constructor (props) {
     super(props);
     this.deleteTask = this.deleteTask.bind(this);
-    this.state = { lists: getAllTasksFromList(this.props.listId) };
+    this.onSwipeLeft = this.onSwipeLeft.bind(this);
+    this.state = { items: getAllTasksFromList(this.props.listId) };
+  }
+
+  onSwipeLeft(gestureState) {
+    console.log("asdf");
+    
+    console.log(this.props);
+    
+    this.props.deleteMethod(this.props.listId);
   }
 
   deleteTask(id){
     deleteTask(id);
-    this.setState({ lists: getAllTasksFromList(this.props.listId) });
+    this.setState({ items: getAllTasksFromList(this.props.listId) });
   }
 
   render() {
     return (
+      <GestureRecognizer onSwipeLeft={this.onSwipeLeft}>
         <CollapsibleList
         numberOfVisibleItems={0}
         wrapperStyle={styles.wrapperCollapsibleList}
@@ -28,11 +39,12 @@ class CollList extends Component {
         }
       >
         {
-          this.state.lists.map((l) => (
+          this.state.items.map((l) => (
             <Task task={l} key={l.id} method={this.deleteTask} />
           ))
         }
     </CollapsibleList>
+    </GestureRecognizer>
     );
   }
 }

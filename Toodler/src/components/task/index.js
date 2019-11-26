@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, CheckBox } from "react-native";
+import CollapsibleList from "react-native-collapsible-list";
 import { Icon } from 'react-native-elements'
 
 class Task extends Component {
     render() {
       return (
-        <View style={styles.wrapperTasks}>
+        <CollapsibleList
+        numberOfVisibleItems={0}
+        wrapperStyle={styles.wrapperCollapsibleList}
+        buttonContent={
+          <View style={styles.wrapperTasks}>
             <CheckBox checked={this.props.task.isFinished} />
             <Text style={styles.taskItem} >{this.props.task.name}</Text>
             <Icon name='trash' type='font-awesome' onPress={() => this.props.method(this.props.task.id)} />
-        </View>
+          </View>
+        }
+      >
+        <Text style={styles.descriptionText}>{this.props.task.description}</Text>
+    </CollapsibleList>
       );
     }
 }
@@ -31,6 +40,15 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginRight: 'auto',
         fontSize: 16
+    },
+    descriptionText:{
+      fontSize: 14,
+      padding: 15,
+      borderBottomWidth: 1,
+      borderBottomColor: '#AAA',
+      borderTopWidth: 1,
+      borderTopColor: '#AAA'
+
     }
 });
 
