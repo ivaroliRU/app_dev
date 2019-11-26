@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import BoardList from '../../components/boardlist';
 import { getAllBoards } from '../../services/taskService';
+import { View } from 'react-native';
 
 const boards = getAllBoards();
 

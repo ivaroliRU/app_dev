@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import List from '../../components/list';
 import ListOfLists from '../../components/listOfLists';
+import NewBoardModal from '../../components/newBoardModal';
 
 class Board extends React.Component {
   render() {
@@ -11,8 +12,11 @@ class Board extends React.Component {
       <View style={{ flex: 1 }}>
         {/*<Toolbar />*/}
         {/*<List lists={ Data.lists } />*/}
-        <ListOfLists id={1} />
+        
+        <ListOfLists id={this.props.id} />
+        <NewBoardModal />
       </View>
+      
     )
   }
 };
