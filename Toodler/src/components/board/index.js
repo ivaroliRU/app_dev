@@ -7,7 +7,6 @@ import { withNavigation } from 'react-navigation';
 class Board extends React.Component {
 
     render() {
-    console.log(this.props.board.id);
     const {navigate} = this.props.navigation;
         return (
             <Card style={styles.card}>
