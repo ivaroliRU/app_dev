@@ -1,14 +1,14 @@
-
 import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import BoardList from '../../components/boardlist';
+import { getAllBoards } from '../../services/taskService';
 
-import boards from '../../../assets/data';
+const boards = getAllBoards();
 
 const Main = ({ navigation: { navigate } }) => (
   <SafeAreaView style={styles.container}>
     <ScrollView style={styles.scrollView}>
-      <BoardList boards={boards.boards} />
+      <BoardList boards={boards} />
     </ScrollView>
   </SafeAreaView>
 );
