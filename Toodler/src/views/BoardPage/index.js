@@ -8,11 +8,15 @@ import AddIcon from '../../components/addIcon';
 
 class Board extends React.Component {
   render() {
+    const { navigation } = this.props;
+    const board = navigation.getParam('board', 'NO-ID');
+    
     return (
       <View style={styles.container}>
         {/*<Toolbar />*/}
         {/*<List lists={ Data.lists } />*/}
-        <ListOfLists id={1} />
+        <Text>{board.name}</Text>
+        <ListOfLists id={board.id} />
         <AddIcon />
       </View>
     )

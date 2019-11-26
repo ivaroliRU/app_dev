@@ -3,7 +3,7 @@ import Board from '../board';
 //import styles from './styles';
 
 class BoardList extends React.Component {
-    render() {
+    render() {        
         return (
             this.props.boards.map((l) => (
                 <Board board={l} key={l.name} />

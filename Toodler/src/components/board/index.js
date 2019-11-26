@@ -5,6 +5,7 @@ import { withNavigation } from 'react-navigation';
 
 class Board extends React.Component {
     render() {
+    console.log(this.props.board.id);
     const {navigate} = this.props.navigation;
         return (
             <Card style={styles.card}>
@@ -21,7 +22,7 @@ class Board extends React.Component {
                     inColumn={false}>
                         <CardButton
                         id = {this.props.id}
-                        onPress={() => this.props.navigation.navigate('Board')}
+                        onPress={() => this.props.navigation.navigate('Board', {board:this.props.board})}
                         title="Open"
                         color="blue"
                         />
