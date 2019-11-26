@@ -11,7 +11,7 @@ class Board extends React.Component {
   render() {
     const { navigation } = this.props;
     const board = navigation.getParam('board', 'NO-ID');
-    
+
     return (
       <View style={styles.container}>
         {/*<Toolbar />*/}
@@ -19,9 +19,9 @@ class Board extends React.Component {
         <Text>{board.name}</Text>
         <ListOfLists id={board.id} />
         <AddIcon />
-        <NewBoardModal />
+        {/*<NewBoardModal />*/}
       </View>
-      
+
     )
   }
 };
@@ -34,4 +34,3 @@ const styles = StyleSheet.create({
 });
 
 export default Board;
-
