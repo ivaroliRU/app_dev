@@ -12,6 +12,7 @@ const Main = ({ navigation: { navigate } }) => (
       <BoardList boards={boards} />
     </ScrollView>
   </SafeAreaView>
+  // <Button style={StyleSheet.Button} title="Add Board" />
 );
 
 const styles = StyleSheet.create({

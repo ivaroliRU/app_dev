@@ -5,10 +5,7 @@ import { StyleSheet } from 'react-native';
 class NewBoardModal extends React.Component {
     render() {
         return(
-            <View style={StyleSheet.container}>
-                <Button title="Create New" onPress={() => {this.setState({ visible: true });}}/>
-                <Modal 
-                visible={this.state.visible}
+            <Modal 
                 modalTitle={<ModalTitle title="Create New Board" />} 
                 onTouchOutside={() => {this.setState({ visible: false });}
                 }>
@@ -29,7 +26,6 @@ class NewBoardModal extends React.Component {
                     />
                 </ModalFooter>
                 </Modal>
-            </View>
         )
     };
 };
