@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import List from '../../components/list';
 import ListOfLists from '../../components/listOfLists';
@@ -8,7 +8,7 @@ import ListOfLists from '../../components/listOfLists';
 class Board extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         {/*<Toolbar />*/}
         {/*<List lists={ Data.lists } />*/}
         <ListOfLists id={1} />
@@ -16,6 +16,13 @@ class Board extends React.Component {
     )
   }
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#EEE'
+  }
+});
 
 export default Board;
 
