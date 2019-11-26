@@ -16,7 +16,7 @@ class Main extends React.Component {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <BoardList boards={boards} />
-        <AddBoardModal />
+        {/*<AddBoardModal />*/}
         <Button 
         style={StyleSheet.Button} 
         title="Add Board" 

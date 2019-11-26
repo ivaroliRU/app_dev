@@ -8,15 +8,11 @@ class ListOfLists extends Component {
     super(props);
     this.deleteList = this.deleteList.bind(this);
     this.state = { lists: getAllListsFromBoard(this.props.id) };
-    console.log(this.state);
-    
   }
 
   deleteList(id){
-    console.log("typpi");
-    
     deleteList(id);
-    this.state = { lists: getAllListsFromBoard(this.props.id) };
+    this.setState({ lists: getAllListsFromBoard(this.props.id) });
   }
 
   render() {
