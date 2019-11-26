@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, Button, Modal, Text, View } from 'react-native';
-import { ModalTitle, ModalContent, ModalButton, ModalFooter } from 'react-native-modals';
 import BoardList from '../../components/boardlist';
+import AddBoardModal from '../../components/addBoardModal'
 import { getAllBoards } from '../../services/taskService';
 
 const boards = getAllBoards();
@@ -16,29 +16,7 @@ class Main extends React.Component {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <BoardList boards={boards} />
-          <Modal 
-                modalTitle={<ModalTitle title="Create New Board" />} 
-                visible = {this.state.modalVisible}
-                style = {styles.container}>
-                  <View style = {styles.modal}>
-                    <ModalContent>
-                        <Text>
-                            Empty!
-                        </Text>
-                    </ModalContent>
-
-                    <ModalFooter>
-                    <ModalButton
-                    text="CANCEL"
-                    onPress={() => {this.setState({ modalVisible: !this.state.modalVisible})}}
-                    />
-                    <ModalButton
-                    text="OK"
-                    onPress={() => {}}
-                    />
-                </ModalFooter>
-                </View>
-                </Modal>
+        <AddBoardModal />
         <Button 
         style={StyleSheet.Button} 
         title="Add Board" 
@@ -52,6 +30,7 @@ class Main extends React.Component {
 
 const styles = StyleSheet.create({
   modal: {  
+    marginTop: '500px',
     borderWidth: 1,
     }, 
     container: {

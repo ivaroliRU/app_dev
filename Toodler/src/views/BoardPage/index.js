@@ -5,7 +5,6 @@ import Toolbar from '../../components/Toolbar';
 import List from '../../components/list';
 import ListOfLists from '../../components/listOfLists';
 import AddIcon from '../../components/addIcon';
-import NewBoardModal from '../../components/newBoardModal';
 
 class Board extends React.Component {
   render() {
@@ -42,7 +41,6 @@ class Board extends React.Component {
         </ImageBackground>
         <ListOfLists id={board.id} />
         <AddIcon />
-        {/*<NewBoardModal />*/}
       </View>
 
     )
