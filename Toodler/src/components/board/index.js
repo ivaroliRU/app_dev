@@ -3,22 +3,24 @@ import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 
 import styles from './styles';
 import { withNavigation } from 'react-navigation';
 
+
 class Board extends React.Component {
+
     render() {
     console.log(this.props.board.id);
     const {navigate} = this.props.navigation;
         return (
             <Card style={styles.card}>
-                <CardImage 
+                <CardImage
                     source={{uri: this.props.board.thumbnailPhoto}}
                     resizeMode="cover"
                     style={styles.cardImage}
                 />
-                <CardTitle 
+                <CardTitle
                     title={this.props.board.name}
                 />
-                <CardAction 
-                    separator={true} 
+                <CardAction
+                    separator={true}
                     inColumn={false}>
                         <CardButton
                         id = {this.props.id}
@@ -27,7 +29,7 @@ class Board extends React.Component {
                         color="blue"
                         />
                         <CardButton
-                        onPress={() => {}}
+                        onPress={() => this.props.method(this.props.board.id)}
                         title="Delete"
                         color="red"
                         />

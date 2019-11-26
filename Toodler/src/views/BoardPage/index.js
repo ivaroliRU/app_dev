@@ -11,7 +11,7 @@ class Board extends React.Component {
   render() {
     const { navigation } = this.props;
     const board = navigation.getParam('board', 'NO-ID');
-    
+
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -44,7 +44,7 @@ class Board extends React.Component {
         <AddIcon />
         {/*<NewBoardModal />*/}
       </View>
-      
+
     )
   }
 };
@@ -57,4 +57,3 @@ const styles = StyleSheet.create({
 });
 
 export default Board;
-
