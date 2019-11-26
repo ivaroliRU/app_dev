@@ -28,10 +28,50 @@ export function getAllTasksFromList(listId){
     return items;   
 }
 
+//delete task
 export function deleteTask(id){
     for(var i = 0; i < boards.tasks.length; i++){
         if(boards.tasks[i].id == id){
             boards.tasks.splice(i, 1);
+        }
+    }
+}
+
+//delete task from list
+export function deleteTaskFromList(listId){
+    for(var i = 0; i < boards.tasks.length; i++){
+        if(boards.tasks[i].listId == listId){
+            boards.tasks.splice(i, 1);
+        }
+    }
+}
+
+//delete lists and all tasks in that list
+export function deleteList(id){
+    for(var i = 0; i < boards.lists.length; i++){
+        if(boards.lists[i].id == id){
+            deleteTaskFromList(boards.lists[i].id);
+            boards.lists.splice(i, 1);
+        }
+    }
+}
+
+//delete task from list
+export function deleteListFromBoard(boardId){
+    for(var i = 0; i < boards.lists.length; i++){
+        if(boards.lists[i].boardId == boardId){
+            deleteTaskFromList(boards.lists[i].id);
+            boards.lists.splice(i, 1);
+        }
+    }
+}
+
+//delete boards and all lists and tasks in that board
+export function deleteBoard(id){
+    for(var i = 0; i < boards.boards.length; i++){
+        if(boards.boards[i].id == id){
+            deleteListFromBoard(boards.boards[i].id);
+            boards.boards.splice(i, 1);
         }
     }
 }
