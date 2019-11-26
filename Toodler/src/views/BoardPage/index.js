@@ -19,7 +19,6 @@ class Board extends React.Component {
         <Text>{board.name}</Text>
         <ListOfLists id={board.id} />
         <AddIcon />
-        <NewBoardModal />
       </View>
       
     )

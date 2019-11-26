@@ -1,21 +1,59 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, Button, Modal, Text, View } from 'react-native';
+import { ModalTitle, ModalContent, ModalButton, ModalFooter } from 'react-native-modals';
 import BoardList from '../../components/boardlist';
 import { getAllBoards } from '../../services/taskService';
-import { View } from 'react-native';
 
 const boards = getAllBoards();
 
-const Main = ({ navigation: { navigate } }) => (
-  <SafeAreaView style={styles.container}>
-    <ScrollView style={styles.scrollView}>
-      <BoardList boards={boards} />
-    </ScrollView>
-  </SafeAreaView>
-  // <Button style={StyleSheet.Button} title="Add Board" />
-);
+class Main extends React.Component {
+  state = {
+    modalVisible: false,
+  };
+
+  render() {
+    return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <BoardList boards={boards} />
+          <Modal 
+                modalTitle={<ModalTitle title="Create New Board" />} 
+                visible = {this.state.modalVisible}
+                style = {styles.container}>
+                  <View style = {styles.modal}>
+                    <ModalContent>
+                        <Text>
+                            Empty!
+                        </Text>
+                    </ModalContent>
+
+                    <ModalFooter>
+                    <ModalButton
+                    text="CANCEL"
+                    onPress={() => {this.setState({ modalVisible: !this.state.modalVisible})}}
+                    />
+                    <ModalButton
+                    text="OK"
+                    onPress={() => {}}
+                    />
+                </ModalFooter>
+                </View>
+                </Modal>
+        <Button 
+        style={StyleSheet.Button} 
+        title="Add Board" 
+        onPress={() => this.setState({ modalVisible:!this.state.modalVisible})}
+        />
+      </ScrollView>
+    </SafeAreaView>
+    )
+  }
+};
 
 const styles = StyleSheet.create({
+  modal: {  
+    borderWidth: 1,
+    }, 
     container: {
       flex: 1,
       backgroundColor: '#EEE'
