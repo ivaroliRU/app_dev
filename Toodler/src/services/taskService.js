@@ -76,6 +76,7 @@ export function deleteBoard(id){
     }
 }
 
+// find next available id
 function findNextBoardId(){
     maxid = 0
     for(var i = 0; i < boards.boards.length; i++){
@@ -86,12 +87,22 @@ function findNextBoardId(){
     return maxid + 1
 }
 
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+
+// add board to data.
 export function addBoard(name, image){
     newBoardId = findNextBoardId()
-    boards.boards.push({
-        id: newBoardId,
-        name: name,
-        thumbnailPhoto: image
-    })
+        if(name != '' && image != '' && checkURL(image)){
+        boards.boards.push({
+            id: newBoardId,
+            name: name,
+            thumbnailPhoto: image
+        })
+    }
+    else{
+
+    }
     console.log(boards.boards)
 }

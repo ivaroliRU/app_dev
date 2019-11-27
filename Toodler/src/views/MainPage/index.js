@@ -23,10 +23,7 @@ class Main extends React.Component {
         <BoardList boards={boards} />
         <Modal
           visible={this.state.modalVisible}
-          onTouchOutside={() => {
-            this.setState({ modalVisible: false });
-          }}
-        >
+          onTouchOutside={() => {this.setState({ modalVisible: false });}}>
           <View style = {styles.modal}>
             <ModalContent>
             <TextInput
