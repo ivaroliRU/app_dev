@@ -4,7 +4,6 @@ import { Text, View, StyleSheet, ImageBackground, TextInput, Button, ScrollView 
 import Toolbar from '../../components/Toolbar';
 import ListOfLists from '../../components/listOfLists';
 import AddIcon from '../../components/addIcon';
-import InputListName from '../../components/inputListName';
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
 import { getAllListsFromBoard, addList } from '../../services/taskService';
 
@@ -52,7 +51,6 @@ class Board extends React.Component {
         </ImageBackground>
         <ListOfLists id={board.id} />
         <ScrollView style ={styles.scrollView}>
-        <List lists={lists}/>
         <Modal
           visible={this.state.modalVisible}
           onTouchOutside={() => {
