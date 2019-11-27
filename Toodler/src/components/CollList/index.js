@@ -14,10 +14,6 @@ class CollList extends Component {
   }
 
   onSwipeLeft(gestureState) {
-    console.log("asdf");
-    
-    console.log(this.props);
-    
     this.props.deleteMethod(this.props.listId);
   }
 

@@ -7,7 +7,7 @@ class AddIcon extends Component {
       return (
         <Fab
         direction="up"
-        style={{ backgroundColor: '#82b6ff' }}
+        style={{ backgroundColor: '#82b6ff', zIndex: 100 }}
         position="bottomRight">
             <Icon name="add" />
         </Fab>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, Button, Modal, Text, View } from 'react-native';
-import { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
+import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View } from 'react-native';
+import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
 import BoardList from '../../components/boardlist';
 import InputBoardName from '../../components/inputBoardName'
 import { getAllBoards } from '../../services/taskService';
@@ -8,27 +8,32 @@ import { getAllBoards } from '../../services/taskService';
 const boards = getAllBoards();
 
 class Main extends React.Component {
-  state = {
-    modalVisible: false,
-  };
+  constructor (props) {
+    super(props);
+    this.state = {
+      modalVisible: false,
+    };
+  }
 
   render() {
     return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <BoardList boards={boards} />
-        <Modal 
-            modalTitle={<ModalTitle title="Create New Board" />} 
-            visible = {this.state.modalVisible}
-            style = {styles.container}>
-            <View style = {styles.modal}>
+        <Modal
+          visible={this.state.modalVisible}
+          onTouchOutside={() => {
+            this.setState({ modalVisible: false });
+          }}
+        >
+          <View style = {styles.modal}>
             <ModalContent>
                 <InputBoardName />
             </ModalContent>
             <ModalFooter>
                 <ModalButton
                 text="CANCEL"
-                onPress={() => {this.setState({ modalVisible: !this.state.modalVisible})}}
+                onPress={() => {this.setState({ modalVisible: false })}}
                 />
                 <ModalButton
                 text="OK"
@@ -36,7 +41,7 @@ class Main extends React.Component {
                 />
             </ModalFooter>
             </View>
-            </Modal>
+        </Modal>
         <Button 
         style={styles.container} 
         title="Add Board" 
@@ -50,8 +55,8 @@ class Main extends React.Component {
 
 const styles = StyleSheet.create({
   modal: {  
-    marginTop: '500px',
-    borderWidth: 1,
+    //marginTop: '500px',
+    //borderWidth: 1,
     }, 
     container: {
       flex: 1,
