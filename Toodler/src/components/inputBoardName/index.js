@@ -4,18 +4,24 @@ import {View, TextInput} from 'react-native';
 class inputBoardName extends React.Component {
 
     state = {
-        name: ''
+        name: '',
+        image: ''
     }
 
     render () {
         return(
+            <View>
                 <TextInput
                     placeholder = 'Enter the name of your board.'
-                    value = {this.state.name}
                     autoCapitalize="sentences"
                     autoCompleteType="name"
-                    onChangeText= { text => { this.state.name = text}}>
+                    onChangeText={(input) => this.setState({name: input})}>
                 </TextInput>
+                <TextInput
+                    placeholder = 'Insert Image URI'
+                    onChangeText={(text) => this.setState({image: text})}>
+                </TextInput>
+            </View>
         )
     }
 };
