@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View, TextInput } from 'react-native';
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
 import BoardList from '../../components/boardlist';
-import InputBoardName from '../../components/inputBoardName'
 import { getAllBoards, addBoard } from '../../services/taskService';
 
 const boards = getAllBoards();
@@ -65,10 +64,6 @@ class Main extends React.Component {
 };
 
 const styles = StyleSheet.create({
-  modal: {  
-    //marginTop: '500px',
-    //borderWidth: 1,
-    }, 
     container: {
       flex: 1,
       backgroundColor: '#EEE'
