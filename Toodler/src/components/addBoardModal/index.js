@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TextInput } from 'react-native';
-import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
+import Modal, { ModalContent, ModalButton, ModalFooter} from 'react-native-modals'
 import { addBoard } from '../../services/taskService';
 
 class addNewBoardModal extends React.Component {

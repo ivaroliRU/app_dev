@@ -77,30 +77,6 @@ export function deleteBoard(id){
     }
 }
 
-<<<<<<< HEAD
-function findNextListId(){
-  maxid = 0
-  for(var i = 0; i < lists.lists.length; i++){
-    if(lists.lists[i].id > maxid){
-      maxid = lists.lists[i].id
-    }
-  }
-  return maxid + 1
-}
-// Add list
-export function addList(name) {
-  newListId = findNextListId()
-  if(name != ''){
-    lists.lists.push({
-      id: newListId,
-      name: name
-    })
-  }
-  else{
-
-  }
-  console.log(lists.lists)
-=======
 // find next available id
 function findNextBoardId(){
     maxid = 0
@@ -131,5 +107,4 @@ export function addBoard(name, image){
 
     }
     console.log(boards.boards)
->>>>>>> 9aeb34e7a1c9413371654def3b61fa2de66cc205
 }
