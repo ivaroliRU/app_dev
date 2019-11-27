@@ -2,7 +2,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TextInput, Button, ScrollView } from 'react-native';
 import Toolbar from '../../components/Toolbar';
-import List from '../../components/list';
 import ListOfLists from '../../components/listOfLists';
 import AddIcon from '../../components/addIcon';
 import InputListName from '../../components/inputListName';

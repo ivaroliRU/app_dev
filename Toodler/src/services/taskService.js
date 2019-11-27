@@ -77,6 +77,7 @@ export function deleteBoard(id){
     }
 }
 
+<<<<<<< HEAD
 function findNextListId(){
   maxid = 0
   for(var i = 0; i < lists.lists.length; i++){
@@ -99,4 +100,35 @@ export function addList(name) {
 
   }
   console.log(lists.lists)
+=======
+// find next available id
+function findNextBoardId(){
+    maxid = 0
+    for(var i = 0; i < boards.boards.length; i++){
+        if(boards.boards[i].id > maxid){
+            maxid = boards.boards[i].id
+        }
+    }
+    return maxid + 1
+}
+
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+
+// add board to data.
+export function addBoard(name, image){
+    newBoardId = findNextBoardId()
+        if(name != '' && image != '' && checkURL(image)){
+        boards.boards.push({
+            id: newBoardId,
+            name: name,
+            thumbnailPhoto: image
+        })
+    }
+    else{
+
+    }
+    console.log(boards.boards)
+>>>>>>> 9aeb34e7a1c9413371654def3b61fa2de66cc205
 }

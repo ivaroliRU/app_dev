@@ -20,7 +20,7 @@ class ListOfLists extends Component {
         <React.Fragment>
             {
                 this.state.lists.map((l) => (
-                    <CollList listId={l.id} listName={l.name} key={l.id} deleteMethod={this.deleteList} />
+                    <CollList list={l} key={l.id} deleteMethod={this.deleteList} />
                 ))
             }
         </React.Fragment>
