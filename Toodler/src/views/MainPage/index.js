@@ -24,7 +24,6 @@ class Main extends React.Component {
             <View style = {styles.modal}>
             <ModalContent>
                 <InputBoardName />
-                <Button title="Choose photo" onPress={this.handleChoosePhoto}></Button>
             </ModalContent>
             <ModalFooter>
                 <ModalButton
