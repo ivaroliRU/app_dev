@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View, TextInput } from 'react-native';
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
 import BoardList from '../../components/boardlist';
 import InputBoardName from '../../components/inputBoardName'
@@ -12,8 +12,9 @@ class Main extends React.Component {
     super(props);
     this.state = {
       modalVisible: false,
+      name: '',
+      image: ''
     };
-
   }
 
   render() {
@@ -29,7 +30,16 @@ class Main extends React.Component {
         >
           <View style = {styles.modal}>
             <ModalContent>
-                <InputBoardName />
+            <TextInput
+                    placeholder = 'Enter the name of your board.'
+                    autoCapitalize="sentences"
+                    autoCompleteType="name"
+                    onChangeText={(input) => this.setState({name: input})}>
+                </TextInput>
+                <TextInput
+                    placeholder = 'Insert Image URI'
+                    onChangeText={(text) => this.setState({image: text})}>
+                </TextInput>
             </ModalContent>
             <ModalFooter>
                 <ModalButton
@@ -38,7 +48,7 @@ class Main extends React.Component {
                 />
                 <ModalButton
                 text="OK"
-                onPress={() => {this.setState({ modalVisible: false })}}
+                onPress={() => {this.setState({ modalVisible: false }), addBoard(this.state.name, this.state.image)}}
                 />
             </ModalFooter>
             </View>
