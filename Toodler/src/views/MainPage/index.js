@@ -43,22 +43,22 @@ class Main extends React.Component {
             </ModalFooter>
             </View>
         </Modal>
-        <Button 
-        style={styles.container} 
-        title="Add Board" 
+        <Button
+        style={styles.container}
+        title="Add Board"
         onPress={() => this.setState({ modalVisible:!this.state.modalVisible})}
         />
       </ScrollView>
     </SafeAreaView>
     )
-  } 
+  }
 };
 
 const styles = StyleSheet.create({
-  modal: {  
+  modal: {
     //marginTop: '500px',
     //borderWidth: 1,
-    }, 
+    },
     container: {
       flex: 1,
       backgroundColor: '#EEE'

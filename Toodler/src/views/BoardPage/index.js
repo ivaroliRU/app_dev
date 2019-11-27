@@ -1,12 +1,25 @@
 
 import React from 'react';
-import { Text, View, StyleSheet, ImageBackground } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, TextInput, Button, ScrollView } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import List from '../../components/list';
 import ListOfLists from '../../components/listOfLists';
 import AddIcon from '../../components/addIcon';
+import InputListName from '../../components/inputListName';
+import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
+import { getAllListsFromBoard, addList } from '../../services/taskService';
+
+const lists = getAllListsFromBoard();
 
 class Board extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      modalVisible: false,
+      name: '',
+    };
+  }
+
   render() {
     const { navigation } = this.props;
     const board = navigation.getParam('board', 'NO-ID');
@@ -33,14 +46,46 @@ class Board extends React.Component {
               textShadowOffset: { width: 1, height: 1 },
               textShadowRadius: 1,
               textShadowColor: '#000',
-            }}
-          >
+            }} >
             {board.name}
           </Text>
           </View>
         </ImageBackground>
         <ListOfLists id={board.id} />
-        <AddIcon />
+        <ScrollView style ={styles.scrollView}>
+        <List lists={lists}/>
+        <Modal
+          visible={this.state.modalVisible}
+          onTouchOutside={() => {
+            this.setState({ modalVisible: false });
+          }} >
+          <View style = {styles.modal}>
+            <ModalContent>
+            <TextInput
+              placeholder = "Enter the name of your list"
+              autoCapitalize="sentence"
+              autoCompleteType="name"
+              onChangeText = {(input) => this.setState({name: input})}>
+            </TextInput>
+            </ModalContent>
+            <ModalFooter>
+                <ModalButton
+                text="CANCEL"
+                onPress={() => {this.setState({ modalVisible: false })}}
+                />
+                <ModalButton
+                text="OK"
+                onPress={() => {this.setState({ modalVisible: false }), addList(this.state.name )}}
+                />
+            </ModalFooter>
+          </View>
+          </Modal>
+          <Button
+          style={styles.container}
+          title="Add list"
+          onPress={() => this.setState({ modalVisible:!this.state.modalVisible})} />
+          </ScrollView>
+        <AddIcon onPress={() => this.setState({ modalVisible:!this.state.modalVisible})}/>
       </View>
 
     )
@@ -51,6 +96,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EEE'
+  },
+  scrollView: {
+    marginHorizontal: 20,
+    flex: 1,
   }
 });
 

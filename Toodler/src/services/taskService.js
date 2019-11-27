@@ -1,4 +1,5 @@
 import boards from '../../assets/data';
+import lists from '../../assets/data';
 
 export function getAllBoards(){
     return boards.boards;
@@ -25,7 +26,7 @@ export function getAllTasksFromList(listId){
         }
     }
 
-    return items;   
+    return items;
 }
 
 //delete task
@@ -74,4 +75,28 @@ export function deleteBoard(id){
             boards.boards.splice(i, 1);
         }
     }
+}
+
+function findNextListId(){
+  maxid = 0
+  for(var i = 0; i < lists.lists.length; i++){
+    if(lists.lists[i].id > maxid){
+      maxid = lists.lists[i].id
+    }
+  }
+  return maxid + 1
+}
+// Add list
+export function addList(name) {
+  newListId = findNextListId()
+  if(name != ''){
+    lists.lists.push({
+      id: newListId,
+      name: name
+    })
+  }
+  else{
+
+  }
+  console.log(lists.lists)
 }
