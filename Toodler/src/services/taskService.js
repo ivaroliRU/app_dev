@@ -77,6 +77,32 @@ export function deleteBoard(id){
     }
 }
 
+<<<<<<< HEAD
+=======
+function findNextListId(){
+  maxid = 0
+  for(var i = 0; i < lists.lists.length; i++){
+    if(lists.lists[i].id > maxid){
+      maxid = lists.lists[i].id
+    }
+  }
+  return maxid + 1
+}
+// Add list
+export function addList(name) {
+  newListId = findNextListId()
+  if(name != ''){
+    lists.lists.push({
+      id: newListId,
+      name: name
+    })
+  }
+  else{
+
+  }
+  console.log(lists.lists)
+
+>>>>>>> 411fb8334c79b3c032b3ddf3f6f4eb92f8801e0f
 // find next available id
 function findNextBoardId(){
     maxid = 0
@@ -107,4 +133,8 @@ export function addBoard(name, image){
 
     }
     console.log(boards.boards)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 411fb8334c79b3c032b3ddf3f6f4eb92f8801e0f
 }
