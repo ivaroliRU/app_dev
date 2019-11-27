@@ -87,6 +87,7 @@ function findNextBoardId(){
     return maxid + 1
 }
 
+// Check if image is actually an image.
 function checkURL(url) {
     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }

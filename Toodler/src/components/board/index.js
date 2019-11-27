@@ -32,6 +32,11 @@ class Board extends React.Component {
                         title="Delete"
                         color="red"
                         />
+                        <CardButton
+                        onPress={() => this.props.method(this.props.board.id)}
+                        title="Modify"
+                        color="gold"
+                        />
                 </CardAction>
             </Card>
         );

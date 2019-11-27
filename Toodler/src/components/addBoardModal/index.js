@@ -7,7 +7,6 @@ class addNewBoardModal extends React.Component {
     constructor (props) {
       super(props);
       this.state = {
-        modalVisible: true,
         name: '',
         image: ''
       };
@@ -16,9 +15,9 @@ class addNewBoardModal extends React.Component {
     render() {
         return (
             <Modal
-                visible={this.state.modalVisible}
+                visible={this.props.isVisible}
                 onTouchOutside={() => {
-                    this.setState({ modalVisible: false });
+                    this.props.method(false);
                 }}
                 >
                 <View>
@@ -37,11 +36,11 @@ class addNewBoardModal extends React.Component {
                     <ModalFooter>
                         <ModalButton
                         text="CANCEL"
-                        onPress={() => {this.setState({ modalVisible: false })}}
+                        onPress={() => {this.props.method(false)}}
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.setState({ modalVisible: false }), addBoard(this.state.name, this.state.image)}}
+                        onPress={() => {this.props.method(false) , addBoard(this.state.name, this.state.image), console.log("help")}}
                         />
                     </ModalFooter>
                     </View>
