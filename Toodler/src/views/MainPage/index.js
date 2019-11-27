@@ -24,9 +24,7 @@ class Main extends React.Component {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <BoardList boards={boards} />
-
         <NewBoardModal method={this.closeModal} isVisible={this.state.modalVisible} />
-   
         <Button 
         style={styles.container} 
         title="Add Board" 
@@ -35,7 +33,7 @@ class Main extends React.Component {
       </ScrollView>
     </SafeAreaView>
     )
-  } 
+  }
 };
 
 const styles = StyleSheet.create({
