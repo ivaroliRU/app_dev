@@ -3,8 +3,7 @@ import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View } from 'react-
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
 import BoardList from '../../components/boardlist';
 import InputBoardName from '../../components/inputBoardName'
-import InputBoardImage from '../../components/inputBoardImage'
-import { getAllBoards } from '../../services/taskService';
+import { getAllBoards, addBoard } from '../../services/taskService';
 
 const boards = getAllBoards();
 
@@ -14,6 +13,7 @@ class Main extends React.Component {
     this.state = {
       modalVisible: false,
     };
+
   }
 
   render() {
@@ -30,7 +30,6 @@ class Main extends React.Component {
           <View style = {styles.modal}>
             <ModalContent>
                 <InputBoardName />
-                <InputBoardImage />
             </ModalContent>
             <ModalFooter>
                 <ModalButton
@@ -39,7 +38,7 @@ class Main extends React.Component {
                 />
                 <ModalButton
                 text="OK"
-                onPress={() => {}}
+                onPress={() => {this.setState({ modalVisible: false })}}
                 />
             </ModalFooter>
             </View>
@@ -49,7 +48,6 @@ class Main extends React.Component {
         title="Add Board" 
         onPress={() => this.setState({ modalVisible:!this.state.modalVisible})}
         />
-  <Text>{this.props.name}, {this.props.image}</Text>
       </ScrollView>
     </SafeAreaView>
     )
