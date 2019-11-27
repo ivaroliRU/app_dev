@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View } from 'react-native';
-import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
+import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View, TextInput } from 'react-native';
+import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
 import BoardList from '../../components/boardlist';
-import InputBoardName from '../../components/inputBoardName'
-import { getAllBoards } from '../../services/taskService';
+import { getAllBoards, addBoard } from '../../services/taskService';
 
 const boards = getAllBoards();
 
@@ -12,6 +11,8 @@ class Main extends React.Component {
     super(props);
     this.state = {
       modalVisible: false,
+      name: '',
+      image: ''
     };
   }
 
@@ -28,8 +29,16 @@ class Main extends React.Component {
         >
           <View style = {styles.modal}>
             <ModalContent>
-                <InputBoardName />
-                <Button title="Choose photo" onPress={this.handleChoosePhoto}></Button>
+            <TextInput
+                    placeholder = 'Enter the name of your board.'
+                    autoCapitalize="sentences"
+                    autoCompleteType="name"
+                    onChangeText={(input) => this.setState({name: input})}>
+                </TextInput>
+                <TextInput
+                    placeholder = 'Insert Image URI'
+                    onChangeText={(text) => this.setState({image: text})}>
+                </TextInput>
             </ModalContent>
             <ModalFooter>
                 <ModalButton
@@ -38,7 +47,7 @@ class Main extends React.Component {
                 />
                 <ModalButton
                 text="OK"
-                onPress={() => {}}
+                onPress={() => {this.setState({ modalVisible: false }), addBoard(this.state.name, this.state.image)}}
                 />
             </ModalFooter>
             </View>
@@ -55,10 +64,6 @@ class Main extends React.Component {
 };
 
 const styles = StyleSheet.create({
-  modal: {  
-    //marginTop: '500px',
-    //borderWidth: 1,
-    }, 
     container: {
       flex: 1,
       backgroundColor: '#EEE'

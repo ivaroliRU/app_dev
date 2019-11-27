@@ -75,3 +75,23 @@ export function deleteBoard(id){
         }
     }
 }
+
+function findNextBoardId(){
+    maxid = 0
+    for(var i = 0; i < boards.boards.length; i++){
+        if(boards.boards[i].id > maxid){
+            maxid = boards.boards[i].id
+        }
+    }
+    return maxid + 1
+}
+
+export function addBoard(name, image){
+    newBoardId = findNextBoardId()
+    boards.boards.push({
+        id: newBoardId,
+        name: name,
+        thumbnailPhoto: image
+    })
+    console.log(boards.boards)
+}
