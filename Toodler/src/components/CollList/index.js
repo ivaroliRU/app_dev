@@ -1,25 +1,45 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import CollapsibleList from "react-native-collapsible-list";
 import Task from '../task';
-import { deleteTask, getAllTasksFromList } from '../../services/taskService';
+import { deleteTask, getAllTasksFromList, getAllListsFromBoard } from '../../services/taskService';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import CreateTaskModal from '../createTaskModal';
  
 class CollList extends Component {
   constructor (props) {
     super(props);
+    
+    //binding this to the methods
     this.deleteTask = this.deleteTask.bind(this);
     this.onSwipeLeft = this.onSwipeLeft.bind(this);
-    this.state = { items: getAllTasksFromList(this.props.listId) };
+    this.createTask = this.createTask.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+
+    //set the state of the tasks and modals
+    this.state = { 
+      items: getAllTasksFromList(this.props.list.id),
+      modalVisible: false,
+    };
   }
 
   onSwipeLeft(gestureState) {
-    this.props.deleteMethod(this.props.listId);
+    this.props.deleteMethod(this.props.list.id);
   }
 
   deleteTask(id){
     deleteTask(id);
-    this.setState({ items: getAllTasksFromList(this.props.listId) });
+    this.setState({ items: getAllTasksFromList(this.props.list.id) });
+  }
+
+  createTask(){
+    this.setState({ modalVisible: true });
+  }
+
+  hideModal(){
+    console.log("asdfasdf");
+    
+    this.setState({ modalVisible: false });
   }
 
   render() {
@@ -30,7 +50,7 @@ class CollList extends Component {
         wrapperStyle={styles.wrapperCollapsibleList}
         buttonContent={
           <View style={styles.button}>
-            <Text style={styles.buttonText}>{this.props.listName}</Text>
+            <Text style={styles.buttonText}>{this.props.list.name}</Text>
           </View>
         }
       >
@@ -39,6 +59,11 @@ class CollList extends Component {
             <Task task={l} key={l.id} method={this.deleteTask} />
           ))
         }
+        <Button
+          title="Create A Task"
+          onPress={this.createTask}
+        />
+        <CreateTaskModal method={this.hideModal} visible={this.state.modalVisible} lists={getAllListsFromBoard(this.props.list.boardId)} />
     </CollapsibleList>
     </GestureRecognizer>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View } from 'react-native';
-import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
+import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
 import BoardList from '../../components/boardlist';
 import InputBoardName from '../../components/inputBoardName'
 import { getAllBoards } from '../../services/taskService';
