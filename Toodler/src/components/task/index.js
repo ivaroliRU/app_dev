@@ -20,7 +20,7 @@ class Task extends Component {
   }
 
   async _playRecording() {
-    const { sound } = await Audio.Sound.create(
+    const { sound } = await Audio.Sound.createAsync(
       require('../../../assets/vel_gert.mp3'),
       {
         shouldPlay: true,
