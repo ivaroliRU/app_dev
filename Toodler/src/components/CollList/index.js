@@ -46,8 +46,8 @@ class CollList extends Component {
         wrapperStyle={styles.wrapperCollapsibleList}
         buttonContent={
           <View style={styles.button}>
-          <Icon name='edit' type='font-awesome'
-          onPress={() => {this.handleModal(true)}} />
+            <Icon name='edit' type='font-awesome'
+            onPress={() => {this.handleModal(true)}} />
             <Text style={styles.buttonText}>{this.props.list.name} </Text>
           </View>
         }
@@ -94,13 +94,16 @@ const styles = StyleSheet.create({
     padding: 10
   },
   button:{
-    justifyContent: 'center',
+    flexDirection:'row',
     height: 55,
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonText: {
     fontSize: 20,
     alignSelf: 'center',
+    flexDirection:'column'
   },
 
 });

@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         marginLeft: 15,
         marginRight: 'auto',
-        fontSize: 16
+        fontSize: 16,
+        maxWidth: 220
     },
     descriptionText:{
       fontSize: 14,
