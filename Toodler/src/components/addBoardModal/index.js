@@ -2,6 +2,8 @@ import React from 'react';
 import {View, TextInput } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter } from 'react-native-modals'
 import { addBoard } from '../../services/taskService';
+import { connect } from 'react-redux';
+
 
 
 // This component is responsible for modal that creates a new
@@ -12,6 +14,11 @@ class addNewBoardModal extends React.Component {
         name: '',
         image: ''
       };
+    }
+
+    addToState(){
+        this.props.addBoard(this.state.name, this.state.image);
+        this.props.method(false)
     }
 
     render() {
@@ -43,7 +50,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
+                        onPress={() => {this.addToState()}} //() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
                         />
                     </ModalFooter>
                     </View>
@@ -52,4 +59,10 @@ class addNewBoardModal extends React.Component {
     } 
 };
 
-export default addNewBoardModal
+function mapDispatchToProps(dispatch){
+    return {
+         addBoard : (name, thumbnailPhoto) => dispatch({type: 'ADD_BOARD', name: name, thumbnailPhoto: thumbnailPhoto })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(addNewBoardModal);
