@@ -5,19 +5,29 @@ import Task from '../task';
 import { deleteTask, getAllTasksFromList, getAllListsFromBoard } from '../../services/taskService';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import CreateTaskModal from '../createTaskModal';
+<<<<<<< HEAD
+import { Icon } from 'react-native-elements'
+
+=======
 import { connect } from 'react-redux';
  
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
 class CollList extends Component {
   constructor (props) {
     super(props);
-    
+
     //binding this to the methods
     this.getTasks = this.getTasks.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
 
     //set the state of the tasks and modals
+<<<<<<< HEAD
+    this.state = {
+      items: getAllTasksFromList(this.props.list.id),
+=======
     this.state = { 
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
       modalVisible: false,
     };
   }
@@ -27,7 +37,11 @@ class CollList extends Component {
     this.setState({ modalVisible: true });
   }
 
+<<<<<<< HEAD
+
+=======
   //hids the modal
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
   hideModal(){
     this.setState({ modalVisible: false });
   }
@@ -41,11 +55,13 @@ class CollList extends Component {
     return (
       <GestureRecognizer onSwipeLeft={()=>(this.props.deletelist(this.props.list.id))}>
         <CollapsibleList
+
         numberOfVisibleItems={0}
         wrapperStyle={styles.wrapperCollapsibleList}
         buttonContent={
           <View style={styles.button}>
-            <Text style={styles.buttonText}>{this.props.list.name}</Text>
+          <Icon name='edit' type='font-awesome' />
+            <Text style={styles.buttonText}>{this.props.list.name} </Text>
           </View>
         }
       >
@@ -64,7 +80,7 @@ class CollList extends Component {
     );
   }
 }
- 
+
 const styles = StyleSheet.create({
   wrapperCollapsibleList: {
     minHeight: 40,
@@ -99,6 +115,9 @@ const styles = StyleSheet.create({
   }
 });
 
+<<<<<<< HEAD
+export default CollList;
+=======
 //map the app state to the component
 function mapStateToProps(state){  
   return{
@@ -114,3 +133,4 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollList);
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
