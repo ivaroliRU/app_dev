@@ -1,4 +1,5 @@
 import boards from '../../assets/data';
+import lists from '../../assets/data';
 
 export function getAllBoards(){
     return boards.boards;
@@ -25,7 +26,7 @@ export function getAllTasksFromList(listId){
         }
     }
 
-    return items;   
+    return items;
 }
 
 //delete task
@@ -76,6 +77,32 @@ export function deleteBoard(id){
     }
 }
 
+
+function findNextListId(){
+  maxid = 0
+  for(var i = 0; i < lists.lists.length; i++){
+    if(lists.lists[i].id > maxid){
+      maxid = lists.lists[i].id
+    }
+  }
+  return maxid + 1
+}
+// Add list
+export function addList(name) {
+  newListId = findNextListId()
+  if(name != ''){
+    lists.lists.push({
+      id: newListId,
+      name: name
+    })
+  }
+  else{
+
+  }
+  console.log(lists.lists)
+}
+
+// find next available id
 function findNextBoardId(){
     maxid = 0
     for(var i = 0; i < boards.boards.length; i++){
@@ -86,12 +113,24 @@ function findNextBoardId(){
     return maxid + 1
 }
 
+// Check if image is actually an image.
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+
+// add board to data.
 export function addBoard(name, image){
     newBoardId = findNextBoardId()
-    boards.boards.push({
-        id: newBoardId,
-        name: name,
-        thumbnailPhoto: image
-    })
+        if(name != '' && image != '' && checkURL(image)){
+        boards.boards.push({
+            id: newBoardId,
+            name: name,
+            thumbnailPhoto: image
+        })
+    }
+    else{
+
+    }
     console.log(boards.boards)
+
 }

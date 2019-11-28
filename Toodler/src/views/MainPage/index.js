@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, Button, Text, View, TextInput } from 'react-native';
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
 import BoardList from '../../components/boardlist';
+import NewBoardModal from '../../components/addBoardModal';
 import { getAllBoards, addBoard } from '../../services/taskService';
 
 const boards = getAllBoards();
@@ -10,10 +11,12 @@ class Main extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      modalVisible: false,
-      name: '',
-      image: ''
-    };
+      modalVisible:  false
+    }
+  }
+
+  closeModal = (statement) => {
+    this.setState({ modalVisible: statement });
   }
 
   render() {
@@ -60,7 +63,7 @@ class Main extends React.Component {
       </ScrollView>
     </SafeAreaView>
     )
-  } 
+  }
 };
 
 const styles = StyleSheet.create({
