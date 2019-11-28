@@ -5,11 +5,12 @@ import Task from '../task';
 import { deleteTask, getAllTasksFromList, getAllListsFromBoard } from '../../services/taskService';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import CreateTaskModal from '../createTaskModal';
- 
+import { Icon } from 'react-native-elements'
+
 class CollList extends Component {
   constructor (props) {
     super(props);
-    
+
     //binding this to the methods
     this.deleteTask = this.deleteTask.bind(this);
     this.onSwipeLeft = this.onSwipeLeft.bind(this);
@@ -17,7 +18,7 @@ class CollList extends Component {
     this.hideModal = this.hideModal.bind(this);
 
     //set the state of the tasks and modals
-    this.state = { 
+    this.state = {
       items: getAllTasksFromList(this.props.list.id),
       modalVisible: false,
     };
@@ -36,6 +37,7 @@ class CollList extends Component {
     this.setState({ modalVisible: true });
   }
 
+
   hideModal(){
     this.setState({ modalVisible: false });
   }
@@ -44,11 +46,13 @@ class CollList extends Component {
     return (
       <GestureRecognizer onSwipeLeft={this.onSwipeLeft}>
         <CollapsibleList
+
         numberOfVisibleItems={0}
         wrapperStyle={styles.wrapperCollapsibleList}
         buttonContent={
           <View style={styles.button}>
-            <Text style={styles.buttonText}>{this.props.list.name}</Text>
+          <Icon name='edit' type='font-awesome' />
+            <Text style={styles.buttonText}>{this.props.list.name} </Text>
           </View>
         }
       >
@@ -67,7 +71,7 @@ class CollList extends Component {
     );
   }
 }
- 
+
 const styles = StyleSheet.create({
   wrapperCollapsibleList: {
     minHeight: 40,

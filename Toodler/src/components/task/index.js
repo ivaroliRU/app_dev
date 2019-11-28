@@ -13,6 +13,7 @@ class Task extends Component {
           <View style={styles.wrapperTasks}>
             <CheckBox checked={this.props.task.isFinished} />
             <Text style={styles.taskItem} >{this.props.task.name}</Text>
+            <Icon name='edit' type='font-awesome' />
             <Icon name='trash' type='font-awesome' onPress={() => this.props.method(this.props.task.id)} />
           </View>
         }
@@ -25,7 +26,7 @@ class Task extends Component {
 
 const styles = StyleSheet.create({
     wrapperTasks: {
-        flexWrap: 'wrap', 
+        flexWrap: 'wrap',
         alignItems: 'center',
         flexDirection:'row',
         justifyContent: 'center',
