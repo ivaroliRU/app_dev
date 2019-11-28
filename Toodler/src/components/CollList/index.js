@@ -5,46 +5,55 @@ import Task from '../task';
 import { deleteTask, getAllTasksFromList, getAllListsFromBoard } from '../../services/taskService';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import CreateTaskModal from '../createTaskModal';
+<<<<<<< HEAD
 import { Icon } from 'react-native-elements'
 
+=======
+import { connect } from 'react-redux';
+ 
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
 class CollList extends Component {
   constructor (props) {
     super(props);
 
     //binding this to the methods
-    this.deleteTask = this.deleteTask.bind(this);
-    this.onSwipeLeft = this.onSwipeLeft.bind(this);
-    this.createTask = this.createTask.bind(this);
+    this.getTasks = this.getTasks.bind(this);
+    this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
 
     //set the state of the tasks and modals
+<<<<<<< HEAD
     this.state = {
       items: getAllTasksFromList(this.props.list.id),
+=======
+    this.state = { 
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
       modalVisible: false,
     };
   }
 
-  onSwipeLeft(gestureState) {
-    //this.props.deleteMethod(this.props.list.id);
-  }
-
-  deleteTask(id){
-    deleteTask(id);
-    this.setState({ items: getAllTasksFromList(this.props.list.id) });
-  }
-
-  createTask(){
+  //shows the model
+  showModal(){
     this.setState({ modalVisible: true });
   }
 
+<<<<<<< HEAD
 
+=======
+  //hids the modal
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
   hideModal(){
     this.setState({ modalVisible: false });
   }
 
+  //get the correct tasks for the list by the provided ID of the list
+  getTasks(){
+    return this.props.tasks.filter(t => t.listId == this.props.list.id)
+  }
+
   render() {
     return (
-      <GestureRecognizer onSwipeLeft={this.onSwipeLeft}>
+      <GestureRecognizer onSwipeLeft={()=>(this.props.deletelist(this.props.list.id))}>
         <CollapsibleList
 
         numberOfVisibleItems={0}
@@ -57,15 +66,15 @@ class CollList extends Component {
         }
       >
         {
-          this.state.items.map((l) => (
-            <Task task={l} key={l.id} method={this.deleteTask} />
+          this.getTasks().map((l) => (
+            <Task task={l} key={l.id} />
           ))
         }
         <Button
           title="Create A Task"
           onPress={this.createTask}
         />
-        <CreateTaskModal method={this.hideModal} visible={this.state.modalVisible} lists={getAllListsFromBoard(this.props.list.boardId)} />
+        <CreateTaskModal hideMethod={this.hideModal} showMethod={this.showModal} visible={this.state.modalVisible} lists={getAllListsFromBoard(this.props.list.boardId)} />
     </CollapsibleList>
     </GestureRecognizer>
     );
@@ -106,4 +115,22 @@ const styles = StyleSheet.create({
   }
 });
 
+<<<<<<< HEAD
 export default CollList;
+=======
+//map the app state to the component
+function mapStateToProps(state){  
+  return{
+    tasks: state.task
+  };
+}
+
+//map available actions to the component
+function mapDispatchToProps(dispatch){
+  return {
+       deletelist : (id) => dispatch({type: 'DELETE_LIST', id:id })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CollList);
+>>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
