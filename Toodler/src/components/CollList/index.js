@@ -102,9 +102,6 @@ const styles = StyleSheet.create({
   }
 });
 
-<<<<<<< HEAD
-export default CollList;
-=======
 //map the app state to the component
 function mapStateToProps(state){  
   return{
@@ -120,4 +117,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollList);
->>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
