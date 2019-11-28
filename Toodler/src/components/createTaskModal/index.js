@@ -25,7 +25,7 @@ class CreateTaskModal extends React.Component {
         return(
         <Modal
         visible={this.props.visible}
-        onTouchOutside={this.props.hideMethod}
+        onTouchOutside={() => {this.props.method(false)}}
         modalTitle={<ModalTitle title="Create a new task" />}
       >
         <ModalContent style={{minWidth:300}}>
@@ -53,7 +53,7 @@ class CreateTaskModal extends React.Component {
               />
               <ModalButton
               text="OK"
-              onPress={() => {console.log("viiii")}} //() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
+              onPress={() => {this.props.addTask(this.state.name, this.state.list, this.state.description)}} //() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
               />
           </ModalFooter>
         </Modal>
