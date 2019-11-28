@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import CreateTaskModal from '../createTaskModal';
 import { StyleSheet, Text, View, CheckBox } from "react-native";
 import CollapsibleList from "react-native-collapsible-list";
 import { Icon } from 'react-native-elements'
 
 class Task extends Component {
+  constructor (props) {
+    super(props);
+  }
+
     render() {
       return (
         <CollapsibleList

@@ -1,8 +1,6 @@
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
-import { View, Picker } from "react-native";
-import {  Input } from 'react-native-elements';
+import { View, Picker, TextInput } from "react-native";
 import { connect } from 'react-redux';
-import { addTask } from '../../actions/tasksActions';
 import React from 'react';
 
 class CreateTaskModal extends React.Component {
@@ -14,40 +12,32 @@ class CreateTaskModal extends React.Component {
         this.state = {
           name: '',
           description: '',
-          list: 0
+          list: 0,
+          pickedList: 'Choose a list'
         };
     }
-  
+
     createTask(){
-      addTask("test, test, 1");
+      this.props.addTask(this.state.name, this.state.description, this.state.list);
     }
 
     render() {
         return(
         <Modal
         visible={this.props.visible}
-        onTouchOutside={this.props.method}
+        onTouchOutside={this.props.hideMethod}
         modalTitle={<ModalTitle title="Create a new task" />}
-        footer={
-          <ModalFooter>
-            <ModalButton
-              text="CANCEL"
-              onPress={this.props.method}
-            />
-            <ModalButton
-              text="OK"
-              onPress={this.props.method}
-            />
-          </ModalFooter>
-        }
       >
         <ModalContent style={{minWidth:300}}>
             <View>
-                <Input placeholder='Insert name of task' label='Name'/>
-                <Input placeholder='Insert description of task' label='Description'/>
+                <TextInput placeholder='Insert name of task' label='Name' onChangeText={(input) => this.setState({name: input})} />
+                <TextInput placeholder='Insert description of task' label='Description' onChangeText={(input) => this.setState({description: input})} />
                 <Picker
-                    selectedValue={'Pick a list'}
-                    style={{height: 50, width: 200}}>
+                    selectedValue={this.state.pickedList}
+                    style={{height: 50, width: 200}}
+                    onValueChange={(itemValue, itemIndex) =>
+                      this.setState({list: itemValue, pickedList: itemIndex})
+                    }>
                     {
                         this.props.lists.map((l) => (
                             <Picker.Item label={l.name} value={l.id} key={l.id} />
@@ -56,9 +46,32 @@ class CreateTaskModal extends React.Component {
                 </Picker>
             </View>
         </ModalContent>
+        <ModalFooter>
+              <ModalButton
+              text="CANCEL"
+              onPress={() => {this.props.method(false)}}
+              />
+              <ModalButton
+              text="OK"
+              onPress={() => {console.log("viiii")}} //() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
+              />
+          </ModalFooter>
         </Modal>
         );
     }
 }
 
-export default connect(null, { addTask })(CreateTaskModal);
+function mapStateToProps(state){  
+  return{
+    lists: state.list
+  };
+}
+
+//map available actions to the component 
+function mapDispatchToProps(dispatch){
+  return {
+       addTask : (name, description, boardId) => dispatch({type: 'ADD_TASK', name: name, description: description, boardId: boardId })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTaskModal);

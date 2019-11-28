@@ -59,9 +59,9 @@ class CollList extends Component {
         }
         <Button
           title="Create A Task"
-          onPress={this.createTask}
+          onPress={() => this.showModal()}
         />
-        <CreateTaskModal hideMethod={this.hideModal} showMethod={this.showModal} visible={this.state.modalVisible} lists={getAllListsFromBoard(this.props.list.boardId)} />
+        <CreateTaskModal hideMethod={this.hideModal} showMethod={this.showModal} visible={this.state.modalVisible} />
     </CollapsibleList>
     </GestureRecognizer>
     );

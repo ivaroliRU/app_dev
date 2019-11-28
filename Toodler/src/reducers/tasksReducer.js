@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
               id: largestID++,
               name: action.name,
               description: action.description,
-              isFinished: action.isFinished,
+              isFinished: false,
               listId: action.boardId
             }
             ]
