@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, TextInput } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter } from 'react-native-modals'
-import { addBoard } from '../../services/taskService';
 import { connect } from 'react-redux';
 
 
@@ -11,13 +10,18 @@ class addNewBoardModal extends React.Component {
     constructor (props) {
       super(props);
       this.state = {
-        name: '',
-        image: ''
+        name: this.props.placeholder1,
+        image: this.props.placeholder2
       };
     }
 
     addToState(){
         this.props.addBoard(this.state.name, this.state.image);
+        this.props.method(false)
+    }
+
+    modToState(){
+        this.props.modBoard(this.props.id, this.state.name, this.state.image)
         this.props.method(false)
     }
 
@@ -33,13 +37,13 @@ class addNewBoardModal extends React.Component {
                 <View>
                     <ModalContent>
                     <TextInput
-                            placeholder = 'Enter the name of your board.'
+                            placeholder = {this.props.placeholder1}
                             autoCapitalize="sentences"
                             autoCompleteType="name"
                             onChangeText={(input) => this.setState({name: input})}>
                         </TextInput>
                         <TextInput
-                            placeholder = 'Insert Image URI'
+                            placeholder = {this.props.placeholder2}
                             onChangeText={(text) => this.setState({image: text})}>
                         </TextInput>
                     </ModalContent>
@@ -50,7 +54,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.addToState()}} //() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
+                        onPress={() => {this.props.method(false), (this.props.hvadagera == "ADD_BOARD")?this.addToState():this.modToState()}}
                         />
                     </ModalFooter>
                     </View>
@@ -61,7 +65,8 @@ class addNewBoardModal extends React.Component {
 
 function mapDispatchToProps(dispatch){
     return {
-         addBoard : (name, thumbnailPhoto) => dispatch({type: 'ADD_BOARD', name: name, thumbnailPhoto: thumbnailPhoto })
+         addBoard : (name, thumbnailPhoto) => dispatch({type: 'ADD_BOARD', name: name, thumbnailPhoto: thumbnailPhoto }),
+         modBoard : (id, name, thumbnailPhoto) => dispatch({type: 'MODIFY_BOARD', id: id, name: name, thumbnailPhoto: thumbnailPhoto})
     }
 }
 

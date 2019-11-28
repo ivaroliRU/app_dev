@@ -3,14 +3,26 @@ import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 
 import styles from './styles';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-
+import NewBoardModal from '../addBoardModal'
 
 class Board extends React.Component {
+
+    constructor (props) {
+        super(props);
+        this.state = {
+          visable:  false,
+        }
+      }
+    
+    handleModal = (statement) => {
+        this.setState({ visable: statement });
+    }
 
     render() {
     const {navigate} = this.props.navigation;
         return (
             <React.Fragment>
+                <NewBoardModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_BOARD" placeholder1={this.props.board.name} placeholder2={this.props.board.thumbnailPhoto} id={this.props.board.id}/>
                 <Card style={styles.card}>
                 <CardImage
                     source={{uri: this.props.board.thumbnailPhoto}}
@@ -35,7 +47,7 @@ class Board extends React.Component {
                             color="red"
                             />
                             <CardButton
-                            onPress={() => {}}
+                            onPress={() => {this.handleModal(true)}}
                             title="Modify"
                             color="gold"
                             />
