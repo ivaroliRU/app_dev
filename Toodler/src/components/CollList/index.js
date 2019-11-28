@@ -7,7 +7,8 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import CreateTaskModal from '../createTaskModal';
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
- 
+import CreateListModal from '../createListModal';
+
 class CollList extends Component {
   constructor (props) {
     super(props);
@@ -18,9 +19,12 @@ class CollList extends Component {
     this.hideModal = this.hideModal.bind(this);
 
     //set the state of the tasks and modals
-    this.state = { 
+    this.state = {
       modalVisible: false,
     };
+  }
+  handleModal = (statement) => {
+      this.setState({ visable: statement });
   }
 
   //shows the model
@@ -37,17 +41,19 @@ class CollList extends Component {
   getTasks(){
     return this.props.tasks.filter(t => t.listId == this.props.list.id)
   }
-
+// <NewBoardModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_BOARD" placeholder1={this.props.board.name} placeholder2={this.props.board.thumbnailPhoto} id={this.props.board.id}/>
   render() {
     return (
+      <React.Fragment>
+      <CreateListModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
       <GestureRecognizer onSwipeLeft={()=>(this.props.deletelist(this.props.list.id))}>
         <CollapsibleList
-
         numberOfVisibleItems={0}
         wrapperStyle={styles.wrapperCollapsibleList}
         buttonContent={
           <View style={styles.button}>
-          <Icon name='edit' type='font-awesome' />
+          <Icon name='edit' type='font-awesome'
+          onPress={() => {this.handleModal(true)}} />
             <Text style={styles.buttonText}>{this.props.list.name} </Text>
           </View>
         }
@@ -64,6 +70,7 @@ class CollList extends Component {
         <CreateTaskModal hideMethod={this.hideModal} showMethod={this.showModal} visible={this.state.modalVisible} />
     </CollapsibleList>
     </GestureRecognizer>
+    </React.Fragment>
     );
   }
 }
@@ -94,22 +101,24 @@ const styles = StyleSheet.create({
   },
   button:{
     justifyContent: 'center',
-    height: 55
+    height: 55,
+    alignItems: 'flex-end'
   },
   buttonText: {
     fontSize: 20,
     alignSelf: 'center',
-  }
+  },
+
 });
 
 //map the app state to the component
-function mapStateToProps(state){  
+function mapStateToProps(state){
   return{
     tasks: state.task
   };
 }
 
-//map available actions to the component 
+//map available actions to the component
 function mapDispatchToProps(dispatch){
   return {
        deletelist : (id) => dispatch({type: 'DELETE_LIST', id:id })
