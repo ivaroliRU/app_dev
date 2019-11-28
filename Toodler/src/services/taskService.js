@@ -131,6 +131,7 @@ export function addBoard(name, image){
     else{
 
     }
+    console.log(boards.boards)
 }
 
 export function modifyBoard(boardId, newname, newimage) {
