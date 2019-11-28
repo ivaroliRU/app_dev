@@ -16,7 +16,7 @@ class Main extends React.Component {
   }
 
   handleModal = (statement) => {
-    this.setState({ modalVisible1: statement });
+    this.setState({ modalVisible: statement });
   }
 
   render() {
@@ -24,7 +24,7 @@ class Main extends React.Component {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <BoardList boards={boards}/>
-        <NewBoardModal method={this.handleModal} isVisible={this.state.modalVisible}/>
+        <NewBoardModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="ADD_BOARD" placeholder1="Enter the name of your board." placeholder2="Insert Image URI" />
         <Button style={styles.container} title="Add Board" onPress={() => this.handleModal(true)}/>
       </ScrollView>
     </SafeAreaView>
