@@ -17,7 +17,7 @@ class BoardList extends React.Component {
     render() {
         return (
             this.props.boards.map((l) => (
-                <Board board={l} key={l.name} method={this.deleteBoard} />
+                <Board board={l} key={l.name} method={this.deleteBoard}/>
             ))
         );
     }

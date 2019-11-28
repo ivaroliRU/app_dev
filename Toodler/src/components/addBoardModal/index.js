@@ -1,8 +1,10 @@
 import React from 'react';
 import {View, TextInput } from 'react-native';
-import Modal, { ModalContent, ModalButton, ModalFooter} from 'react-native-modals'
+import Modal, { ModalContent, ModalButton, ModalFooter } from 'react-native-modals'
 import { addBoard } from '../../services/taskService';
 
+
+// This component is responsible for modal that creates a new
 class addNewBoardModal extends React.Component {
     constructor (props) {
       super(props);
@@ -17,6 +19,7 @@ class addNewBoardModal extends React.Component {
             <Modal
                 visible={this.props.isVisible}
                 onTouchOutside={() => {
+                    // below represents a parent method that closes the modal.
                     this.props.method(false);
                 }}
                 >
@@ -40,7 +43,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.props.method(false) , addBoard(this.state.name, this.state.image), console.log("help")}}
+                        onPress={() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
                         />
                     </ModalFooter>
                     </View>

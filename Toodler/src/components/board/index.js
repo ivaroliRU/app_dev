@@ -28,12 +28,12 @@ class Board extends React.Component {
                         color="blue"
                         />
                         <CardButton
-                        onPress={() => this.props.method(this.props.board.id)}
+                        onPress={() => this.props.method1(this.props.board.id)}
                         title="Delete"
                         color="red"
                         />
                         <CardButton
-                        onPress={() => this.props.method(this.props.board.id)}
+                        onPress={() => {}}
                         title="Modify"
                         color="gold"
                         />

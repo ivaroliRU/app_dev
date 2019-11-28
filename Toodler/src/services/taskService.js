@@ -131,6 +131,15 @@ export function addBoard(name, image){
     else{
 
     }
-    console.log(boards.boards)
+}
 
+export function modifyBoard(boardId, newname, newimage) {
+    for(var i = 0; i < boards.boards.length; i++){
+        if(boards.boards[i].id == boardId && name != '' && image != '' && checkURL(newimage)){
+            boards.boards[i] = {
+                name: newname,
+                thumbnailPhoto: newimage
+            }
+        }
+    }
 }
