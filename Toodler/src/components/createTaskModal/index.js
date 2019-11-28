@@ -1,9 +1,27 @@
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
 import { View, Picker } from "react-native";
 import {  Input } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { addTask } from '../../actions/tasksActions';
 import React from 'react';
 
 class CreateTaskModal extends React.Component {
+    constructor (props) {
+        super(props);
+
+        this.createTask = this.createTask.bind(this);
+
+        this.state = {
+          name: '',
+          description: '',
+          list: 0
+        };
+    }
+  
+    createTask(){
+      addTask("test, test, 1");
+    }
+
     render() {
         return(
         <Modal
@@ -43,4 +61,4 @@ class CreateTaskModal extends React.Component {
     }
 }
 
-export default CreateTaskModal;
+export default connect(null, { addTask })(CreateTaskModal);

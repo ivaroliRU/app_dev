@@ -20,7 +20,7 @@ class Main extends React.Component {
     return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <BoardList boards={boards} />
+        <BoardList />
         <Modal
           visible={this.state.modalVisible}
           onTouchOutside={() => {
