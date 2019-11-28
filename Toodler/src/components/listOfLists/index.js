@@ -2,25 +2,24 @@ import React, { Component } from "react";
 import { View, Text } from 'react-native';
 import CollList from '../CollList';
 import { getAllListsFromBoard, deleteList } from '../../services/taskService';
+import { connect } from 'react-redux';
  
 class ListOfLists extends Component {
   constructor (props) {
     super(props);
-    this.deleteList = this.deleteList.bind(this);
-    this.state = { lists: getAllListsFromBoard(this.props.id) };
+    this.getItems = this.getItems.bind(this);
   }
 
-  deleteList(id){
-    deleteList(id);
-    this.setState({ lists: getAllListsFromBoard(this.props.id) });
+  getItems(){
+    return this.props.lists.filter(list => list.boardId == this.props.id)
   }
 
   render() {
     return (
         <React.Fragment>
             {
-                this.state.lists.map((l) => (
-                    <CollList list={l} key={l.id} deleteMethod={this.deleteList} />
+                this.getItems().map((l) => (
+                    <CollList list={l} key={l.id} />
                 ))
             }
         </React.Fragment>
@@ -28,4 +27,10 @@ class ListOfLists extends Component {
   }
 }
 
-export default ListOfLists;
+function mapStateToProps(state){  
+  return{
+    lists: state.list
+  };
+}
+
+export default connect(mapStateToProps)(ListOfLists);

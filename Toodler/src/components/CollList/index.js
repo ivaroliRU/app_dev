@@ -24,7 +24,7 @@ class CollList extends Component {
   }
 
   onSwipeLeft(gestureState) {
-    this.props.deleteMethod(this.props.list.id);
+    //this.props.deleteMethod(this.props.list.id);
   }
 
   deleteTask(id){
@@ -37,8 +37,6 @@ class CollList extends Component {
   }
 
   hideModal(){
-    console.log("asdfasdf");
-    
     this.setState({ modalVisible: false });
   }
 
