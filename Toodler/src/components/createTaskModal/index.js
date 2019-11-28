@@ -1,24 +1,31 @@
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
-import { View, Picker, TextInput } from "react-native";
+import { View, Picker, TextInput, Button } from "react-native";
 import { connect } from 'react-redux';
 import React from 'react';
 
 class CreateTaskModal extends React.Component {
     constructor (props) {
-        super(props);
+        super(props);      
 
-        this.createTask = this.createTask.bind(this);
-
+        //if we have a task name or description then we chose that by default
         this.state = {
-          name: '',
-          description: '',
-          list: 0,
-          pickedList: 'Choose a list'
+          name: (this.props.task)?this.props.task.name:'',
+          description: (this.props.task)?this.props.task.description:'',
+          list: this.props.list.id,
         };
     }
 
+    //add or modify the task
     createTask(){
-      this.props.addTask(this.state.name, this.state.description, this.state.list);
+      if(this.state.name.length > 0 && this.state.list > 0){
+        if(this.props.type == 'mod'){
+          this.props.modTask(this.props.task.id, this.state.name, this.state.description, this.state.list, this.props.task.isFinished);
+        }
+        else{
+          this.props.addTask(this.state.name, this.state.description, this.state.list);
+        }
+        this.props.method(false)
+      }
     }
 
     render() {
@@ -30,20 +37,29 @@ class CreateTaskModal extends React.Component {
       >
         <ModalContent style={{minWidth:300}}>
             <View>
-                <TextInput placeholder='Insert name of task' label='Name' onChangeText={(input) => this.setState({name: input})} />
-                <TextInput placeholder='Insert description of task' label='Description' onChangeText={(input) => this.setState({description: input})} />
-                <Picker
-                    selectedValue={this.state.pickedList}
-                    style={{height: 50, width: 200}}
-                    onValueChange={(itemValue, itemIndex) =>
-                      this.setState({list: itemValue, pickedList: itemIndex})
-                    }>
-                    {
-                        this.props.lists.map((l) => (
-                            <Picker.Item label={l.name} value={l.id} key={l.id} />
-                        ))
-                    }
-                </Picker>
+                <TextInput placeholder={(this.props.task)?this.props.task.name:'Insert name of task'} onChangeText={(input) => this.setState({name: input})} />
+                <TextInput placeholder={(this.props.task)?this.props.task.description:'Insert description of task'} onChangeText={(input) => this.setState({description: input})} />
+                {
+                  //if we are modifying the task then we can change lists
+                  this.props.type == 'mod' &&                 
+                    <Picker
+                        selectedValue={this.state.list}
+                        style={{height: 50, width: 200}}
+                        onValueChange={(itemValue, itemIndex) =>
+                          this.setState({list: itemValue, pickedList: itemIndex})
+                        }>
+                        { 
+                            //filter out lists that are in other boards
+                            this.props.lists.filter(l => l.boardId == this.props.list.boardId).map((l) => (
+                                <Picker.Item label={l.name} value={l.id} key={l.id} />
+                            ))
+                        }
+                    </Picker>
+                }
+                <Button
+                  title="Test"
+                  onPress={() => {this.createTask()}}
+                />
             </View>
         </ModalContent>
         <ModalFooter>
@@ -53,7 +69,7 @@ class CreateTaskModal extends React.Component {
               />
               <ModalButton
               text="OK"
-              onPress={() => {this.props.addTask(this.state.name, this.state.list, this.state.description)}} //() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
+              onPress={() => {this.createTask()}}
               />
           </ModalFooter>
         </Modal>
@@ -63,14 +79,16 @@ class CreateTaskModal extends React.Component {
 
 function mapStateToProps(state){  
   return{
-    lists: state.list
+    lists: state.list,
+    tasks: state.task,
   };
 }
 
 //map available actions to the component 
 function mapDispatchToProps(dispatch){
   return {
-       addTask : (name, description, boardId) => dispatch({type: 'ADD_TASK', name: name, description: description, boardId: boardId })
+       addTask : (name, description, listId) => dispatch({type: 'ADD_TASK', name: name, description: description, listId: listId }),
+       modTask : (id, name, description, listId, isFinished) => dispatch({type: 'MODIFY_TASK', id:id, name: name, description: description, listId: listId, isFinished:isFinished })
   }
 }
 

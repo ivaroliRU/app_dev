@@ -3,30 +3,64 @@ import CreateTaskModal from '../createTaskModal';
 import { StyleSheet, Text, View, CheckBox } from "react-native";
 import CollapsibleList from "react-native-collapsible-list";
 import { Icon } from 'react-native-elements'
+import { connect } from 'react-redux';
+import { Audio } from 'expo-av';
 
 class Task extends Component {
   constructor (props) {
     super(props);
+
+    this.handleModal = this.handleModal.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
+
+    //set the state of the tasks and modals
+    this.state = { 
+      modalVisible: false
+    };
   }
 
-    render() {
-      return (
-        <CollapsibleList
-        numberOfVisibleItems={0}
-        wrapperStyle={styles.wrapperCollapsibleList}
-        buttonContent={
-          <View style={styles.wrapperTasks}>
-            <CheckBox checked={this.props.task.isFinished} />
-            <Text style={styles.taskItem} >{this.props.task.name}</Text>
-            <Icon name='edit' type='font-awesome' />
-            <Icon name='trash' type='font-awesome' onPress={() => this.props.method(this.props.task.id)} />
-          </View>
+  async _playRecording() {
+    const { sound } = await Audio.Sound.create(
+      require('../../../assets/vel_gert.mp3'),
+      {
+        shouldPlay: true,
+        isLooping: false,
+      },
+    );
+    this.sound = sound;
+    this.setState({
+      playingStatus: 'playing'
+    });
+  }
+
+  handleModal(visibility){
+    this.setState({ modalVisible: visibility });
+  }
+
+  async handleCheck(){
+    console.log("asd");
+    this._playRecording();
+  }
+
+  render() {
+    return (
+      <CollapsibleList
+      numberOfVisibleItems={0}
+      wrapperStyle={styles.wrapperCollapsibleList}
+      buttonContent={
+        <View style={styles.wrapperTasks}>
+          <CheckBox checked={this.props.task.isFinished} onValueChange={this.handleCheck} />
+          <Text style={styles.taskItem} >{this.props.task.name}</Text>
+          <Icon name='edit' type='font-awesome' onPress={() => this.handleModal(true)} />
+          <Icon name='trash' type='font-awesome' onPress={() => this.props.deleteTask(this.props.task.id)} />
+        </View>
         }
       >
         <Text style={styles.descriptionText}>{this.props.task.description}</Text>
-    </CollapsibleList>
-      );
-    }
+        <CreateTaskModal method={this.handleModal} visible={this.state.modalVisible} type='mod' list={this.props.list} task={this.props.task} />
+      </CollapsibleList>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -58,4 +92,19 @@ const styles = StyleSheet.create({
     }
 });
 
-  export default Task;
+//map the app state to the component
+function mapStateToProps(state){  
+  return{
+    tasks: state.task
+  };
+}
+
+//map available actions to the component 
+function mapDispatchToProps(dispatch){
+  return {
+       deleteTask : (id) => dispatch({type: 'DELETE_TASK', id:id }),
+       modTask : (id, name, description, listId, isFinished) => dispatch({type: 'MODIFY_TASK', id:id, name: name, description: description, listId: listId, isFinished:isFinished })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Task);

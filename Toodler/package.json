@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "^35.0.0",
+    "expo-av": "^7.0.1",
     "expo-file-system": "^7.0.0",
     "native-base": "^2.13.8",
     "react": "16.8.3",
@@ -22,6 +23,7 @@
     "react-native-ionicons": "^4.6.3",
     "react-native-material-cards": "^1.0.9",
     "react-native-modals": "^0.19.9",
+    "react-native-sound": "^0.11.0",
     "react-native-swipe-gestures": "^1.0.4",
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.0.10",

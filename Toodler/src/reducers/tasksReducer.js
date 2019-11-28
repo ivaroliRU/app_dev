@@ -5,6 +5,8 @@ const initialState = tasks.tasks;
 var largestID = initialState.length+1;
 
 export default function(state = initialState, action) {
+    console.log(action);
+    
     switch (action.type) {
         case 'ADD_TASK': 
             return[
@@ -14,7 +16,7 @@ export default function(state = initialState, action) {
               name: action.name,
               description: action.description,
               isFinished: false,
-              listId: action.boardId
+              listId: action.listId
             }
             ]
             case 'DELETE_TASK':
