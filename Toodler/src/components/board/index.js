@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 import styles from './styles';
 import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
 
 
 class Board extends React.Component {
@@ -28,7 +29,7 @@ class Board extends React.Component {
                         color="blue"
                         />
                         <CardButton
-                        onPress={() => this.props.method1(this.props.board.id)}
+                        onPress={() => this.props.deleteBoard(this.props.board.id)}
                         title="Delete"
                         color="red"
                         />
@@ -43,4 +44,10 @@ class Board extends React.Component {
     }
 }
 
-export default withNavigation(Board);
+function mapDispatchToProps(dispatch){
+    return {
+         deleteBoard : (id) => dispatch({type: 'DELETE_BOARD', id:id })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withNavigation(Board));
