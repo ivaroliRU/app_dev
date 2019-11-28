@@ -5,13 +5,9 @@ import Task from '../task';
 import { deleteTask, getAllTasksFromList, getAllListsFromBoard } from '../../services/taskService';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import CreateTaskModal from '../createTaskModal';
-<<<<<<< HEAD
 import { Icon } from 'react-native-elements'
-
-=======
 import { connect } from 'react-redux';
  
->>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
 class CollList extends Component {
   constructor (props) {
     super(props);
@@ -22,12 +18,7 @@ class CollList extends Component {
     this.hideModal = this.hideModal.bind(this);
 
     //set the state of the tasks and modals
-<<<<<<< HEAD
-    this.state = {
-      items: getAllTasksFromList(this.props.list.id),
-=======
     this.state = { 
->>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
       modalVisible: false,
     };
   }
@@ -37,11 +28,7 @@ class CollList extends Component {
     this.setState({ modalVisible: true });
   }
 
-<<<<<<< HEAD
-
-=======
   //hids the modal
->>>>>>> 76618a4daa98c2cc4e73dc6cd7e3dc68210518aa
   hideModal(){
     this.setState({ modalVisible: false });
   }
