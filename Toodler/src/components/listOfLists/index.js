@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 class ListOfLists extends Component {
   constructor (props) {
     super(props);
+
     this.getItems = this.getItems.bind(this);
   }
 

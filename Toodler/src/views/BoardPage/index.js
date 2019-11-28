@@ -60,7 +60,6 @@ class Board extends React.Component {
             <ModalContent>
             <TextInput
               placeholder = "Enter the name of your list"
-              autoCapitalize="sentence"
               autoCompleteType="name"
               onChangeText = {(input) => this.setState({name: input})}>
             </TextInput>
