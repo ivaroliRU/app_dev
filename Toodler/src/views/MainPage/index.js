@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, Button } from 'react-native';
 import BoardList from '../../components/boardlist';
 import NewBoardModal from '../../components/addBoardModal';
-import ModifyBoardModal from '../../components/modifyBoardModal';
+//import ModifyBoardModal from '../../components/modifyBoardModal';
 import { getAllBoards } from '../../services/taskService';
 
 const boards = getAllBoards();

@@ -1,10 +1,8 @@
-
 import React from 'react';
-import { Text, View, StyleSheet, ImageBackground, TextInput, Button, ScrollView } from 'react-native';
-import Toolbar from '../../components/Toolbar';
+import { StyleSheet, SafeAreaView, ScrollView, Button, View, Text, TextInput, ImageBackground } from 'react-native';
+import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
 import ListOfLists from '../../components/listOfLists';
-import AddIcon from '../../components/addIcon';
-import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals'
+import CreateListModal from '../../components/createListModal';
 import { getAllListsFromBoard, addList } from '../../services/taskService';
 
 const lists = getAllListsFromBoard();
@@ -13,17 +11,21 @@ class Board extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      modalVisible: false,
-      name: '',
+      modalVisible: false
     };
   }
+  handleModal = (statement) => {
+    this.setState({ modalVisible: statement });
+  }
+
 
   render() {
     const { navigation } = this.props;
     const board = navigation.getParam('board', 'NO-ID');
 
     return (
-      <View style={styles.container}>
+
+      <ScrollView style={styles.container}>
         <ImageBackground
           source={{ uri: board.thumbnailPhoto }}
           style={{
@@ -49,40 +51,18 @@ class Board extends React.Component {
           </Text>
           </View>
         </ImageBackground>
+
         <ListOfLists id={board.id} />
-        <ScrollView style ={styles.scrollView}>
-        <Modal
-          visible={this.state.modalVisible}
-          onTouchOutside={() => {
-            this.setState({ modalVisible: false });
-          }} >
-          <View style = {styles.modal}>
-            <ModalContent>
-            <TextInput
-              placeholder = "Enter the name of your list"
-              autoCompleteType="name"
-              onChangeText = {(input) => this.setState({name: input})}>
-            </TextInput>
-            </ModalContent>
-            <ModalFooter>
-                <ModalButton
-                text="CANCEL"
-                onPress={() => {this.setState({ modalVisible: false })}}
-                />
-                <ModalButton
-                text="OK"
-                onPress={() => {this.setState({ modalVisible: false }), addList(this.state.name )}}
-                />
-            </ModalFooter>
-          </View>
-          </Modal>
-          <Button
-          style={styles.container}
-          title="Add list"
-          onPress={() => this.setState({ modalVisible:!this.state.modalVisible})} />
-          </ScrollView>
-        <AddIcon onPress={() => this.setState({ modalVisible:!this.state.modalVisible})}/>
-      </View>
+
+      <SafeAreaView style={styles.container}>
+        <View style={styles.scrollView}>
+          <ListOfLists lists={lists}/>
+          <CreateListModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="ADD_LIST" placeholder="Enter the name of your list." />
+          <Button style={styles.container} title="Add List" onPress={() => this.handleModal(true)}/>
+        </View>
+      </SafeAreaView>
+      </ScrollView>
+
 
     )
   }
