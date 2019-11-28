@@ -1,7 +1,8 @@
 import React from 'react';
 import Board from '../board';
 import { deleteBoard } from '../../services/taskService';
-import { connect } from 'react-redux';
+import { connect, View } from 'react-redux';
+import addBoardModal from '../addBoardModal';
 
 class BoardList extends React.Component {
   constructor(props){
@@ -11,7 +12,7 @@ class BoardList extends React.Component {
     render() {
         return (
             this.props.boards.map((l) => (
-                <Board board={l} key={l.name} />
+              <Board  board={l} key={l.name} />
             ))
         );
     }

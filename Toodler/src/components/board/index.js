@@ -34,6 +34,7 @@ class Board extends React.Component {
                         color="red"
                         />
                         <CardButton
+                        id = {this.props.id}
                         onPress={() => {}}
                         title="Modify"
                         color="gold"

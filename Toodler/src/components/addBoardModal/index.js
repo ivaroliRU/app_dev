@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, TextInput } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter } from 'react-native-modals'
-import { addBoard } from '../../services/taskService';
 import { connect } from 'react-redux';
 
 
@@ -50,7 +49,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.addToState()}} //() => {this.props.method(false) , addBoard(this.state.name, this.state.image)}}
+                        onPress={() => {this.addToState()}}
                         />
                     </ModalFooter>
                     </View>
