@@ -106,7 +106,7 @@ function mapStateToProps(state){
   };
 }
 
-//map available actions to the component
+//map available actions to the component 
 function mapDispatchToProps(dispatch){
   return {
        deletelist : (id) => dispatch({type: 'DELETE_LIST', id:id })
