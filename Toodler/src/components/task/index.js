@@ -34,6 +34,7 @@ class Task extends Component {
   }
 
   handleModal(visibility){
+    console.log("Hello")
     this.setState({ modalVisible: visibility });
   }
 

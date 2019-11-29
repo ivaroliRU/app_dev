@@ -68,11 +68,11 @@ class CreateTaskModal extends React.Component {
         <ModalFooter>
               <ModalButton
               text="CANCEL"
-              onPress={() => {this.props.method(false)}}
+              onPress={() => this.props.method(false)}
               />
               <ModalButton
               text="OK"
-              onPress={() => {this.createTask()}}
+              onPress={() => this.createTask()}
               />
           </ModalFooter>
         </Modal>
