@@ -15,7 +15,7 @@ class Task extends Component {
 
     //set the state of the tasks and modals
     this.state = { 
-      modalVisible: false
+      modalVisible1: false
     };
   }
 
@@ -34,7 +34,7 @@ class Task extends Component {
   }
 
   handleModal(visibility){
-    this.setState({ modalVisible: visibility });
+    this.setState({ modalVisible1: visibility });
   }
 
   async handleCheck(){
@@ -56,7 +56,7 @@ class Task extends Component {
         }
       >
         <Text style={styles.descriptionText}>{this.props.task.description}</Text>
-        <CreateTaskModal method={this.handleModal} visible={this.state.modalVisible} type='mod' list={this.props.list} task={this.props.task} />
+        <CreateTaskModal method={this.handleModal} visible={this.state.modalVisible1} type='mod' list={this.props.list} task={this.props.task} key={1} />
       </CollapsibleList>
     );
   }

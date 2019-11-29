@@ -17,7 +17,8 @@ class CollList extends Component {
     this.handleModal = this.handleModal.bind(this);    
     //set the state of the tasks and modals
     this.state = { 
-      modalVisible: false
+      modalVisible: false,
+      modalVisibleTask: false
     };
   }
   handleModal = (statement) => {
@@ -25,8 +26,8 @@ class CollList extends Component {
   }
 
   //shows or hides the model
-  handleModal(visibility){
-    this.setState({ modalVisible: visibility});
+  handleTaskModal(visibility){
+    this.setState({ modalVisibleTask: visibility});
   }
 
   //get the correct tasks for the list by the provided ID of the list
@@ -61,7 +62,7 @@ class CollList extends Component {
           title="Create A Task"
           onPress={() => this.handleModal(true, 'add')}
         />
-        <CreateTaskModal method={this.handleModal} visible={this.state.modalVisible} type='add' list={this.props.list} />
+        <CreateTaskModal method={this.handleTaskModal} visible={this.state.modalVisibleTask} type='add' list={this.props.list} />
     </CollapsibleList>
     </GestureRecognizer>
     </React.Fragment>

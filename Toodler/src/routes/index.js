@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Button } from 'react-native';
+import { Button, TouchableOpacity, Text } from 'react-native';
 
 //routes to views
 import Main from '../views/MainPage';
@@ -14,7 +14,7 @@ export default createAppContainer(createStackNavigator({
       screen: Main,
       navigationOptions: ({navigation}) => ({
         title: "Home",
-        headerRight: <Button title="Help" onPress={() => navigation.navigate('Help')}/>,
+        headerRight: <TouchableOpacity onPress={() => navigation.navigate('Help')}><Text style={{paddingRight:15}}>Help</Text></TouchableOpacity>,
     }),
         headerBackTitle: null,
     },
