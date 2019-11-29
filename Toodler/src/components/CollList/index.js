@@ -28,8 +28,6 @@ class CollList extends Component {
 
   //shows or hides the model
   handleTaskModal(visibility){
-    console.log("Before doing anything");
-    console.log(this.state);
     this.setState({ modalVisibleTask: visibility});
   }
 
@@ -37,16 +35,17 @@ class CollList extends Component {
   getTasks(){
     return this.props.tasks.filter(t => t.listId == this.props.list.id)
   }
-// <NewBoardModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_BOARD" placeholder1={this.props.board.name} placeholder2={this.props.board.thumbnailPhoto} id={this.props.board.id}/>
+  
+  // <NewBoardModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_BOARD" placeholder1={this.props.board.name} placeholder2={this.props.board.thumbnailPhoto} id={this.props.board.id}/>
   render() {
     return (
       <React.Fragment>
       <CreateListModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
       <GestureRecognizer onSwipeLeft={()=>(this.props.deletelist(this.props.list.id))}>
         <CollapsibleList
-        numberOfVisibleItems={0}
-        wrapperStyle={styles.wrapperCollapsibleList}
-        buttonContent={
+          numberOfVisibleItems={0}
+          wrapperStyle={styles.wrapperCollapsibleList}
+          buttonContent={
           <View style={styles.button}>
             <Icon name='edit' type='font-awesome'
             onPress={() => {this.handleModal(true)}} />
