@@ -9,11 +9,12 @@ class Help extends React.Component {
 
   render() {
     return (
-        <WebView
-            style={{flex:1}}
-            javaScriptEnabled={true}
-            source={{uri: 'https://www.youtube.com/watch?v=X1jMMFOqxEw'}}
-        />
+      <WebView
+              style={{ marginTop: 20, width: '100%', height: '100%' }}
+              javaScriptEnabled={true}
+              domStorageEnabled={true}
+              source={{ uri: "https://www.youtube.com/embed/-ZZPOXn6_9w" }}
+            />
     )
   }
 };

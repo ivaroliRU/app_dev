@@ -17,6 +17,7 @@ class Board extends React.Component {
 
   handleModal = (statement) => {
     this.setState({ modalVisible: statement });
+    console.log(this.props.lists)
   }
 
   render() {
