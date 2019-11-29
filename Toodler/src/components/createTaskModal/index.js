@@ -7,6 +7,9 @@ class CreateTaskModal extends React.Component {
     constructor (props) {
         super(props);      
 
+        this.createTask = this.createTask.bind(this);
+        this.test = this.test.bind(this);
+        
         //if we have a task name or description then we chose that by default
         this.state = {
           name: (this.props.task)?this.props.task.name:'',
@@ -15,9 +18,13 @@ class CreateTaskModal extends React.Component {
         };
     }
 
+    async intermediate(){
+      await this.props.method(false);
+      this.createTask();
+    }
+
     //add or modify the task
     createTask(){
-      this.props.method(false);
       if(this.state.name.length > 0){
         if(this.props.type == 'mod'){
           //let the modal diapear before changing the state...
@@ -72,7 +79,7 @@ class CreateTaskModal extends React.Component {
               />
               <ModalButton
               text="OK"
-              onPress={() => this.createTask()}
+              onPress={this.intermediate}
               />
           </ModalFooter>
         </Modal>
