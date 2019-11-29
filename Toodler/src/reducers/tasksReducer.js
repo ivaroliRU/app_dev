@@ -24,6 +24,15 @@ export default function(state = initialState, action) {
                 n_task = {id: action.id, name: action.name, description: action.description, listId: action.listId, isFinished: action.isFinished};
                 n_state.push(n_task);
                 return n_state;
+            case 'CHECK_TASK':
+                n_state = [];
+                for(var i = 0; i < state.task.length; i++){
+                    if(state[i].id == action.id){
+                        state[i].isFinished = action.isFinished;
+                    }
+                    n_state.push(state[i]);
+                }
+                return n_state;
         default: return state;
     }
 }

@@ -40,6 +40,8 @@ class Task extends Component {
 
   async handleCheck(){
     this._playRecording();
+    this.props.task.isFinished = !this.props.task.isFinished;
+    this.props.check(this.props.task.isFinished, this.props.task.id);
   }
 
   render() {
@@ -49,7 +51,7 @@ class Task extends Component {
       wrapperStyle={styles.wrapperCollapsibleList}
       buttonContent={
         <View style={styles.wrapperTasks}>
-          <CheckBox checked={this.props.task.isFinished} onValueChange={this.handleCheck} />
+          <CheckBox checked={this.props.task.isFinished} onValueChange={this.handleCheck} onPress={() => this.handleCheck()} />
           <Text style={styles.taskItem} >{this.props.task.name}</Text>
           <Icon name='edit' type='font-awesome' onPress={() => this.handleModal(true)} />
           <Icon name='trash' type='font-awesome' onPress={() => this.props.deleteTask(this.props.task.id)} />
@@ -104,7 +106,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return {
        deleteTask : (id) => dispatch({type: 'DELETE_TASK', id:id }),
-       modTask : (id, name, description, listId, isFinished) => dispatch({type: 'MODIFY_TASK', id:id, name: name, description: description, listId: listId, isFinished:isFinished })
+       modTask : (id, name, description, listId, isFinished) => dispatch({type: 'MODIFY_TASK', id:id, name: name, description: description, listId: listId, isFinished:isFinished }),
+       check : (finished, id) => dispatch({type: 'CHECK_TASK', isFinished: finished, id: id })
   }
 }
 
