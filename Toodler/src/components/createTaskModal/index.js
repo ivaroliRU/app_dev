@@ -17,14 +17,18 @@ class CreateTaskModal extends React.Component {
 
     //add or modify the task
     createTask(){
+      this.props.method(false);
       if(this.state.name.length > 0 && this.state.list > 0){
         if(this.props.type == 'mod'){
-          this.props.modTask(this.props.task.id, this.state.name, this.state.description, this.state.list, this.props.task.isFinished);
+          //let the modal diapear before changing the state...
+          setTimeout(
+            () => this.props.modTask(this.props.task.id, this.state.name, this.state.description, this.state.list, this.props.task.isFinished),
+            100
+          );
         }
         else{
           this.props.addTask(this.state.name, this.state.description, this.state.list);
         }
-        this.props.method(false)
       }
     }
 

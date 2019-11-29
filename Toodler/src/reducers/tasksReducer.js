@@ -4,9 +4,7 @@ const initialState = tasks.tasks;
 
 var largestID = initialState.length+1;
 
-export default function(state = initialState, action) {
-    console.log(action);
-    
+export default function(state = initialState, action) {    
     switch (action.type) {
         case 'ADD_TASK': 
             return[
@@ -22,15 +20,10 @@ export default function(state = initialState, action) {
             case 'DELETE_TASK':
                 return state.filter(task => task.id != action.id);
             case 'MODIFY_TASK':
-                for (var i = 0; i < state.length; i++){
-                    if(state[i].id == action.id){
-                        state[i].name = action.name;
-                        state[i].description = action.description;
-                        state[i].isFinished = state[i].isFinished;
-                        state[i].listId = state[i].listId;
-                    }
-                }
-                return state;
+                n_state = state.filter(task => task.id != action.id);
+                n_task = {id: action.id, name: action.name, description: action.description, listId: action.listId, isFinished: action.isFinished};
+                n_state.push(n_task);
+                return n_state;
         default: return state;
     }
 }

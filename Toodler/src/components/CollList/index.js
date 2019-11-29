@@ -33,6 +33,8 @@ class CollList extends Component {
 
   //get the correct tasks for the list by the provided ID of the list
   getTasks(){
+    
+    
     return this.props.tasks.filter(t => t.listId == this.props.list.id)
   }
 // <NewBoardModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_BOARD" placeholder1={this.props.board.name} placeholder2={this.props.board.thumbnailPhoto} id={this.props.board.id}/>
@@ -53,7 +55,7 @@ class CollList extends Component {
         }
       >
         {
-          this.getTasks().map((l) => (
+          this.props.tasks.filter(t => t.listId == this.props.list.id).map((l) => (
             <Task task={l} key={l.id} method={this.handleModal} list={this.props.list} />
           ))
         }
@@ -111,7 +113,8 @@ const styles = StyleSheet.create({
 //map the app state to the component
 function mapStateToProps(state){
   return{
-    tasks: state.task
+    tasks: state.task,
+    lists: state.list
   };
 }
 

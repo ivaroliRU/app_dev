@@ -14,10 +14,10 @@ class Board extends React.Component {
       modalVisible: false
     };
   }
+
   handleModal = (statement) => {
     this.setState({ modalVisible: statement });
   }
-
 
   render() {
     const { navigation } = this.props;
@@ -62,8 +62,6 @@ class Board extends React.Component {
         </View>
       </SafeAreaView>
       </ScrollView>
-
-
     )
   }
 };
