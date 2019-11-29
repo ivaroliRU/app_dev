@@ -56,7 +56,7 @@ class Board extends React.Component {
         <ListOfLists id={board.id} style={styles.list} />
       <SafeAreaView style={styles.container}>
         <View style={styles.scrollView}>
-          <CreateListModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="ADD_LIST" placeholder="Enter the name of your list." />
+          <CreateListModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="ADD_LIST" placeholder="Enter the name of your list." boardId={board.id} />
           <Button style={styles.container} title="Add List" onPress={() => this.handleModal(true)}/>
         </View>
       </SafeAreaView>
