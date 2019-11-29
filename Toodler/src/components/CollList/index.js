@@ -14,7 +14,8 @@ class CollList extends Component {
 
     //binding this to the methods
     this.getTasks = this.getTasks.bind(this);
-    this.handleModal = this.handleModal.bind(this);    
+    this.handleModal = this.handleModal.bind(this);
+    this.handleTaskModal = this.handleTaskModal.bind(this);  
     //set the state of the tasks and modals
     this.state = { 
       modalVisible: false,
@@ -27,13 +28,13 @@ class CollList extends Component {
 
   //shows or hides the model
   handleTaskModal(visibility){
+    console.log("Before doing anything");
+    console.log(this.state);
     this.setState({ modalVisibleTask: visibility});
   }
 
   //get the correct tasks for the list by the provided ID of the list
   getTasks(){
-    
-    
     return this.props.tasks.filter(t => t.listId == this.props.list.id)
   }
 // <NewBoardModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_BOARD" placeholder1={this.props.board.name} placeholder2={this.props.board.thumbnailPhoto} id={this.props.board.id}/>
@@ -60,7 +61,7 @@ class CollList extends Component {
         }
         <Button
           title="Create A Task"
-          onPress={() => this.handleTaskModal(true, 'add')}
+          onPress={() => this.handleTaskModal(true)}
         />
         <CreateTaskModal method={this.handleTaskModal} visible={this.state.modalVisibleTask} type='add' list={this.props.list} />
     </CollapsibleList>

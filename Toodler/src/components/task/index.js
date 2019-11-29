@@ -35,12 +35,7 @@ class Task extends Component {
   }
 
   handleModal(visibility){
-<<<<<<< HEAD
-    console.log("Hello")
-    this.setState({ modalVisible: visibility });
-=======
     this.setState({ modalVisible1: visibility });
->>>>>>> bdacfd9f539bbf18c9057c408d123e778cceb5e1
   }
 
   async handleCheck(){
