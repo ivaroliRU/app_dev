@@ -73,11 +73,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-<<<<<<< HEAD
-         addList : (name, boardId) => dispatch({type: 'ADD_LIST', name: name, color: '#FFF', boardId: boardId}),
-=======
          addList : (name, boardId) => dispatch({type: 'ADD_LIST', name: name, color: "#FFF", boardId: boardId}),
->>>>>>> 88ffdd35844a939ef0ac649917ec0eaac3f1f750
          modList : (id, name) => dispatch({type: 'MODIFY_LIST', id: id, name: name})
     }
 }
