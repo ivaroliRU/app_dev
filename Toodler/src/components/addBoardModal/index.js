@@ -32,9 +32,8 @@ class addNewBoardModal extends React.Component {
                 onTouchOutside={() => {
                     // below represents a parent method that closes the modal.
                     this.props.method(false);
-                }}
-                >
-                <View>
+                }}>
+                <View style = {{minWidth: 200}}>
                     <ModalContent>
                     <TextInput
                             placeholder = {this.props.placeholder1}

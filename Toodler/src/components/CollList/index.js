@@ -16,7 +16,6 @@ class CollList extends Component {
     //binding this to the methods
     this.getTasks = this.getTasks.bind(this);
     this.handleModal = this.handleModal.bind(this);    
-
     //set the state of the tasks and modals
     this.state = { 
       modalVisible: false
@@ -39,7 +38,7 @@ class CollList extends Component {
   render() {
     return (
       <React.Fragment>
-      <CreateListModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
+      <CreateListModal method={this.handleModal} isVisible={this.state.modalVisable} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
       <GestureRecognizer onSwipeLeft={()=>(this.props.deletelist(this.props.list.id))}>
         <CollapsibleList
         numberOfVisibleItems={0}
@@ -69,12 +68,13 @@ class CollList extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   wrapperCollapsibleList: {
     minHeight: 40,
     marginTop: 20,
     overflow: "hidden",
-    backgroundColor: "#FFF",
+    // backgroundColor: "yellow",
     borderRadius: 5,
     marginLeft: 14,
     marginRight: 15,
