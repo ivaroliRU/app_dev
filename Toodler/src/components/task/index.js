@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CreateTaskModal from '../createTaskModal';
-import { StyleSheet, Text, View, CheckBox } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { CheckBox } from 'react-native-elements'
 import CollapsibleList from "react-native-collapsible-list";
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux';

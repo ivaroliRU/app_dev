@@ -60,7 +60,7 @@ class CollList extends Component {
         }
         <Button
           title="Create A Task"
-          onPress={() => this.handleModal(true, 'add')}
+          onPress={() => this.handleTaskModal(true, 'add')}
         />
         <CreateTaskModal method={this.handleTaskModal} visible={this.state.modalVisibleTask} type='add' list={this.props.list} />
     </CollapsibleList>
