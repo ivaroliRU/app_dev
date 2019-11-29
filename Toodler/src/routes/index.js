@@ -22,7 +22,7 @@ export default createAppContainer(createStackNavigator({
       screen: Boards,
       navigationOptions: ({navigation}) => ({
         title: `Board`,
-        headerRight: <Button title="Help"  onPress={() => navigation.navigate('Help')}/>,
+        headerRight: <TouchableOpacity onPress={() => navigation.navigate('Help')}><Text style={{paddingRight:15}}>Help</Text></TouchableOpacity>,
       }),
    },
    Help: {
