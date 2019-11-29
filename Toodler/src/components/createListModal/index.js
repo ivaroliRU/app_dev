@@ -11,8 +11,10 @@ class createListModal extends React.Component {
     };
   }
   addToState(){
-      this.props.addList(this.state.name);
+      console.log(this.props.lists)
+      this.props.addList(this.state.name, '#ff00ff', this.props.boards.id);
       this.props.method(false)
+      console.log(this.props.lists)
   }
 
   modToState(){
@@ -46,7 +48,7 @@ class createListModal extends React.Component {
                   />
                   <ModalButton
                   text="OK"
-                  onPress={() => {this.props.method(false), (this.props.hvadagera == "ADD_LIST")?this.addToState():this.modToState()}}
+                  onPress={() => {(this.props.hvadagera == "ADD_LIST")?this.addToState():this.modToState()}}
                   />
               </ModalFooter>
               </View>
@@ -55,11 +57,19 @@ class createListModal extends React.Component {
   }
 
 }
+
+function mapStateToProps(state){  
+  return{
+    lists: state.list,
+    boards: state.boards,
+  };
+}
+
 function mapDispatchToProps(dispatch){
     return {
-         addList : (name) => dispatch({type: 'ADD_LIST', name: name}),
+         addList : (name, color, boardId) => dispatch({type: 'ADD_LIST', name: name, color: color, boardId: boardId}),
          modList : (id, name) => dispatch({type: 'MODIFY_LIST', id: id, name: name})
     }
 }
 
-export default connect(null, mapDispatchToProps)(createListModal);
+export default connect(mapStateToProps, mapDispatchToProps)(createListModal);
