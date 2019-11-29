@@ -1,5 +1,5 @@
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
-import { View, Picker, TextInput, Button } from "react-native";
+import { View, Picker, TextInput, Text } from "react-native";
 import { connect } from 'react-redux';
 import React from 'react';
 
@@ -17,14 +17,18 @@ class CreateTaskModal extends React.Component {
 
     //add or modify the task
     createTask(){
+      this.props.method(false);
       if(this.state.name.length > 0 && this.state.list > 0){
         if(this.props.type == 'mod'){
-          this.props.modTask(this.props.task.id, this.state.name, this.state.description, this.state.list, this.props.task.isFinished);
+          //let the modal diapear before changing the state...
+          setTimeout(
+            () => this.props.modTask(this.props.task.id, this.state.name, this.state.description, this.state.list, this.props.task.isFinished),
+            100
+          );
         }
         else{
           this.props.addTask(this.state.name, this.state.description, this.state.list);
         }
-        this.props.method(false)
       }
     }
 
@@ -33,16 +37,19 @@ class CreateTaskModal extends React.Component {
         <Modal
         visible={this.props.visible}
         onTouchOutside={() => {this.props.method(false)}}
-        modalTitle={<ModalTitle title="Create a new task" />}
+        modalTitle={<ModalTitle title={(this.props.type == 'mod')?"Edit a task":"Create a new task"} />}
       >
         <ModalContent style={{minWidth:300}}>
             <View>
+                <Text>Name</Text>
                 <TextInput placeholder={(this.props.task)?this.props.task.name:'Insert name of task'} onChangeText={(input) => this.setState({name: input})} />
+                <Text>Description</Text>
                 <TextInput placeholder={(this.props.task)?this.props.task.description:'Insert description of task'} onChangeText={(input) => this.setState({description: input})} />
                 {
                   //if we are modifying the task then we can change lists
-                  this.props.type == 'mod' &&                 
-                    <Picker
+                  this.props.type == 'mod' && 
+                    <Text>List</Text> &&          
+                    <Picker 
                         selectedValue={this.state.list}
                         style={{height: 50, width: 200}}
                         onValueChange={(itemValue, itemIndex) =>
@@ -56,10 +63,6 @@ class CreateTaskModal extends React.Component {
                         }
                     </Picker>
                 }
-                <Button
-                  title="Test"
-                  onPress={() => {this.createTask()}}
-                />
             </View>
         </ModalContent>
         <ModalFooter>

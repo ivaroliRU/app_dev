@@ -38,7 +38,6 @@ class Task extends Component {
   }
 
   async handleCheck(){
-    console.log("asd");
     this._playRecording();
   }
 

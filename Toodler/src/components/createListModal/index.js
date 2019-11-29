@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter } from 'react-native-modals'
 import { connect } from 'react-redux';
 
@@ -30,7 +30,8 @@ class createListModal extends React.Component {
           }}
           >
           <View>
-              <ModalContent>
+              <ModalContent style={{minWidth:300}}>
+                  <Text>Name</Text>
                   <TextInput
                       placeholder = {this.props.placeholder}
                       autoCapitalize="sentences"

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import CollapsibleList from "react-native-collapsible-list";
 import Task from '../task';
-import { deleteTask, getAllTasksFromList, getAllListsFromBoard } from '../../services/taskService';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import CreateTaskModal from '../createTaskModal';
 import { Icon } from 'react-native-elements'
@@ -22,7 +21,7 @@ class CollList extends Component {
     };
   }
   handleModal = (statement) => {
-      this.setState({ visable: statement });
+      this.setState({ modalVisible: statement });
   }
 
   //shows or hides the model
@@ -32,13 +31,15 @@ class CollList extends Component {
 
   //get the correct tasks for the list by the provided ID of the list
   getTasks(){
+    
+    
     return this.props.tasks.filter(t => t.listId == this.props.list.id)
   }
 // <NewBoardModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_BOARD" placeholder1={this.props.board.name} placeholder2={this.props.board.thumbnailPhoto} id={this.props.board.id}/>
   render() {
     return (
       <React.Fragment>
-      <CreateListModal method={this.handleModal} isVisible={this.state.modalVisable} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
+      <CreateListModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
       <GestureRecognizer onSwipeLeft={()=>(this.props.deletelist(this.props.list.id))}>
         <CollapsibleList
         numberOfVisibleItems={0}
@@ -52,7 +53,7 @@ class CollList extends Component {
         }
       >
         {
-          this.getTasks().map((l) => (
+          this.props.tasks.filter(t => t.listId == this.props.list.id).map((l) => (
             <Task task={l} key={l.id} method={this.handleModal} list={this.props.list} />
           ))
         }
@@ -111,7 +112,8 @@ const styles = StyleSheet.create({
 //map the app state to the component
 function mapStateToProps(state){
   return{
-    tasks: state.task
+    tasks: state.task,
+    lists: state.list
   };
 }
 

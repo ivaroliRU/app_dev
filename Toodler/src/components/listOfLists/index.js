@@ -30,7 +30,8 @@ class ListOfLists extends Component {
 
 function mapStateToProps(state){  
   return{
-    lists: state.list
+    lists: state.list,
+    tasks: state.task
   };
 }
 
