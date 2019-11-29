@@ -13,14 +13,9 @@ class createListModal extends React.Component {
     
   }
   addToState(){
-<<<<<<< HEAD
-      this.props.addList(this.props.boardId ,this.state.name);
-      this.props.method(false)
-=======
       this.props.addList(this.state.name, this.props.boardId);
       this.props.method(false)
       console.log(this.props.lists)
->>>>>>> 88ffdd35844a939ef0ac649917ec0eaac3f1f750
   }
 
   modToState(){
