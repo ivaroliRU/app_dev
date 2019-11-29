@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import CollapsibleList from "react-native-collapsible-list";
 import Task from '../task';
-import { deleteTask, getAllTasksFromList, getAllListsFromBoard } from '../../services/taskService';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import CreateTaskModal from '../createTaskModal';
 import { Icon } from 'react-native-elements'
@@ -23,7 +22,7 @@ class CollList extends Component {
     };
   }
   handleModal = (statement) => {
-      this.setState({ visable: statement });
+      this.setState({ modalVisible: statement });
   }
 
   //shows or hides the model
@@ -41,7 +40,7 @@ class CollList extends Component {
   render() {
     return (
       <React.Fragment>
-      <CreateListModal method={this.handleModal} isVisible={this.state.visable} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
+      <CreateListModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="MODIFY_LIST" placeholder={this.props.list.name}  id={this.props.list.id}/>
       <GestureRecognizer onSwipeLeft={()=>(this.props.deletelist(this.props.list.id))}>
         <CollapsibleList
         numberOfVisibleItems={0}

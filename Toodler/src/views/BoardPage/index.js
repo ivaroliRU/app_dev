@@ -22,6 +22,8 @@ class Board extends React.Component {
   render() {
     const { navigation } = this.props;
     const board = navigation.getParam('board', 'NO-ID');
+    console.log(this.state);
+    
 
     return (
 
