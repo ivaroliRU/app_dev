@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, Button, View, Text, TextInput, ImageBackground } from 'react-native';
-import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
+import {AddIcon} from '../../components/addIcon';
 import ListOfLists from '../../components/listOfLists';
 import CreateListModal from '../../components/createListModal';
 import { getAllListsFromBoard, addList } from '../../services/taskService';
@@ -51,12 +51,9 @@ class Board extends React.Component {
           </Text>
           </View>
         </ImageBackground>
-
-        <ListOfLists id={board.id} />
-
+        <ListOfLists id={board.id} style={styles.list} />
       <SafeAreaView style={styles.container}>
         <View style={styles.scrollView}>
-          <ListOfLists lists={lists}/>
           <CreateListModal method={this.handleModal} isVisible={this.state.modalVisible} hvadagera="ADD_LIST" placeholder="Enter the name of your list." />
           <Button style={styles.container} title="Add List" onPress={() => this.handleModal(true)}/>
         </View>
@@ -71,8 +68,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EEE'
   },
+  button:{
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 10
+  },
   scrollView: {
-    marginHorizontal: 20,
+    marginHorizontal: 25,
+    marginVertical: 15,
     flex: 1,
   }
 });

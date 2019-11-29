@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, TextInput } from 'react-native';
-import Modal, { ModalContent, ModalButton, ModalFooter } from 'react-native-modals'
+import {View, TextInput, Text } from 'react-native';
+import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals'
 import { connect } from 'react-redux';
 
 
@@ -33,15 +33,18 @@ class addNewBoardModal extends React.Component {
                     // below represents a parent method that closes the modal.
                     this.props.method(false);
                 }}
+                modalTitle={<ModalTitle title={(this.props.hvadagera != "ADD_BOARD")?"Edit a board":"Create a new board"} />}
                 >
                 <View>
                     <ModalContent>
+                    <Text>Name</Text>
                     <TextInput
                             placeholder = {this.props.placeholder1}
                             autoCapitalize="sentences"
                             autoCompleteType="name"
                             onChangeText={(input) => this.setState({name: input})}>
                         </TextInput>
+                        <Text>Image url</Text>
                         <TextInput
                             placeholder = {this.props.placeholder2}
                             onChangeText={(text) => this.setState({image: text})}>
