@@ -10,13 +10,17 @@ class createListModal extends React.Component {
       name: this.props.placeholder
     };
 
-    console.log(this.props);
     
   }
   addToState(){
+<<<<<<< HEAD
+      this.props.addList(this.props.boardId ,this.state.name);
+      this.props.method(false)
+=======
       this.props.addList(this.state.name, this.props.boardId);
       this.props.method(false)
       console.log(this.props.lists)
+>>>>>>> 88ffdd35844a939ef0ac649917ec0eaac3f1f750
   }
 
   modToState(){
@@ -69,7 +73,11 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
+<<<<<<< HEAD
+         addList : (name, boardId) => dispatch({type: 'ADD_LIST', name: name, color: '#FFF', boardId: boardId}),
+=======
          addList : (name, boardId) => dispatch({type: 'ADD_LIST', name: name, color: "#FFF", boardId: boardId}),
+>>>>>>> 88ffdd35844a939ef0ac649917ec0eaac3f1f750
          modList : (id, name) => dispatch({type: 'MODIFY_LIST', id: id, name: name})
     }
 }
