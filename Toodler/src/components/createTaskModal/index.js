@@ -1,5 +1,5 @@
 import Modal, { ModalContent, ModalTitle, ModalButton, ModalFooter} from 'react-native-modals';
-import { View, Picker, TextInput, Text } from "react-native";
+import { View, Picker, TextInput, Text, Button } from "react-native";
 import { connect } from 'react-redux';
 import React from 'react';
 
@@ -18,7 +18,7 @@ class CreateTaskModal extends React.Component {
     //add or modify the task
     createTask(){
       this.props.method(false);
-      if(this.state.name.length > 0 && this.state.list > 0){
+      if(this.state.name.length > 0){
         if(this.props.type == 'mod'){
           //let the modal diapear before changing the state...
           setTimeout(
@@ -26,7 +26,7 @@ class CreateTaskModal extends React.Component {
             100
           );
         }
-        else{
+        else if (this.props.type == 'add'){
           this.props.addTask(this.state.name, this.state.description, this.state.list);
         }
       }
