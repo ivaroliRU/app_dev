@@ -8,7 +8,7 @@ class CreateTaskModal extends React.Component {
         super(props);      
 
         this.createTask = this.createTask.bind(this);
-        this.test = this.test.bind(this);
+        this.intermediate = this.intermediate.bind(this);
         
         //if we have a task name or description then we chose that by default
         this.state = {

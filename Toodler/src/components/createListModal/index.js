@@ -4,16 +4,19 @@ import Modal, { ModalContent, ModalButton, ModalFooter } from 'react-native-moda
 import { connect } from 'react-redux';
 
 class createListModal extends React.Component {
-  constructor(props){
+  constructor(props){    
     super(props)
     this.state = {
       name: this.props.placeholder
     };
+
+    console.log(this.props);
+    
   }
   addToState(){
       this.props.addList(this.state.name);
       this.props.method(false)
-  }
+  } 
 
   modToState(){
       this.props.modList(this.props.id, this.state.name)
@@ -57,7 +60,7 @@ class createListModal extends React.Component {
 }
 function mapDispatchToProps(dispatch){
     return {
-         addList : (name) => dispatch({type: 'ADD_LIST', name: name}),
+         addList : (boardId, name) => dispatch({type: 'ADD_LIST', name: name, color: "#FFF", boardId: boardId}),
          modList : (id, name) => dispatch({type: 'MODIFY_LIST', id: id, name: name})
     }
 }
