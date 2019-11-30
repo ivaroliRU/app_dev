@@ -13,7 +13,7 @@ class Help extends React.Component {
               style={{ marginTop: 20, width: '100%', height: '100%' }}
               javaScriptEnabled={true}
               domStorageEnabled={true}
-              source={{ uri: "https://www.youtube.com/embed/-ZZPOXn6_9w" }}
+              source={{ uri: "https://www.youtube.com/embed/p466ZH3On8Q" }}
             />
     )
   }
