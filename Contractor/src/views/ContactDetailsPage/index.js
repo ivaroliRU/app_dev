@@ -1,17 +1,31 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, ScrollView } from 'react-native';
+import { getAllData } from '../../services/contactsService';
+import DetailsPage from '../../components/DetailsPage';
 
+const data = getAllData();
 
 class ContactDetailsPage extends React.Component {
   constructor (props) {
     super(props);
+    this.state = {
+      modalVisible: false
+    };
+
   }
+  handleModal = (statement) => {
+    this.setState({ modalVisible: statement });
+  }
+
 
   render() {
     return (
-        <Text>
-            This is a contact page
-        </Text>
+
+      <ScrollView>
+        <DetailsPage data={data}/>
+      </ScrollView>
+
+
     )
   }
 };
