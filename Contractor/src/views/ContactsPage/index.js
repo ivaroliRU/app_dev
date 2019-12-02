@@ -7,7 +7,7 @@ class Contacts extends React.Component {
   constructor (props) {
     super(props);
     state = {
-      modalVisible = false
+      modalVisible : false
     }
   }
 
@@ -18,7 +18,7 @@ class Contacts extends React.Component {
   render() {
     return (
       <View>
-        <AddNewContactModal isVisable={this.state.modalVisible} method={this.handleModal}/>
+        <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
         <Button title="Add Contact" onPress={() => this.handleModal(true)}/>
       </View>
     )
