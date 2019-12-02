@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native';
-import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, TextInput, Text } from 'react-native';
+import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals';
 import { connect } from 'react-redux';
-import addContact from '../../services/contactsService'
-
-
+import addContact from '../../services/contactsService';
 
 // This component is responsible for modal that creates a new
 class addNewBoardModal extends React.Component {
@@ -33,7 +32,7 @@ class addNewBoardModal extends React.Component {
                 modalTitle={<ModalTitle title={'Add Contact'} />}
                 >
                 <View>
-                    <ModalContent>
+                    <ModalContent style={{minWidth: '80%'}}>
                     <Text>Name</Text>
                     <TextInput
                             placeholder = 'Name'
@@ -46,13 +45,11 @@ class addNewBoardModal extends React.Component {
                             placeholder = 'Phone Number'
                             onChangeText={(phone) => this.setState({phonenumber: phone})}>
                         </TextInput>
-                        <Text>Image</Text>
-                        <TouchableOpacity onpress={() => {}}>
-                            <Image source={require('../../../assets/SelectImageIcon.png')} ></Image>
-                        </TouchableOpacity>
-                        <TouchableOpacity onpress={() => {}}>
-                            <Image source={require('../../../assets/TakePictureIcon.jpg')} ></Image>
-                        </TouchableOpacity>
+                        <Text style={{marginBottom: '5%'}}>Image</Text>
+                        <View style={{flexDirection: "row", alignContent:"space-around"}}>
+                        <Icon name="camera" size={50} style={{marginLeft: '10%'}} />
+                        <Icon name="image" size={50} style={{marginLeft: '30%'}}/>
+                        </View>
                     </ModalContent>
                     <ModalFooter>
                         <ModalButton
