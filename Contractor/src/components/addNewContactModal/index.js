@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, TextInput, Text } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals';
-import { takePhoto } from '../../services/imageService';
+import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
 import { connect } from 'react-redux';
 import addContact from '../../services/contactsService';
 
@@ -28,8 +28,9 @@ class addNewBoardModal extends React.Component {
         console.log(photo.uri)
     }
 
-    selectFromCameraRoll () {
-
+    async selectFromCameraRoll () {
+        const photo = await selectFromCameraRoll()
+        console.log(photo.uri)
     }
 
     render() {
@@ -58,7 +59,7 @@ class addNewBoardModal extends React.Component {
                         <Text style={{marginBottom: '5%'}}>Image</Text>
                         <View style={{flexDirection: "row", alignContent:"space-around"}}>
                         <Icon name="camera" size={50} style={{marginLeft: '10%'}} onPress={() => this.setState({image: this.takePhoto()})} />
-                        <Icon name="image" size={50} style={{marginLeft: '30%'}} onPress={() => {this.selectFromCameraRoll()}} />
+                        <Icon name="image" size={50} style={{marginLeft: '30%'}} onPress={() => this.setState({image: this.selectFromCameraRoll()})} />
                         </View>
                     </ModalContent>
                     <ModalFooter>
