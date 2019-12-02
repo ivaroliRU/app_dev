@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import AddNewContactModal from '../../components/addNewContactModal'
+import SearchBar from '../../components/searchBar'
 import { updateContacts } from '../../actions/contactActions';
 import { connect } from 'react-redux';
 
@@ -22,9 +23,13 @@ class Contacts extends React.Component {
 
   render () {
     return (
+      <View>
+                <SearchBar />
+
       <View style={{margin:20}}>
         <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
         <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
+      </View>
       </View>
     )
   }
