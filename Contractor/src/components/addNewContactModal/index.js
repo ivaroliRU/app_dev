@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, TextInput, Text } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals';
+import { takePhoto } from '../../services/imageService';
 import { connect } from 'react-redux';
 import addContact from '../../services/contactsService';
 
@@ -17,9 +18,18 @@ class addNewBoardModal extends React.Component {
       };
     }
 
-    addToState(){
-        this.addContact(this.state.name, this.state.image, this.state.phonenumber);
-        this.props.method(false)
+    // addToState(){
+    //     this.addContact(this.state.name, this.state.image, this.state.phonenumber);
+    //     this.props.method(false)
+    // }
+
+    async takePhoto () {
+        const photo = await takePhoto()
+        console.log(photo.uri)
+    }
+
+    selectFromCameraRoll () {
+
     }
 
     render() {
@@ -47,8 +57,8 @@ class addNewBoardModal extends React.Component {
                         </TextInput>
                         <Text style={{marginBottom: '5%'}}>Image</Text>
                         <View style={{flexDirection: "row", alignContent:"space-around"}}>
-                        <Icon name="camera" size={50} style={{marginLeft: '10%'}} />
-                        <Icon name="image" size={50} style={{marginLeft: '30%'}}/>
+                        <Icon name="camera" size={50} style={{marginLeft: '10%'}} onPress={() => this.setState({image: this.takePhoto()})} />
+                        <Icon name="image" size={50} style={{marginLeft: '30%'}} onPress={() => {this.selectFromCameraRoll()}} />
                         </View>
                     </ModalContent>
                     <ModalFooter>
@@ -58,7 +68,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.addToState()}}
+                        onPress={() => {this.props.method(false)}}
                         />
                     </ModalFooter>
                     </View>
