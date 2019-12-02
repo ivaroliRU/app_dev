@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { addContact, getAllData, cleanDirectory } from './src/services/contactsService';
 
 export default function App() {
+  getAllData();
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
+      
     </View>
   );
 }
