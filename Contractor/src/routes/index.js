@@ -11,7 +11,7 @@ export default createAppContainer(createStackNavigator({
     Contacts: {
       screen: ContactPage,
       navigationOptions: ({navigation}) => ({
-        title: "Contact",
+        title: "Contacts",
     }),
         headerBackTitle: null,
     },
