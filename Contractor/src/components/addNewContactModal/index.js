@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native';
-import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, TextInput, Text } from 'react-native';
+import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals';
+import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
 import { connect } from 'react-redux';
-import addContact from '../../services/contactsService'
-
-
+import addContact from '../../services/contactsService';
 
 // This component is responsible for modal that creates a new
 class addNewBoardModal extends React.Component {
@@ -18,9 +18,19 @@ class addNewBoardModal extends React.Component {
       };
     }
 
-    addToState(){
-        this.addContact(this.state.name, this.state.image, this.state.phonenumber);
-        this.props.method(false)
+    // addToState(){
+    //     this.addContact(this.state.name, this.state.image, this.state.phonenumber);
+    //     this.props.method(false)
+    // }
+
+    async takePhoto () {
+        const photo = await takePhoto()
+        console.log(photo.uri)
+    }
+
+    async selectFromCameraRoll () {
+        const photo = await selectFromCameraRoll()
+        console.log(photo.uri)
     }
 
     render() {
@@ -33,7 +43,7 @@ class addNewBoardModal extends React.Component {
                 modalTitle={<ModalTitle title={'Add Contact'} />}
                 >
                 <View>
-                    <ModalContent>
+                    <ModalContent style={{minWidth: '80%'}}>
                     <Text>Name</Text>
                     <TextInput
                             placeholder = 'Name'
@@ -46,13 +56,11 @@ class addNewBoardModal extends React.Component {
                             placeholder = 'Phone Number'
                             onChangeText={(phone) => this.setState({phonenumber: phone})}>
                         </TextInput>
-                        <Text>Image</Text>
-                        <TouchableOpacity onpress={() => {}}>
-                            <Image source={require('../../../assets/SelectImageIcon.png')} ></Image>
-                        </TouchableOpacity>
-                        <TouchableOpacity onpress={() => {}}>
-                            <Image source={require('../../../assets/TakePictureIcon.jpg')} ></Image>
-                        </TouchableOpacity>
+                        <Text style={{marginBottom: '5%'}}>Image</Text>
+                        <View style={{flexDirection: "row", alignContent:"space-around"}}>
+                        <Icon name="camera" size={50} style={{marginLeft: '10%'}} onPress={() => this.setState({image: this.takePhoto()})} />
+                        <Icon name="image" size={50} style={{marginLeft: '30%'}} onPress={() => this.setState({image: this.selectFromCameraRoll()})} />
+                        </View>
                     </ModalContent>
                     <ModalFooter>
                         <ModalButton
@@ -61,7 +69,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.addToState()}}
+                        onPress={() => {this.props.method(false)}}
                         />
                     </ModalFooter>
                     </View>
