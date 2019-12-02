@@ -1,21 +1,16 @@
-import { getAllData } from '../services/contactsService';
+initState = [];
 
-//const initialState = await getAllData();
-
-export default function(state = [], action) {
+export default function(state = initState, action) {
     switch (action.type) {
         case 'ADD_CONTACT':
-            return[
-                ...state,
-                {
-                    name: action.name,
-                    image: action.image,
-                    phone: action.phone
-                }
-                ]
-        case 'UPDATE_STARTED':
+            var obj = {
+                name: action.name,
+                image: action.image,
+                phone: action.phone
+            }
+            state.push(obj);
             return state;
-        case 'UPDATE_SUCCESS':
+        case 'UPDATE_CONTACTS':            
             return action.payload;
         default:
             return state;

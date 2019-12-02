@@ -4,24 +4,22 @@ import { View, TextInput, Text } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals';
 import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
 import { connect } from 'react-redux';
-import addContact from '../../services/contactsService';
+import {addContactToState} from '../../actions/contactActions';
 
 // This component is responsible for modal that creates a new
 class addNewBoardModal extends React.Component {
     constructor (props) {
       super(props);
-      this.addContact = addContact
+
+      this.handleCreate = this.handleCreate.bind(this);
+
+      //the state of the moal holds the info to add
       this.state = {
         name: '',
         image: '',
         phonenumber: ''
       };
     }
-
-    // addToState(){
-    //     this.addContact(this.state.name, this.state.image, this.state.phonenumber);
-    //     this.props.method(false)
-    // }
 
     async takePhoto () {
         const photo = await takePhoto()
@@ -31,6 +29,14 @@ class addNewBoardModal extends React.Component {
     async selectFromCameraRoll () {
         const photo = await selectFromCameraRoll()
         console.log(photo.uri)
+    }
+
+    // handles adding a contact to the global state
+    handleCreate(){
+        console.log(this.state.image);
+        
+        this.props.addContactToState(this.state.name, this.state.phonenumber, "testimg");
+        this.props.method(false);
     }
 
     render() {
@@ -69,7 +75,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.props.method(false)}}
+                        onPress={() => {this.handleCreate()}}
                         />
                     </ModalFooter>
                     </View>
@@ -78,10 +84,10 @@ class addNewBoardModal extends React.Component {
     } 
 };
 
-// function mapDispatchToProps(dispatch){
-//     return {
-//          addContact : (name, photo, phoneNumber) => dispatch({type: 'ADD_CONTACT', name: name, image: photo, phone: phoneNumber }),
-//     }
-// }
-
-export default addNewBoardModal;
+const mapDispatchToProps = dispatch => {
+    return {
+        addContactToState: (name,phone,image) => {dispatch(addContactToState(name,phone,image));}
+    };
+  };
+  
+  export default connect(null, mapDispatchToProps)(addNewBoardModal);

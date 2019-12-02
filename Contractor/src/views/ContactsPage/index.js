@@ -9,7 +9,6 @@ class Contacts extends React.Component {
     super(props);
 
     this.props.updateContacts();
-    console.log(this.props.contacts);
 
     this.state = {
       modalVisible: false
@@ -23,6 +22,9 @@ class Contacts extends React.Component {
   render () {
     return (
       <View style={{margin:20}}>
+        {this.props.contacts.map((l) => (
+          <Text key={l.phone}>{l.name + " - " + l.phone + " - " + l.image}</Text>
+        ))}
         <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
         <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
       </View>

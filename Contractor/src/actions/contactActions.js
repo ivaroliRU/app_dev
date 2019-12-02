@@ -1,20 +1,21 @@
 import {getAllData, addContact} from '../services/contactsService';
 
 export const updateContacts = () => {
-    return dispatch => {
-        dispatch(updateStarted());
-        getAllData()
-        
-        getAllData(
-            (data) => dispatch(updateSuccess(data))
-        );
+    return async dispatch => {
+        data = await getAllData();
+        dispatch(updateSuccess(data));
     };
 };
 
 export const addContactToState = (name, phone, image) => {
-    return dispatch => {
-        addContact(name,phone,image);
-        dispatch(addContactSuccess(name,phone,image));
+    return async dispatch => {
+        try{
+            await addContact(name,phone,image);
+            dispatch(addContactSuccess(name,phone,image));
+        }
+        catch(e){
+            console.log(e);
+        }
     };
 };
 
@@ -26,12 +27,6 @@ const addContactSuccess = (name,phone,image) => ({
 });
 
 const updateSuccess = data => ({
-    type: "UPDATE_SUCCESS",
-    payload: {
-      ...data
-    }
-});
-
-const updateStarted = () => ({
-    type: "UPDATE_STARTED"
+    type: "UPDATE_CONTACTS",
+    payload: data
 });
