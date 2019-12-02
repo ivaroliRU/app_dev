@@ -51,7 +51,7 @@ class addNewBoardModal extends React.Component {
                             <Image source={require('../../../assets/SelectImageIcon.png')} ></Image>
                         </TouchableOpacity>
                         <TouchableOpacity onpress={() => {}}>
-                            <Image source={require('../../../assets/TakePictureIcon.png')} ></Image>
+                            <Image source={require('../../../assets/TakePictureIcon.jpg')} ></Image>
                         </TouchableOpacity>
                     </ModalContent>
                     <ModalFooter>
