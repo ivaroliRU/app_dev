@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals'
-import addContact from '../../services/contactsService'
 import { connect } from 'react-redux';
+import addContact from '../../services/contactsService'
 
 
 
@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 class addNewBoardModal extends React.Component {
     constructor (props) {
       super(props);
+      addContact = addContact.bind(this)
       this.state = {
         name: '',
         image: '',
@@ -18,7 +19,7 @@ class addNewBoardModal extends React.Component {
     }
 
     addToState(){
-        this.props.addContact(this.state.name, this.state.image, this.state.phonenumber);
+        this.addContact(this.state.name, this.state.image, this.state.phonenumber);
         this.props.method(false)
     }
 
@@ -47,10 +48,10 @@ class addNewBoardModal extends React.Component {
                         </TextInput>
                         <Text>Image</Text>
                         <TouchableOpacity onpress={() => {}}>
-                            <Image source={require('../../../assets/SelectImageIcon')} ></Image>
+                            <Image source={require('../../../assets/SelectImageIcon.png')} ></Image>
                         </TouchableOpacity>
                         <TouchableOpacity onpress={() => {}}>
-                            <Image source={require('../../../assets/TakePictureIcon')} ></Image>
+                            <Image source={require('../../../assets/TakePictureIcon.png')} ></Image>
                         </TouchableOpacity>
                     </ModalContent>
                     <ModalFooter>
@@ -69,10 +70,10 @@ class addNewBoardModal extends React.Component {
     } 
 };
 
-function mapDispatchToProps(dispatch){
-    return {
-         addContact : (name, photo, phoneNumber) => dispatch({type: 'ADD_CONTACT', name: name, image: photo, phone: phoneNumber }),
-    }
-}
+// function mapDispatchToProps(dispatch){
+//     return {
+//          addContact : (name, photo, phoneNumber) => dispatch({type: 'ADD_CONTACT', name: name, image: photo, phone: phoneNumber }),
+//     }
+// }
 
-export default connect(null, mapDispatchToProps)(addNewBoardModal);
+export default addNewBoardModal;
