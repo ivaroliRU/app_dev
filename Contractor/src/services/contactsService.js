@@ -34,19 +34,17 @@ export const getAllFiles = async () => {
 }
 
 //get all data and combine into one single object
-export const getAllData = async () => {
+export const getAllData = async (cb) => {
     let files = await getAllFiles();
-    let data = {};
+    var data = {};
 
     for(var i in files){
         fileUri = dataDirectory + "/" + files[i];
         var obj = JSON.parse(await FileSystem.readAsStringAsync(fileUri));
         data.push(obj);
     }
-
-    console.log(data);
     
-    return data;
+    cb(data);
 }
 
 //adds a contact, for now just for testing
