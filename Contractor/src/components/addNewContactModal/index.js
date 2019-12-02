@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TextInput, Text } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals'
+import addContact from '../../services/contactsService'
 import { connect } from 'react-redux';
 
 
@@ -39,16 +40,18 @@ class addNewBoardModal extends React.Component {
                             autoCompleteType="name"
                             onChangeText={(input) => this.setState({name: input})}>
                         </TextInput>
-                        <Text>Image</Text>
-                        <TextInput
-                            placeholder = 'TODO ADD IMPORT FROM PHONE'
-                            onChangeText={(text) => this.setState({image: text})}>
-                        </TextInput>
                         <Text>Phone Number</Text>
                         <TextInput
                             placeholder = 'Phone Number'
                             onChangeText={(phone) => this.setState({phonenumber: phone})}>
                         </TextInput>
+                        <Text>Image</Text>
+                        <TouchableOpacity onpress={() => {}}>
+                            <Image source={require('../../../assets/SelectImageIcon')} ></Image>
+                        </TouchableOpacity>
+                        <TouchableOpacity onpress={() => {}}>
+                            <Image source={require('../../../assets/TakePictureIcon')} ></Image>
+                        </TouchableOpacity>
                     </ModalContent>
                     <ModalFooter>
                         <ModalButton
@@ -57,7 +60,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.props.method(false)}}
+                        onPress={() => {this.addToState()}}
                         />
                     </ModalFooter>
                     </View>
