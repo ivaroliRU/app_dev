@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, Image } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals'
 import { connect } from 'react-redux';
 import addContact from '../../services/contactsService'
@@ -10,7 +10,7 @@ import addContact from '../../services/contactsService'
 class addNewBoardModal extends React.Component {
     constructor (props) {
       super(props);
-      addContact = addContact.bind(this)
+      this.addContact = addContact
       this.state = {
         name: '',
         image: '',

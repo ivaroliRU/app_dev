@@ -6,9 +6,9 @@ import AddNewContactModal from '../../components/addNewContactModal'
 class Contacts extends React.Component {
   constructor (props) {
     super(props);
-    state = {
-      modalVisible : false
-    }
+    this.state = {
+      modalVisible: false
+    };
   }
 
   handleModal = (statement) => {
