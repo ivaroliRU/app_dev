@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 
 
-class ContactDetailsPage extends React.Component {
+class ContactPage extends React.Component {
   constructor (props) {
     super(props);
   }
@@ -16,4 +16,4 @@ class ContactDetailsPage extends React.Component {
   }
 };
 
-export default ContactDetailsPage;
+export default ContactPage;
