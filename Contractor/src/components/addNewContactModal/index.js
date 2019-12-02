@@ -24,11 +24,13 @@ class addNewBoardModal extends React.Component {
     async takePhoto () {
         const photo = await takePhoto()
         console.log(photo.uri)
+        return photo
     }
 
     async selectFromCameraRoll () {
         const photo = await selectFromCameraRoll()
         console.log(photo.uri)
+        return photo
     }
 
     // handles adding a contact to the global state
