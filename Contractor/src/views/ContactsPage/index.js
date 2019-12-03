@@ -52,7 +52,7 @@ class Contacts extends React.Component {
         <SafeAreaView style={{backgroundColor: '#bdd6de'}}>
           <ScrollView>
           <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />
-            <ContactList contacts={(this.state.search != '')?this.props.contacts:this.state.filterd} />
+            <ContactList contacts={(this.state.search == '')?this.props.contacts:this.state.filterd} />
             <View style={{margin:20}}>
               <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
               <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
