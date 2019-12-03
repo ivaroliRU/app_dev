@@ -23,11 +23,11 @@ class ContactDetails extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}></View>
-        <Image style={styles.avatar} source={{uri: 'https://icetraveler.is/wp-content/uploads/job-manager-uploads/job_logo/2018/03/download-4.png'}}/>
+        <Image style={styles.avatar} source={{uri: this.props.contacts.thumbnailPhoto}}/>
           <View style={styles.body}>
             <View style={styles.bodyContent}>
-              <Text style={styles.name}>Dominos</Text>
-              <Text style={styles.info}>5812345</Text>
+              <Text style={styles.name}> Dominos {this.props.contacts.name} </Text>
+              <Text style={styles.info}> 5812345 {this.props.contacts.phone} </Text>
             </View>
             <View style={styles.icon}>
               <Icon name='edit' type='font-awesome'

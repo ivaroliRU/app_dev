@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   icon:{
     alignItems: 'flex-end',
-    backgroundColor: "#00BFFF",
-    padding:30
+    backgroundColor: '#E1E8EE',
+    padding:50
   },
   header:{
     backgroundColor: "#00BFFF",
