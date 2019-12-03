@@ -20,11 +20,7 @@ export default class App extends React.Component {
         // Todo, onChangeText, async filter results.
         onChangeText={this.updateSearch}
         value={search}
-<<<<<<< HEAD
-        lightTheme = {true}
-=======
         lightTheme
->>>>>>> abc6876f4c0141fec17aa3602f4db5e9f7c0a215
       />
     );
   }
