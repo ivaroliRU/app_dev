@@ -11,15 +11,14 @@ export default class App extends React.Component {
     this.setState({ search });
   };
 
+
   render() {
-    const { search } = this.state;
 
     return (
       <SearchBar
         placeholder="Search Contact...."
-        // Todo, onChangeText, async filter results.
-        onChangeText={this.updateSearch}
-        value={search}
+        onChangeText={this.updateSearch, this.props.filterList} // this.props.handlechange
+        value={this.state.search}
         lightTheme
       />
     );
