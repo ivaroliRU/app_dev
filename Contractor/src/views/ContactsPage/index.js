@@ -25,15 +25,9 @@ class Contacts extends React.Component {
 
   render () {
     return (
-<<<<<<< HEAD
       <SafeAreaView>
         <ScrollView>
         <SearchBar />
-=======
-      <View>
-      <SearchBar />
-      <View style={{margin:20}}>
->>>>>>> abc6876f4c0141fec17aa3602f4db5e9f7c0a215
         {this.props.contacts.map((l) => (
                 <ContactCard key={l.phone} contact={l} />
             ))}
