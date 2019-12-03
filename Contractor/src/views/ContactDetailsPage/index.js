@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, ScrollView } from 'react-native';
 import { getAllData } from '../../services/contactsService';
-import DetailsPage from '../../components/DetailsPage';
+import ContactDetails from '../../components/contactDetails';
 
 const data = getAllData();
 
@@ -13,19 +13,11 @@ class ContactDetailsPage extends React.Component {
     };
 
   }
-  handleModal = (statement) => {
-    this.setState({ modalVisible: statement }); 
-  }
-
-
   render() {
     return (
-
       <ScrollView>
-        <DetailsPage data={data}/>
+        <ContactDetails data={data}/>
       </ScrollView>
-
-
     )
   }
 };
