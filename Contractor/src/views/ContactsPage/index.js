@@ -49,7 +49,7 @@ class Contacts extends React.Component {
 
   render () {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor: '#bdd6de'}}>
           <ScrollView>
           <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />
             <ContactList contacts={(this.state.search != '')?this.props.contacts:this.state.filterd} />

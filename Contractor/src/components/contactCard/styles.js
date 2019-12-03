@@ -7,7 +7,11 @@ const styles = StyleSheet.create({
         height: 70,
         alignItems: 'center',
         borderBottomWidth: 1,
-        borderBottomColor: '#AAA'
+        borderBottomColor: '#EEE',
+        borderTopWidth: 1,
+        borderTopColor: '#EEE',
+        backgroundColor: '#FFF',
+        marginBottom: -1
     },
     contactImage:{
         width: 50,
