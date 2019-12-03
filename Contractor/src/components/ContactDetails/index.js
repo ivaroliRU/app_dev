@@ -1,31 +1,43 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { getAllData } from '../../services/contactsService';
+import ContactPage from '../contactPage';
 import { Icon } from 'react-native-elements'
 import styles from './styles';
+import { connect } from 'react-redux';
+import { updateContacts } from '../../actions/contactActions';
 
-class DetailsPage extends React.Component {
+class ContactDetails extends React.Component {
   constructor (props) {
     super(props);
-    this.handleModal = this.handleModal.bind(this);
+
+    this.getContact = this.getContact.bind(this);
+
     this.state = {
       visable: false,
     };
   }
 
-  handleModal = (statement) => {
-      this.setState({ modalVisible: statement });
+  getContact() {
+    return this.props.contacts.filter(contact => contact.contactId == this.props.id)
   }
+
 
   render() {
     return (
       <View style={styles.icon}>
           <Icon name='edit' type='font-awesome'
           onPress={() => {this.handleModal(true)}} />
+
       </View>
 
-    )
+    );
   }
-};
+}
+function mapStateToProps(state){
+  return{
+    contacts: state.contact
+  };
+}
 
-export default DetailsPage;
+export default connect(mapStateToProps)(ContactDetails);

@@ -4,7 +4,7 @@ import { Platform } from '@unimodules/core';
 
 export default class App extends React.Component {
   state = {
-    search: '',
+    search: ''
   };
 
   updateSearch = search => {

@@ -37,7 +37,7 @@ class addNewBoardModal extends React.Component {
     handleCreate(){
         console.log(this.state.image);
         
-        this.props.addContactToState(this.state.name, this.state.phonenumber, "testimg");
+        this.props.addContactToState(this.state.name, this.state.phonenumber, this.state.image);
         this.props.method(false);
     }
 
@@ -92,4 +92,4 @@ const mapDispatchToProps = dispatch => {
     };
   };
   
-  export default connect(null, mapDispatchToProps)(addNewBoardModal);
+export default connect(null, mapDispatchToProps)(addNewBoardModal);

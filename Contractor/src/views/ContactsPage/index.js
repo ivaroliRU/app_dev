@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, SafeAreaView, ScrollView } from 'react-native';
 import AddNewContactModal from '../../components/addNewContactModal'
 import { updateContacts } from '../../actions/contactActions';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
+import ContactList from '../../components/contactList';
+import ContactCard from '../../components/contactCard';
 
 class Contacts extends React.Component {
   constructor (props) {
@@ -43,21 +45,24 @@ class Contacts extends React.Component {
 
   render () {
     return (
-      <View>
-      <SearchBar
-        placeholder="Search Contact...."
-        onChangeText={this.updateSearch}
-        value={this.state.search}
-        lightTheme
-      />
-      <View style={{margin:20}}>
+      <SafeAreaView>
+        <ScrollView>
+        <SearchBar
+          placeholder="Search Contact...."
+          onChangeText={this.updateSearch}
+          value={this.state.search}
+          lightTheme
+        />
         {this.props.contacts.map((l) => (
-          <Text key={l.phone}>{l.name + " - " + l.phone + " - " + l.image}</Text>
-        ))}
-        <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
-        <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
-      </View>
-      </View>
+                <ContactCard key={l.phone} contact={l} />
+            ))}
+        
+        <View style={{margin:20}}>
+          <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
+          <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
+        </View>
+        </ScrollView>
+        </SafeAreaView>
     )
   }
 };
