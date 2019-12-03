@@ -4,7 +4,7 @@ import AddNewContactModal from '../../components/addNewContactModal'
 import { updateContacts } from '../../actions/contactActions';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
-// import ContactList from '../../components/contactList';
+import ContactList from '../../components/contactList';
 import ContactCard from '../../components/contactCard';
 
 class Contacts extends React.Component {
@@ -30,16 +30,20 @@ class Contacts extends React.Component {
     this.setState({ modalVisible: statement });
     this.props.updateContacts();
   }
+  
+  updateState = (newstate) => {
+    this.setState( {filterd: newstate} )
+  }
 
   filterList = e => {
     const unfilterd = this.props.contacts
     e = e.toLowerCase()
-    const regex = new RegExp(e, "g")
+    const regex = new RegExp(e, "i")
     const updatedList = unfilterd.filter(item => {
       return item.name.toLowerCase().search(regex) !== -1;
     });
-    console.log("new test!!!!")
-    this.setState({ filterd: updatedList });
+    console.log("working list")
+    this.updateState(updatedList)
     console.log(updatedList)
   };
 
@@ -47,8 +51,8 @@ class Contacts extends React.Component {
     return (
         <SafeAreaView>
           <ScrollView>
-            <SearchBar />
-            <ContactList contacts={this.props.contacts} />
+          <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />
+            <ContactList contacts={(this.state.search != '')?this.props.contacts:this.state.filterd} />
             <View style={{margin:20}}>
               <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
               <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
