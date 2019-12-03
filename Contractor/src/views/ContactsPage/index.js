@@ -4,7 +4,7 @@ import AddNewContactModal from '../../components/addNewContactModal'
 import { updateContacts } from '../../actions/contactActions';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
-import ContactList from '../../components/contactList';
+// import ContactList from '../../components/contactList';
 import ContactCard from '../../components/contactCard';
 
 class Contacts extends React.Component {
@@ -32,15 +32,15 @@ class Contacts extends React.Component {
   }
 
   filterList = e => {
-    this.setState({filterd: []})
     const unfilterd = this.props.contacts
     e = e.toLowerCase()
-    const regex = new RegExp(e, "i")
+    const regex = new RegExp(e, "g")
     const updatedList = unfilterd.filter(item => {
       return item.name.toLowerCase().search(regex) !== -1;
     });
+    console.log("new test!!!!")
     this.setState({ filterd: updatedList });
-    console.log(this.state.filterd)
+    console.log(updatedList)
   };
 
   render () {
