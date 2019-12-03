@@ -23,6 +23,10 @@ class ContactList extends React.Component {
 
     //sort the list and grou into the first characte
     orderLists(){
+        if(this.props.contacts == undefined){
+            return [];
+        }
+        
         var orderedContacts = this.props.contacts;
         var currentchar = '';
         var currentObj = {
