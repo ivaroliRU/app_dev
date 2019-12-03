@@ -14,7 +14,7 @@ class ContactDetailsPage extends React.Component {
 
   }
   handleModal = (statement) => {
-    this.setState({ modalVisible: statement });
+    this.setState({ modalVisible: statement }); 
   }
 
 

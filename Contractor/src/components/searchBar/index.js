@@ -4,7 +4,7 @@ import { Platform } from '@unimodules/core';
 
 export default class App extends React.Component {
   state = {
-    search: '',
+    search: ''
   };
 
   updateSearch = search => {
@@ -19,7 +19,7 @@ export default class App extends React.Component {
         placeholder="Search Contact...."
         onChangeText={this.updateSearch}
         value={search}
-        lightTheme = "default"
+        lightTheme = {true}
       />
     );
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { getAllData } from '../../services/contactsService';
-import ContactPage from '../contactPage';
 import { Icon } from 'react-native-elements'
 import styles from './styles';
 
