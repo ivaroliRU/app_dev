@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, Button, SafeAreaView, ScrollView } from 'react-native';
 import AddNewContactModal from '../../components/addNewContactModal'
-import SearchBar from '../../components/searchBar'
 import { updateContacts } from '../../actions/contactActions';
 import { connect } from 'react-redux';
+import { SearchBar } from 'react-native-elements';
 import ContactList from '../../components/contactList';
 import ContactCard from '../../components/contactCard';
 
@@ -14,14 +14,34 @@ class Contacts extends React.Component {
     this.props.updateContacts();
 
     this.state = {
-      modalVisible: false
+      search: '',
+      filterd: [],
+      modalVisible: false,
     };
   }
+
+  updateSearch = search => {
+    this.setState({ search });
+    this.filterList( search )
+  };
+
 
   handleModal = (statement) => {
     this.setState({ modalVisible: statement });
     this.props.updateContacts();
   }
+
+  filterList = e => {
+    this.setState({filterd: []})
+    const unfilterd = this.props.contacts
+    e = e.toLowerCase()
+    const regex = new RegExp(e, "i")
+    const updatedList = unfilterd.filter(item => {
+      return item.name.toLowerCase().search(regex) !== -1;
+    });
+    this.setState({ filterd: updatedList });
+    console.log(this.state.filterd)
+  };
 
   render () {
     return (
