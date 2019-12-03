@@ -13,11 +13,8 @@
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
-<<<<<<< HEAD
-=======
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.2",
->>>>>>> 3eb85ab6e0ae9e985b336bc558f602e347d271dd
     "react-native-modals": "^0.19.9",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "^0.11.7",
