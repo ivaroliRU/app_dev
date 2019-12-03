@@ -18,7 +18,7 @@ class Contacts extends React.Component {
 
   handleModal = (statement) => {
     this.setState({ modalVisible: statement });
-    console.log(this.props.contacts)
+    this.props.updateContacts();
   }
 
   render () {
