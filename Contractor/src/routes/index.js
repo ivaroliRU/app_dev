@@ -9,7 +9,7 @@ import ContactDetails from '../views/ContactDetailsPage';
 //export the routes
 export default createAppContainer(createStackNavigator({
     Contacts: {
-      screen: ContactDetails,
+      screen: ContactPage,
       navigationOptions: ({navigation}) => ({
         title: "Contacts",
     }),
