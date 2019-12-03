@@ -38,7 +38,7 @@ class Contacts extends React.Component {
   filterList = e => {
     const unfilterd = this.props.contacts
     e = e.toLowerCase()
-    const regex = new RegExp(e, "i")
+    const regex = new RegExp('.*' + e + '.*', "i")
     const updatedList = unfilterd.filter(item => {
       return item.name.toLowerCase().search(regex) !== -1;
     });
