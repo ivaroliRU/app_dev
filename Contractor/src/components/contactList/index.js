@@ -26,7 +26,7 @@ class ContactList extends React.Component {
         if(this.props.contacts == undefined){
             return [];
         }
-        
+
         var orderedContacts = this.props.contacts;
         var currentchar = '';
         var currentObj = {
@@ -49,12 +49,13 @@ class ContactList extends React.Component {
     }
 
     render() {
+        var id = 0;
         return (
             <View>
                 {(this.props.contacts)?this.orderLists().map((l) => (
-                    <View style={styles.container} key={l.char}>
-                        <Text style={styles.header} key={l.char} >{l.char}</Text>
-                        {(l.elements)?<SubList contacts={l} key={l.char} />:null}
+                    <View style={styles.container} key={l.char + (id++).toString()}>
+                        <Text style={styles.header} key={l.char + (id++).toString()} >{l.char}</Text>
+                        {(l.elements)?<SubList contacts={l} key={l.char + (id++).toString()} />:null}
                     </View>
                 )):null}
                 </View>
