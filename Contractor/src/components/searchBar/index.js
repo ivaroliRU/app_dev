@@ -17,9 +17,10 @@ export default class App extends React.Component {
     return (
       <SearchBar
         placeholder="Search Contact...."
+        // Todo, onChangeText, async filter results.
         onChangeText={this.updateSearch}
         value={search}
-        lightTheme = "default"
+        lightTheme
       />
     );
   }

@@ -18,13 +18,13 @@ class Contacts extends React.Component {
 
   handleModal = (statement) => {
     this.setState({ modalVisible: statement });
+    console.log(this.props.contacts)
   }
 
   render () {
     return (
       <View>
-                <SearchBar />
-
+      <SearchBar />
       <View style={{margin:20}}>
         {this.props.contacts.map((l) => (
           <Text key={l.phone}>{l.name + " - " + l.phone + " - " + l.image}</Text>
