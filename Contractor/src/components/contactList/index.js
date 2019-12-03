@@ -47,12 +47,12 @@ class ContactList extends React.Component {
     render() {
         return (
             <View>
-                {this.orderLists().map((l) => (
+                {(this.props.contacts)?this.orderLists().map((l) => (
                     <View style={styles.container} key={l.char}>
                         <Text style={styles.header} key={l.char} >{l.char}</Text>
                         {(l.elements)?<SubList contacts={l} key={l.char} />:null}
                     </View>
-                ))}
+                )):null}
                 </View>
         );
     }
