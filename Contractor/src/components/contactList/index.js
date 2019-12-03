@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import ContactCard from '../contactCard';
 import styles from './style';
 
@@ -46,16 +46,14 @@ class ContactList extends React.Component {
 
     render() {
         return (
-            <SafeAreaView>
-                <ScrollView>
+            <View>
                     {this.orderLists().map((l) => (
                         <View key={l.char}>
                             <Text style={styles.header} >{l.char}</Text>
                             {(l.elements)?<SubList contacts={l} />:null}
                         </View>
                     ))}
-                </ScrollView>
-            </SafeAreaView>
+                </View>
         );
     }
 }
