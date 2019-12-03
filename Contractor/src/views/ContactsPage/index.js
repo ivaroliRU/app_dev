@@ -28,7 +28,10 @@ class Contacts extends React.Component {
       <SafeAreaView>
         <ScrollView>
         <SearchBar />
-        <ContactList contacts={this.props.contacts} />
+        {this.props.contacts.map((l) => (
+                <ContactCard key={l.phone} contact={l} />
+            ))}
+        
         <View style={{margin:20}}>
           <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
           <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
