@@ -23,6 +23,10 @@ class ContactList extends React.Component {
 
     //sort the list and grou into the first characte
     orderLists(){
+        if(this.props.contacts == undefined){
+            return [];
+        }
+        
         var orderedContacts = this.props.contacts;
         var currentchar = '';
         var currentObj = {
@@ -47,12 +51,12 @@ class ContactList extends React.Component {
     render() {
         return (
             <View>
-                {this.orderLists().map((l) => (
+                {(this.props.contacts)?this.orderLists().map((l) => (
                     <View style={styles.container} key={l.char}>
                         <Text style={styles.header} key={l.char} >{l.char}</Text>
                         {(l.elements)?<SubList contacts={l} key={l.char} />:null}
                     </View>
-                ))}
+                )):null}
                 </View>
         );
     }
