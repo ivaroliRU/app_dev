@@ -45,7 +45,7 @@ class Contacts extends React.Component {
 
   render () {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor: '#bdd6de'}}>
           <ScrollView>
             <SearchBar />
             <ContactList contacts={this.props.contacts} />
