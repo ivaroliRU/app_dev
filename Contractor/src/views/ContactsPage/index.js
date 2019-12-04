@@ -39,13 +39,16 @@ class Contacts extends React.Component {
     });
   }
 
-    async filterList(e) {
+  async filterList(e) {
     const unfilterd = this.props.contacts
     e = e.toLowerCase()
     const regex = new RegExp('.*' + e + '.*', "g")
     const updatedList = unfilterd.filter(item => {
       return item.name.toLowerCase().search(regex) !== -1;
     });
+
+    console.log(updatedList);
+    
     await this.promisedSetState({filterd: updatedList})
   };
 

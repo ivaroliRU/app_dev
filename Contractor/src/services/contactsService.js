@@ -98,8 +98,6 @@ export const getOsContacts = async () => {
 
         ret_data.push(obj);
     }
-
-    console.log(ret_data);
     
     return ret_data;
 }
