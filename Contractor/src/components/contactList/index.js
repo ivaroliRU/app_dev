@@ -36,8 +36,6 @@ class ContactList extends React.Component {
         if(orderedContacts.length > 0){
             orderedContacts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
         }
-
-        console.log(orderedContacts);
         
         for(var i = 0; i < orderedContacts.length; i++){
             if(currentchar.toLowerCase() !== orderedContacts[i].name[0].toLowerCase()){
@@ -53,7 +51,6 @@ class ContactList extends React.Component {
 
     render() {
         var id = 0;
-        console.log(this.orderLists());
         return (
             <View>
                 {(this.props.contacts.length > 0)?this.orderLists().map((l) => (

@@ -1,4 +1,6 @@
 import * as FileSystem from 'expo-file-system';
+import * as Permission from 'expo-permissions';
+import * as Contacts from 'expo-contacts';
 
 //path to the directory that holds the data
 const dataDirectory = `${FileSystem.documentDirectory}data`;
@@ -44,6 +46,10 @@ export const getAllData = async function () {
         data.push(obj);
     }
 
+    osData = await getOsContacts();
+    
+    var data = data.concat(osData);    
+
     return data;
 }
 
@@ -67,4 +73,31 @@ export const addContact = async (name,phone,image) => {
 //delete all files in dir
 export const cleanDirectory = async () => {
     await FileSystem.deleteAsync(dataDirectory);
+}
+
+const getPermission = async permissionTypes => {
+    await Promise.all(permissionTypes.map(async (type) =>
+    Permission.askAsync(type)));
+}
+
+//get contacts from the os
+export const getOsContacts = async () => {
+    ret_data = [];
+    
+    await getPermission([ Permission.CONTACTS]);
+    const { data } = await Contacts.getContactsAsync({
+        fields: [Contacts.Fields.Name, Contacts.Fields.PhoneNumbers, Contacts.Fields.Image],
+    });
+
+    for(i in data){
+        var obj = {
+            name: data[i].name,
+            phone: data[i].phoneNumbers[0].number,
+            image: (data[i].image)?data[i].image:''
+        };
+
+        ret_data.push(obj);
+    }
+
+    return ret_data;
 }
