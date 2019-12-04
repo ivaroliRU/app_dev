@@ -11,10 +11,8 @@ export default function(state = initState, action) {
                 phone: action.phone
             }
             n_state = state.slice();
-            n_state.push(obj);
-
-            console.log(n_state);
-
+            n_state.push(obj); 
+            
             return n_state;
         case 'UPDATE_CONTACTS':            
             return action.payload;

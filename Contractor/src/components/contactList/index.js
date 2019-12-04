@@ -5,7 +5,6 @@ import styles from './style';
 
 class SubList extends React.Component{
     render() {
-        console.log(this.props);
         return (
             this.props.contacts.elements.map((c) => (
                 <ContactCard key={c.phone} contact={c} />
@@ -34,13 +33,17 @@ class ContactList extends React.Component {
         var objects = [];
 
         //sort objects by the name
-        orderedContacts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
+        if(orderedContacts.length > 0){
+            orderedContacts.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0));
+        }
 
-        for(i in orderedContacts){
-            if(currentchar.toLowerCase() != orderedContacts[i].name[0].toLowerCase()){
-                objects.push(currentObj);
+        console.log(orderedContacts);
+        
+        for(var i = 0; i < orderedContacts.length; i++){
+            if(currentchar.toLowerCase() !== orderedContacts[i].name[0].toLowerCase()){
                 currentchar = orderedContacts[i].name[0].toUpperCase();
                 currentObj = {char:currentchar, elements:[]};
+                objects.push(currentObj);
             }
             currentObj.elements.push(orderedContacts[i]);
         }
@@ -50,9 +53,10 @@ class ContactList extends React.Component {
 
     render() {
         var id = 0;
+        console.log(this.orderLists());
         return (
             <View>
-                {(this.props.contacts)?this.orderLists().map((l) => (
+                {(this.props.contacts.length > 0)?this.orderLists().map((l) => (
                     <View style={styles.container} key={l.char + (id++).toString()}>
                         <Text style={styles.header} key={l.char + (id++).toString()} >{l.char}</Text>
                         {(l.elements)?<SubList contacts={l} key={l.char + (id++).toString()} />:null}

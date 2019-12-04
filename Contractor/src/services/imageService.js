@@ -16,6 +16,8 @@ export const selectFromCameraRoll = async () => {
     })
     
     if (result.cancelled) {return '';}
+    console.log(result.uri);
+    
     return result.uri
 };
 

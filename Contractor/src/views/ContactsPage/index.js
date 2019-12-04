@@ -18,8 +18,6 @@ class Contacts extends React.Component {
       filterd: {},
       modalVisible: false,
     };
-
-    this.setState({filterd: this.props.contacts})
   }
   
   updateSearch = search => {
@@ -39,7 +37,7 @@ class Contacts extends React.Component {
             resolve()
         });
     });
-}
+  }
 
     async filterList(e) {
     const unfilterd = this.props.contacts
@@ -55,8 +53,8 @@ class Contacts extends React.Component {
     return (
         <SafeAreaView style={{backgroundColor: '#E1E8EE'}}>
           <ScrollView>
-          <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />
-          {this.state.search != ''? <ContactList  contacts={await this.state.filterd} />: <ContactList contacts={this.props.contacts} />}
+          <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />  
+          <ContactList contacts={this.props.contacts} />
             <View style={{margin:20}}>
               <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
               <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
