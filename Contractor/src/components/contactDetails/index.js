@@ -23,11 +23,11 @@ class ContactDetails extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}></View>
-        <Image style={styles.avatar} source={{uri: this.props.contacts.thumbnailPhoto}}/>
+        <Image style={styles.avatar} source={{uri: this.props.contacts.image}}/>
           <View style={styles.body}>
             <View style={styles.bodyContent}>
-              <Text style={styles.name}> Dominos {this.props.contacts.name} </Text>
-              <Text style={styles.info}> 5812345 {this.props.contacts.phone} </Text>
+              <Text style={styles.name}> {this.props.contacts.name} </Text>
+              <Text style={styles.info}> {this.props.contacts.phone} </Text>
             </View>
             <View style={styles.icon}>
               <Icon name='edit' type='font-awesome'
