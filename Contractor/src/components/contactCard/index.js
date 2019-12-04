@@ -13,16 +13,15 @@ class ContactCard extends React.Component {
         super(props);
 
         this.handleNavigation = this.handleNavigation.bind(this);
-      }
+    }
 
+    //handle click and navigation
     handleNavigation() {
       this.props.navigation.navigate('ContactDetails', {contact:this.props.contact})
     }
 
     render() {
-    const {navigate} = this.props.navigation;
     const image = (this.props.contact.image)?this.props.contact.image:defaultImage;
-
     return (
         <TouchableOpacity onPress={this.handleNavigation}>
             <View style={styles.container}>
