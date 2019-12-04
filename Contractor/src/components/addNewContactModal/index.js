@@ -12,6 +12,8 @@ class addNewBoardModal extends React.Component {
       super(props);
 
       this.handleCreate = this.handleCreate.bind(this);
+      this.takePhoto = this.takePhoto.bind(this);
+      this.selectFromCameraRoll = this.selectFromCameraRoll.bind(this);
 
       //the state of the moal holds the info to add
       this.state = {
@@ -23,14 +25,14 @@ class addNewBoardModal extends React.Component {
 
     async takePhoto () {
         const photo = await takePhoto()
-        console.log(photo.uri)
-        return photo
+        console.log(photo)
+        this.setState({image:photo});
     }
 
     async selectFromCameraRoll () {
         const photo = await selectFromCameraRoll()
-        console.log(photo.uri)
-        return photo
+        console.log(photo)
+        this.setState({image:photo});
     }
 
     // handles adding a contact to the global state

@@ -5,7 +5,6 @@ import styles from './style';
 
 class SubList extends React.Component{
     render() {
-        console.log(this.props);
         return (
             this.props.contacts.elements.map((c) => (
                 <ContactCard key={c.phone} contact={c} />

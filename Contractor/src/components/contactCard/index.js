@@ -26,7 +26,7 @@ class ContactCard extends React.Component {
     return (
         <TouchableOpacity onPress={this.handleNavigation}>
             <View style={styles.container}>
-                <Image source={{uri: defaultImage}} style={styles.contactImage} />
+                <Image source={{uri: image}} style={styles.contactImage} />
                 <Text style={styles.contactName}>{this.props.contact.name}</Text>
                 <View style={styles.arrow}>
                     <Icon name='angle-right' type='font-awesome' size={40} color='#AAA' />
