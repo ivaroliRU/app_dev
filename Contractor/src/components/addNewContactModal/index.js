@@ -17,9 +17,9 @@ class addNewBoardModal extends React.Component {
 
       //the state of the moal holds the info to add
       this.state = {
-        name: '',
-        image: '',
-        phonenumber: ''
+        name: this.props.placeholder1,
+        image: this.props.placeholder2,
+        phonenumber: this.props.placeholder3
       };
     }
 
@@ -38,10 +38,15 @@ class addNewBoardModal extends React.Component {
     // handles adding a contact to the global state
     handleCreate(){
         console.log(this.state.image);
-        
+
         this.props.addContactToState(this.state.name, this.state.phonenumber, this.state.image);
         this.props.method(false);
     }
+    handleModify(){
+        this.props.modifyContactToState(this.props.id, this.state.name, this.state.phonenumber, this.state.image);
+        this.props.method(false);
+    }
+
 
     render() {
         return (
@@ -50,20 +55,21 @@ class addNewBoardModal extends React.Component {
                 onTouchOutside={() => {
                     this.props.method(false);
                 }}
-                modalTitle={<ModalTitle title={'Add Contact'} />}
+                modalTitle={<ModalTitle title={(this.props.hvadagera != "ADD_CONTACT")?"Edit Contact":"Create a new contact"} />}
                 >
                 <View>
                     <ModalContent style={{minWidth: '80%'}}>
                     <Text>Name</Text>
                     <TextInput
-                            placeholder = 'Name'
+
+                            placeholder = {this.props.placeholder1}
                             autoCapitalize="sentences"
                             autoCompleteType="name"
                             onChangeText={(input) => this.setState({name: input})}>
                         </TextInput>
                         <Text>Phone Number</Text>
                         <TextInput
-                            placeholder = 'Phone Number'
+                            placeholder = {this.props.placeholder2}
                             onChangeText={(phone) => this.setState({phonenumber: phone})}>
                         </TextInput>
                         <Text style={{marginBottom: '5%'}}>Image</Text>
@@ -79,19 +85,22 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.handleCreate()}}
+                        onPress={() => {this.props.method(false), (this.props.hvadagera == "ADD_BOARD")?this.handleCreate():this.handleModify()}}
                         />
                     </ModalFooter>
                     </View>
                 </Modal>
         )
-    } 
+    }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        addContactToState: (name,phone,image) => {dispatch(addContactToState(name,phone,image));}
+        //addContactToState: (name,phone,image) => {dispatch(addContactToState(name,phone,image));},
+        addContactToState: (name, phone, image) => dispatch({type: 'ADD_BOARD', name: name, phone:phone, image:image}),
+
+        modifyContactToState: (id, name, phone, image) => dispatch({type: 'MODIFY_BOARD', id:id, name:name, phone:phone, image:image})
     };
   };
-  
+
 export default connect(null, mapDispatchToProps)(addNewBoardModal);

@@ -9,22 +9,29 @@ import ContactCard from '../contactCard';
 import ContactList from '../contactList';
 import {Linking} from 'react-native'
 import call from 'react-native-phone-call'
+import AddNewContactModal from '../addNewContactModal'
 
 class ContactDetails extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       visable: false,
+      modalVisible: false
     }
   }
   handleModal = (statement) => {
-    this.setState({ visable: statement });
+    this.setState({ modalVisible: statement });
+
   }
+  /*
+  handleModal = (statement) => {
+    this.setState({ visable: statement });
+  }*/
 
   makeCall = (number) => {
     const args = {
         number: number, // String value with the number to call
-        prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
+        prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
     }
    call(args).catch(console.error)
   }
@@ -43,6 +50,7 @@ class ContactDetails extends React.Component {
               <TouchableOpacity onPress={()=> this.makeCall(this.props.contacts.phone)}><Text style={styles.info}>{this.props.contacts.phone}</Text></TouchableOpacity>
             </View>
             <View style={styles.icon}>
+            <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
               <Icon name='edit' type='font-awesome'
               onPress={() => {this.handleModal(true)}} />
             </View>

@@ -31,7 +31,7 @@ export const getAllFiles = async () => {
     await setupDirectory();
 
     const result = await onException(() => FileSystem.readDirectoryAsync(dataDirectory));
-    
+
     return result
 }
 
@@ -46,16 +46,16 @@ export const getAllData = async function () {
         data.push(obj);
     }
 
-    osData = await getOsContacts();
-    
-    var data = data.concat(osData);    
+  //  osData = await getOsContacts();
+
+  //  var data = data.concat(osData);
 
     return data;
 }
 
 //adds a contact, for now just for testing
 export const addContact = async (name,phone,image) => {
-    await setupDirectory(); 
+    await setupDirectory();
 
     let obj = {
         name : name,
@@ -83,7 +83,7 @@ const getPermission = async permissionTypes => {
 //get contacts from the os
 export const getOsContacts = async () => {
     ret_data = [];
-    
+
     await getPermission([ Permission.CONTACTS]);
     const { data } = await Contacts.getContactsAsync({
         fields: [Contacts.Fields.Name, Contacts.Fields.PhoneNumbers, Contacts.Fields.Image],
@@ -100,6 +100,6 @@ export const getOsContacts = async () => {
     }
 
     console.log(ret_data);
-    
+
     return ret_data;
 }
