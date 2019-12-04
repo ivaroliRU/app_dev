@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, SafeAreaView, ScrollView } from 'react-native';
+import { Text, View, Button, SafeAreaView, ScrollView, TouchableHighlightBase } from 'react-native';
 import AddNewContactModal from '../../components/addNewContactModal'
 import { updateContacts } from '../../actions/contactActions';
 import { connect } from 'react-redux';
@@ -15,11 +15,13 @@ class Contacts extends React.Component {
 
     this.state = {
       search: '',
-      filterd: [],
+      filterd: {},
       modalVisible: false,
     };
-  }
 
+    this.setState({filterd: this.props.contacts})
+  }
+  
   updateSearch = search => {
     this.setState({ search });
     this.filterList( search )
@@ -30,21 +32,23 @@ class Contacts extends React.Component {
     this.setState({ modalVisible: statement });
     this.props.updateContacts();
   }
-  
-  updateState = (newstate) => {
-    this.setState( {filterd: newstate} )
-  }
 
-  filterList = e => {
+  promisedSetState = (newState) => {
+    return new Promise((resolve) => {
+        this.setState(newState, () => {
+            resolve()
+        });
+    });
+}
+
+    async filterList(e) {
     const unfilterd = this.props.contacts
     e = e.toLowerCase()
-    const regex = new RegExp('.*' + e + '.*', "i")
+    const regex = new RegExp('.*' + e + '.*', "g")
     const updatedList = unfilterd.filter(item => {
       return item.name.toLowerCase().search(regex) !== -1;
     });
-    console.log("working list")
-    this.updateState(updatedList)
-    console.log(updatedList)
+    await this.promisedSetState({filterd: updatedList})
   };
 
   render () {
@@ -52,7 +56,7 @@ class Contacts extends React.Component {
         <SafeAreaView style={{backgroundColor: '#E1E8EE'}}>
           <ScrollView>
           <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />
-            <ContactList contacts={(this.state.search == '')?this.props.contacts:this.state.filterd} />
+          {this.state.search != ''? <ContactList  contacts={await this.state.filterd} />: <ContactList contacts={this.props.contacts} />}
             <View style={{margin:20}}>
               <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
               <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
