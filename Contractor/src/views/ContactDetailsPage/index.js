@@ -1,31 +1,32 @@
 import React from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, SafeAreaView } from 'react-native';
 import { getAllData } from '../../services/contactsService';
-import DetailsPage from '../../components/DetailsPage';
+import ContactDetails from '../../components/contactDetails';
+import ContactList from '../../components/contactList';
+import { updateContacts } from '../../actions/contactActions';
 
-const data = getAllData();
+const contacts = updateContacts();
 
 class ContactDetailsPage extends React.Component {
   constructor (props) {
     super(props);
+
     this.state = {
       modalVisible: false
     };
 
   }
   handleModal = (statement) => {
-    this.setState({ modalVisible: statement }); 
+    this.setState({ modalVisible: statement });
   }
-
 
   render() {
     return (
-
-      <ScrollView>
-        <DetailsPage data={data}/>
-      </ScrollView>
-
-
+      <SafeAreaView style={{backgroundColor: '#E1E8EE'}}>
+        <ScrollView>
+            <ContactDetails contacts={contacts}/>
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 };
