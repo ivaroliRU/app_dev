@@ -37,10 +37,12 @@ const styles = StyleSheet.create({
   info:{
     fontSize:16,
     color: "#00BFFF",
-    marginTop:10
+    marginTop:10,
   },
-
-
+  phoneContainer:{
+    flex: 1,
+    flexDirection: "row"
+  },
 });
 
 export default styles;
