@@ -18,9 +18,27 @@ export const addContactToState = (name, phone, image) => {
         }
     };
 };
+export const modifyContactToState = (id, name, phone, image) => {
+    return async dispatch => {
+        try{
+            await addContact(id, name,phone,image);
+            dispatch(modifyContactSuccess(id, name,phone,image));
+        }
+        catch(e){
+            console.log(e);
+        }
+    };
+};
 
 const addContactSuccess = (name,phone,image) => ({
     type: "ADD_CONTACT",
+    name: name,
+    phone: phone,
+    image: image
+});
+const modifyContactSuccess = (id, name,phone,image) => ({
+    type: "MODIFY_CONTACT",
+    id: id,
     name: name,
     phone: phone,
     image: image

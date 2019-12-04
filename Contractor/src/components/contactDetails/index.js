@@ -9,6 +9,7 @@ import ContactCard from '../contactCard';
 import ContactList from '../contactList';
 import {Linking} from 'react-native'
 import call from 'react-native-phone-call'
+import AddNewContactModal from '../addNewContactModal'
 
 const defaultImage = 'https://image.shutterstock.com/image-photo/handsome-unshaven-young-darkskinned-male-260nw-640011838.jpg'
 
@@ -17,16 +18,22 @@ class ContactDetails extends React.Component {
     super(props);
     this.state = {
       visable: false,
+      modalVisible: false
     }
   }
   handleModal = (statement) => {
-    this.setState({ visable: statement });
+    this.setState({ modalVisible: statement });
+
   }
+  /*
+  handleModal = (statement) => {
+    this.setState({ visable: statement });
+  }*/
 
   makeCall = (number) => {
     const args = {
         number: number, // String value with the number to call
-        prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
+        prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call
     }
    call(args).catch(console.error)
   }
