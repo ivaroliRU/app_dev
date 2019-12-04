@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { updateContacts } from '../../actions/contactActions';
 import ContactCard from '../contactCard';
 import ContactList from '../contactList';
+import {Linking} from 'react-native'
 
 class ContactDetails extends React.Component {
   constructor (props) {
@@ -27,7 +28,7 @@ class ContactDetails extends React.Component {
           <View style={styles.body}>
             <View style={styles.bodyContent}>
               <Text style={styles.name}> {this.props.contacts.name} </Text>
-              <Text style={styles.info}> {this.props.contacts.phone} </Text>
+              <Text onPress={()=>{Linking.openURL('tel:'+this.props.contacts.phone);}} style={styles.info}>{this.props.contacts.phone}</Text>
             </View>
             <View style={styles.icon}>
               <Icon name='edit' type='font-awesome'
