@@ -39,13 +39,11 @@ class ContactDetails extends React.Component {
           <View style={styles.body}>
             <View style={styles.bodyContent}>
             <Text style={styles.name}>{this.props.contacts.name}</Text> 
+            <Icon  name='edit' type='font-awesome' onPress={() => {this.handleModal(true)}} />
             <View style={styles.phoneContainer}>
               <TouchableOpacity onPress={()=> this.makeCall(this.props.contacts.phoneNumber)}><Text style={styles.info}>{this.props.contacts.phoneNumber}</Text>
               <Icon color='#00BFFF' name='phone-square' type='font-awesome' onPress={() => this.makeCall(this.props.contacts.phoneNumber)} /></TouchableOpacity>
             </View>
-            </View>
-            <View style={styles.icon}>
-              <Icon name='edit' type='font-awesome' onPress={() => {this.handleModal(true)}} />
             </View>
           </View>
           <AddNewContactModal isVisible={this.state.editModalVisible} method={this.handleModal} type="EDIT_CONTACT" contact={this.props.contacts} />
