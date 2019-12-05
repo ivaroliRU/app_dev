@@ -49,7 +49,7 @@ class ContactDetails extends React.Component {
               <Icon name='edit' type='font-awesome' onPress={() => {this.handleModal(true)}} />
             </View>
           </View>
-          <AddNewContactModal isVisible={this.state.editModalVisible} method={this.handleModal} type="EDIT_CONTACT" />
+          <AddNewContactModal isVisible={this.state.editModalVisible} method={this.handleModal} type="EDIT_CONTACT" contact={this.props.contacts} />
       </View>
 
     );
