@@ -7,8 +7,8 @@ export default function(state = initState, action) {
 
             var obj = {
                 name: action.name,
-                image: action.image,
-                phone: action.phone
+                photo: action.image,
+                phoneNumber: action.phone
             }
             n_state = state.slice();
             n_state.push(obj);
@@ -18,13 +18,13 @@ export default function(state = initState, action) {
             return action.payload;
         case 'MODIFY_CONTACT':
             for (var i = 0; i < state.length; i++){
-              if(state[i].id == action.id){
-                state[i].name = action.name;
-                state[i].image = action.image;
-                state[i].phone = action.phone;
+                if(state[i].formerName == action.formerName){
+                    state[i].name = action.name;
+                    state[i].photo = action.image;
+                    state[i].phoneNumber = action.phone;
                 }
-              }
-                    return state;
+            }
+            return state;
         default:
             return state;
     }
