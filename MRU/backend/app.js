@@ -1,5 +1,5 @@
 // api of the application
-const api = require('./api');
+const api = require('./src/api');
 
 //port the application is running on
 const PORT = process.env.PORT || 3000;
