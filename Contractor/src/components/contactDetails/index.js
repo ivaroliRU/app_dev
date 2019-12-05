@@ -39,10 +39,9 @@ class ContactDetails extends React.Component {
           <View style={styles.body}>
             <View style={styles.bodyContent}>
             <Text style={styles.name}>{this.props.contacts.name}</Text> 
-            <Text>asdf</Text>
             <View style={styles.phoneContainer}>
-              <TouchableOpacity onPress={()=> this.makeCall(this.props.contacts.phone)}><Text style={styles.info}>{this.props.contacts.phone}</Text>
-              <Icon color='#00BFFF' name='phone-square' type='font-awesome' onPress={() => this.makeCall(this.props.contacts.phone)} /></TouchableOpacity>
+              <TouchableOpacity onPress={()=> this.makeCall(this.props.contacts.phoneNumber)}><Text style={styles.info}>{this.props.contacts.phoneNumber}</Text>
+              <Icon color='#00BFFF' name='phone-square' type='font-awesome' onPress={() => this.makeCall(this.props.contacts.phoneNumber)} /></TouchableOpacity>
             </View>
             </View>
             <View style={styles.icon}>
