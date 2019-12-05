@@ -15,13 +15,15 @@ class addNewBoardModal extends React.Component {
       this.takePhoto = this.takePhoto.bind(this);
       this.selectFromCameraRoll = this.selectFromCameraRoll.bind(this);
 
-      console.log(this.props.type);
+      if(this.props.contact){
+          this.props.formerName = "";
+      }
 
       //the state of the moal holds the info to add
       this.state = {
-        name: this.props.placeholder1,
-        image: this.props.placeholder2,
-        phonenumber: this.props.placeholder3
+        name: (this.props.contact)?this.props.contact.name:'',
+        image: (this.props.contact)?this.props.contact.photo:'',
+        phonenumber: (this.props.contact)?this.props.contact.phoneNumber:''
       };
     }
 
@@ -45,32 +47,33 @@ class addNewBoardModal extends React.Component {
 
     // handles editing a contact in the state space and possibly in the file system
     handleModify(){
-        //this.props.modifyContactToState(this.props.id, this.state.name, this.state.phonenumber, this.state.image);
-        //this.props.method(false);
+        this.props.modifyContactToState(this.props.id, this.state.name, this.state.phonenumber, this.state.image);
+        this.props.method(false);
     }
 
     render() {
+        console.log(this.props.type);
         return (
             <Modal
                 visible={this.props.isVisible}
                 onTouchOutside={() => {
                     this.props.method(false);
                 }}
-                modalTitle={<ModalTitle title={(this.props.type === "ADD_CONTACT")?"Edit Contact":"Create a new contact"} />}
+                modalTitle={<ModalTitle title={(this.props.type == "ADD_CONTACT")?"Create a new contact":"Edit Contact"} />}
                 >
                 <View>
                     <ModalContent style={{minWidth: '80%'}}>
                     <Text>Name</Text>
                     <TextInput
 
-                            placeholder = {(this.props.contactName)?this.props.contactName:'Name of the new contact'}
+                            placeholder = {(this.props.contact)?this.props.contact.name:'Name of the new contact'}
                             autoCapitalize="sentences"
                             autoCompleteType="name"
                             onChangeText={(input) => this.setState({name: input})}>
                         </TextInput>
                         <Text>Phone Number</Text>
                         <TextInput
-                            placeholder = {(this.props.contactPhone)?this.props.contactPhone:'Phone number of the new contact'}
+                            placeholder = {(this.props.contact)?this.props.contact.phoneNumber:'Phone number of the new contact'}
                             onChangeText={(phone) => this.setState({phonenumber: phone})}>
                         </TextInput>
                         <Text style={{marginBottom: '5%'}}>Image</Text>
