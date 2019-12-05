@@ -74,6 +74,7 @@ class addNewBoardModal extends React.Component {
                         <Text>Phone Number</Text>
                         <TextInput
                             placeholder = {(this.props.contact)?this.props.contact.phoneNumber:'Phone number of the new contact'}
+                            keyboardType={'numeric'} 
                             onChangeText={(phone) => this.setState({phonenumber: phone})}>
                         </TextInput>
                         <Text style={{marginBottom: '5%'}}>Image</Text>
