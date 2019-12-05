@@ -5,51 +5,44 @@ import { updateContacts } from '../../actions/contactActions';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
 import ContactList from '../../components/contactList';
-import ContactCard from '../../components/contactCard';
 
 class Contacts extends React.Component {
   constructor (props) {
     super(props);
 
+    //get the initial contacts (defined in the os contacts and file system)
     this.props.updateContacts();
 
     this.state = {
       search: '',
-      filterd: {},
+      filterd: [],
       modalVisible: false,
     };
   }
   
+  //update the inner state of the search filter
   updateSearch = search => {
     this.setState({ search });
     this.filterList( search )
   };
 
-
+  //show or hide a modal
   handleModal = (statement) => {
     this.setState({ modalVisible: statement });
     this.props.updateContacts();
   }
 
-  promisedSetState = (newState) => {
-    return new Promise((resolve) => {
-        this.setState(newState, () => {
-            resolve()
-        });
-    });
-  }
-
-  async filterList(e) {
+  //apply filter to the current state defined in the state by the search bar
+  filterList(e) {
     const unfilterd = this.props.contacts
     e = e.toLowerCase()
+
     const regex = new RegExp('.*' + e + '.*', "g")
     const updatedList = unfilterd.filter(item => {
       return item.name.toLowerCase().search(regex) !== -1;
     });
 
-    console.log(updatedList);
-    
-    await this.promisedSetState({filterd: updatedList})
+    this.setState({filterd:updatedList});
   };
 
   render () {
@@ -57,9 +50,9 @@ class Contacts extends React.Component {
         <SafeAreaView style={{backgroundColor: '#E1E8EE'}}>
           <ScrollView>
           <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />  
-          <ContactList contacts={this.props.contacts} />
+          <ContactList contacts={(this.state.search.length > 0)?this.state.filterd:this.props.contacts} />
             <View style={{margin:20}}>
-              <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal}/>
+              <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal} type="ADD_CONTACT" />
               <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
             </View>
           </ScrollView>

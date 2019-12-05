@@ -25,6 +25,11 @@ const setupDirectory = async () => {
     }
 }
 
+const getPermission = async permissionTypes => {
+    await Promise.all(permissionTypes.map(async (type) =>
+    Permission.askAsync(type)));
+}
+
 //get all files in the directory
 export const getAllFiles = async () => {
     // Check if directory exists
@@ -46,9 +51,8 @@ export const getAllData = async function () {
         data.push(obj);
     }
 
-  //  osData = await getOsContacts();
-
-  //  var data = data.concat(osData);
+    osData = await getOsContacts();
+    var data = data.concat(osData);
 
     return data;
 }
@@ -59,8 +63,8 @@ export const addContact = async (name,phone,image) => {
 
     let obj = {
         name : name,
-        phone: phone,
-        image: image
+        phoneNumber: phone,
+        photo: image
     };
 
     //create the file uri
@@ -70,14 +74,27 @@ export const addContact = async (name,phone,image) => {
     await FileSystem.writeAsStringAsync(fileUri, JSON.stringify(obj), { encoding: FileSystem.EncodingType.UTF8 });
 }
 
+export const modifyContact = async (formerName,name,phone,image) => {
+    console.log("Modifying formerName");
+
+    //create the file uri
+    let fileUri = dataDirectory + "/" + (formerName.toLowerCase().replace(/ /g, '_')) + ".json";
+
+    try{
+        //delete the old file
+        await FileSystem.deleteAsync(fileUri);
+
+        //add the contact as a new file
+        addContact(name,phone,image);
+    }
+    catch(e){
+        return;
+    }
+}
+
 //delete all files in dir
 export const cleanDirectory = async () => {
     await FileSystem.deleteAsync(dataDirectory);
-}
-
-const getPermission = async permissionTypes => {
-    await Promise.all(permissionTypes.map(async (type) =>
-    Permission.askAsync(type)));
 }
 
 //get contacts from the os
@@ -92,12 +109,12 @@ export const getOsContacts = async () => {
     for(i in data){
         var obj = {
             name: data[i].name,
-            phone: data[i].phoneNumbers[0].number,
-            image: (data[i].image)?data[i].image:''
+            phoneNumber: data[i].phoneNumbers[0].number,
+            photo: (data[i].image)?data[i].image:''
         };
 
         ret_data.push(obj);
     }
-    
+
     return ret_data;
 }

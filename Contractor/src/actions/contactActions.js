@@ -1,5 +1,6 @@
-import {getAllData, addContact} from '../services/contactsService';
+import {getAllData, addContact, modifyContact} from '../services/contactsService';
 
+//get data from the stored json files
 export const updateContacts = () => {
     return async dispatch => {
         data = await getAllData();
@@ -7,6 +8,15 @@ export const updateContacts = () => {
     };
 };
 
+//modify the contact in the state and in the file if there is one
+export const modContact = (formerName, name, phone, image) => {
+    return async dispatch => {
+        modifyContact(formerName, name, phone, image);
+        dispatch(modifyContactSuccess(formerName, name, phone, image));
+    };
+};
+
+//add a contact to the state and to the files
 export const addContactToState = (name, phone, image) => {
     return async dispatch => {
         try{
@@ -18,27 +28,17 @@ export const addContactToState = (name, phone, image) => {
         }
     };
 };
-export const modifyContactToState = (id, name, phone, image) => {
-    return async dispatch => {
-        try{
-            await addContact(id, name,phone,image);
-            dispatch(modifyContactSuccess(id, name,phone,image));
-        }
-        catch(e){
-            console.log(e);
-        }
-    };
-};
 
 const addContactSuccess = (name,phone,image) => ({
     type: "ADD_CONTACT",
     name: name,
-    phone: phone,
+    phoneNumber: phone,
     image: image
 });
-const modifyContactSuccess = (id, name,phone,image) => ({
+
+const modifyContactSuccess = (formerName, name, phone, image) => ({
     type: "MODIFY_CONTACT",
-    id: id,
+    formerName:formerName,
     name: name,
     phone: phone,
     image: image
