@@ -47,15 +47,15 @@ class Contacts extends React.Component {
 
   render () {
     return (
-        <SafeAreaView style={{backgroundColor: '#E1E8EE'}}>
+        <SafeAreaView style={{backgroundColor: '#E1E8EE', flex:1}}>
           <ScrollView>
           <SearchBar placeholder="Search Contact...." onChangeText={this.updateSearch} value={this.state.search} lightTheme />  
           <ContactList contacts={(this.state.search.length > 0)?this.state.filterd:this.props.contacts} />
-            <View style={{margin:20}}>
+          </ScrollView>
+          <View style={{margin:20}}>
               <AddNewContactModal isVisible={this.state.modalVisible} method={this.handleModal} type="ADD_CONTACT" />
               <Button style={{marginLeft: 5, marginRight: 5}} title="Add New Contact" onPress={() => this.handleModal(true)}/>
             </View>
-          </ScrollView>
         </SafeAreaView>
     )
   }
