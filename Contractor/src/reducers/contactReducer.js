@@ -17,14 +17,18 @@ export default function(state = initState, action) {
         case 'UPDATE_CONTACTS':
             return action.payload;
         case 'MODIFY_CONTACT':
+            console.log("modify received");
+            n_state = [];
+            
             for (var i = 0; i < state.length; i++){
-                if(state[i].formerName == action.formerName){
+                if(state[i].name == action.formerName){
                     state[i].name = action.name;
                     state[i].photo = action.image;
                     state[i].phoneNumber = action.phone;
                 }
+                n_state.push(state[i]);
             }
-            return state;
+            return n_state;
         default:
             return state;
     }

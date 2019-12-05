@@ -1,4 +1,5 @@
 import {getAllData, addContact, modifyContact} from '../services/contactsService';
+var isAddingAContact = false, ExceptionThrown = false;
 
 //get data from the stored json files
 export const updateContacts = () => {
@@ -11,6 +12,8 @@ export const updateContacts = () => {
 //modify the contact in the state and in the file if there is one
 export const modContact = (formerName, name, phone, image) => {
     return async dispatch => {
+        console.log("sending mod message");
+        
         modifyContact(formerName, name, phone, image);
         dispatch(modifyContactSuccess(formerName, name, phone, image));
     };
@@ -19,12 +22,20 @@ export const modContact = (formerName, name, phone, image) => {
 //add a contact to the state and to the files
 export const addContactToState = (name, phone, image) => {
     return async dispatch => {
+        //disable adding mutlible contact at once.... async problem
         try{
-            await addContact(name,phone,image);
-            dispatch(addContactSuccess(name,phone,image));
+            if(!isAddingAContact)
+                await addContact(name,phone,image);
         }
         catch(e){
             console.log(e);
+            ExceptionThrown = true;
+        }
+        finally{
+            if(!isAddingAContact && !ExceptionThrown)
+                dispatch(addContactSuccess(name,phone,image));
+            ExceptionThrown = false;
+            isAddingAContact = false;
         }
     };
 };

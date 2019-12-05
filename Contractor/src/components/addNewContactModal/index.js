@@ -4,19 +4,22 @@ import { View, TextInput, Text } from 'react-native';
 import Modal, { ModalContent, ModalButton, ModalFooter, ModalTitle } from 'react-native-modals';
 import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
 import { connect } from 'react-redux';
-import { addContactToState } from '../../actions/contactActions';
+import { addContactToState, modContact } from '../../actions/contactActions';
 
 // This component is responsible for modal that creates a new
 class addNewBoardModal extends React.Component {
     constructor (props) {
       super(props);
 
+      // bind this to all class functions
       this.handleCreate = this.handleCreate.bind(this);
+      this.handleModify = this.handleModify.bind(this);
       this.takePhoto = this.takePhoto.bind(this);
       this.selectFromCameraRoll = this.selectFromCameraRoll.bind(this);
 
+      // if we have a contact then save the old name in case we modify
       if(this.props.contact){
-          this.props.formerName = "";
+          this.formerName = this.props.contact.name;
       }
 
       //the state of the moal holds the info to add
@@ -46,13 +49,16 @@ class addNewBoardModal extends React.Component {
     }
 
     // handles editing a contact in the state space and possibly in the file system
-    handleModify(){
-        this.props.modifyContactToState(this.props.id, this.state.name, this.state.phonenumber, this.state.image);
+    handleModify(){        
+        if(this.formerName){
+            console.log("Trying to modify");
+
+            this.props.modContact(this.formerName, this.state.name, this.state.phonenumber, this.state.image);
+        }
         this.props.method(false);
     }
 
     render() {
-        console.log(this.props.type);
         return (
             <Modal
                 visible={this.props.isVisible}
@@ -89,7 +95,7 @@ class addNewBoardModal extends React.Component {
                         />
                         <ModalButton
                         text="OK"
-                        onPress={() => {this.props.method(false), (this.props.type == "ADD_CONTACT")?this.handleCreate():this.handleModify()}}
+                        onPress={() => {(this.props.type == "ADD_CONTACT")?this.handleCreate():this.handleModify()}}
                         />
                     </ModalFooter>
                     </View>
@@ -101,8 +107,8 @@ class addNewBoardModal extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         addContactToState: (name, phone, image) => dispatch(addContactToState(name, phone, image)),
-        modifyContactToState: (formerName, name, phone, image) => dispatch((formerName, name, phone, image))
+        modContact: (formerName, name, phone, image) => dispatch(modContact(formerName, name, phone, image))
     };
-  };
+};
 
 export default connect(null, mapDispatchToProps)(addNewBoardModal);
