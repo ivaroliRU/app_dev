@@ -1,34 +1,59 @@
-// express for handling http requests
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+const express = require('express')
+const app = express()
+const passport = require('passport')
+const session = require('express-session')
+const { createUser } = require('./services/userService');
 
-//generate a unique id for each user session
-const { uuid } = require('uuidv4');
+const initializePassport = require('./passport-config')
 
-const app = express();
+initializePassport(passport)
 
-const HOUR = 1000*60*60;
-
-//use sessions for keeping track of authenticated users
-var session = require('express-session');
-
-//configuring the app
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(express.json())
 app.use(session({
-    genid: function(req) {
-      return uuid() // generate unique id
-    },
-    secret: 'aNvækjAfnSoet53qpm3553n',
-    cookie: { maxAge: HOUR * 48, auth: false },
-    resave: false,
-    saveUninitialized: false
-}));
+  secret: (process.env.SESSION_SECRET)?process.env.SESSION_SECRET:'asdfasdfasdf',
+  resave: false,
+  saveUninitialized: false
+}))
 
-//avary request goes the routes
-app.use(require('./routes'));
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.get('/login', checkNotAuthenticated, passport.authenticate('local'), function(req, res) {
+  res.status(200).end();
+});
+
+app.post('/register', checkNotAuthenticated, async (req, res) => {
+  try {
+    const {user} = req.body;
+    
+    createUser(user.email, user.password)
+    return res.status(200).end();
+  } catch (e) {
+    console.log(e);
+    
+    return res.status(400).end();
+  }
+})
+
+app.delete('/logout', (req, res) => {
+  req.logOut()
+  return res.status(200).end();
+})
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+
+  return res.status(401).end();
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.status(200).end;
+  }
+
+  next()
+}
 
 module.exports = app;
