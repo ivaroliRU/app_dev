@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import ContactCard from '../contactCard';
 import styles from './style';
+import CinemaCard from '../cinemaCard';
 
 class SubList extends React.Component{
     render() {
         var id = 0;
         return (
             this.props.cinemas.elements.map((c) => (
-                <ContactCard key={c.phone + (id++).toString()} cinema={c} />
+                <CinemaCard cinema={c} />
             ))
         );
     }
@@ -57,7 +57,7 @@ class CinemaList extends React.Component {
                 {(this.props.cinemas.length > 0)?this.orderLists().map((l) => (
                     <View style={styles.container} key={l.char + (id++).toString()}>
                         <Text style={styles.header} key={l.char + (id++).toString()} >{l.char}</Text>
-                        {(l.elements)?<SubList contacts={l} key={l.char + (id++).toString()} />:null}
+                        {(l.elements)?<SubList cinemas={l} key={l.char + (id++).toString()} />:null}
                     </View>
                 )):null}
                 </View>

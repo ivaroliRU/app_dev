@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { updateCinemas } from '../../actions/cinemasActions';
+import CinemaList from '../../components/cinemaList';
 import { connect } from 'react-redux';
 
 class Cinema extends React.Component {
@@ -11,18 +12,20 @@ class Cinema extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.titleText}>
-            Cinemas
-        </Text>
-      </View>
+      <SafeAreaView style={{backgroundColor: '#E1E8EE', flex:1}}>
+        <ScrollView>
+           
+          <CinemaList cinemas={this.props.cinemas} />
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 };
 
 function mapStateToProps(state){
     return{
-      token: state.authentication
+      token: state.authentication,
+      cinemas: state.cinemas
     };
   }
 
@@ -43,12 +46,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin'
   },
   container: {
-        flex: 1,
-        height: 70,
-        alignItems: 'center',
-        height: 70,
-        borderTopWidth: 30,
-        borderTopColor: '#EEE',
-        backgroundColor: '#FFF',
     }
 })
