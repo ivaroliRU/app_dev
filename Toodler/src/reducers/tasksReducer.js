@@ -4,7 +4,7 @@ const initialState = tasks.tasks;
 
 var largestID = initialState.length+1;
 
-export default function(state = initialState, action) {    
+export default function(state = initialState, action) {
     switch (action.type) {
         case 'ADD_TASK': 
             return[
