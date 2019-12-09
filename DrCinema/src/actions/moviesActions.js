@@ -1,6 +1,6 @@
-const url = 'http://api.kvikmyndir.is/cinemas';
+const url = 'http://api.kvikmyndir.is/movies';
 
-export const updateCinemas = (token) => {
+export const updateMovies = (token) => {
     return async dispatch => {
         fetch(url+'?token='+token, {
             method: 'GET',
@@ -20,6 +20,6 @@ export const updateCinemas = (token) => {
 }
 
 const updateSuccess = data => ({
-  type: "UPDATE_CINEMAS",
+  type: "UPDATE_MOVIES",
   payload: data
 });
