@@ -7,7 +7,7 @@ import Cinema from '../views/Cinema';
 //export the routes
 export default createAppContainer(createStackNavigator({
     Home: {
-      screen: Home,
+      screen: Cinema,
       navigationOptions: ({navigation}) => ({
         header: null,
     }),

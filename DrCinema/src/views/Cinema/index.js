@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { updateCinemas } from '../../actions/cinemasActions';
 import { connect } from 'react-redux';
 
@@ -11,14 +11,16 @@ class Cinema extends React.Component {
 
   render() {
     return (
-      <Text style={{backgroundColor: '#E1E8EE'}}>
-          typpi
-      </Text>
+      <View style={styles.container}>
+        <Text style={styles.titleText}>
+            Cinemas
+        </Text>
+      </View>
     )
   }
 };
 
-function mapStateToProps(state){  
+function mapStateToProps(state){
     return{
       token: state.authentication
     };
@@ -31,5 +33,22 @@ const mapDispatchToProps = dispatch => {
       }
     };
   };
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
+
+const styles = StyleSheet.create({
+  titleText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    fontFamily: 'Cochin'
+  },
+  container: {
+        flex: 1,
+        height: 70,
+        alignItems: 'center',
+        height: 70,
+        borderTopWidth: 30,
+        borderTopColor: '#EEE',
+        backgroundColor: '#FFF',
+    }
+})
