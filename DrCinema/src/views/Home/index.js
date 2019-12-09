@@ -17,8 +17,8 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.container} >
-        <BackgroundImage text='Cinemas' image={cinemaPhoto}></BackgroundImage>
-        <BackgroundImage text='Upcoming Movies' image={upcomeingPhoto}></BackgroundImage>
+        <BackgroundImage text='Cinemas' image={cinemaPhoto} destination='Cinema'></BackgroundImage>
+        <BackgroundImage text='Upcoming Movies' image={upcomeingPhoto} destination='UpcomeingMovies'></BackgroundImage>
       </View>
     )
   }

@@ -3,11 +3,12 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from '../views/Home';
 import Cinema from '../views/Cinema';
+import UpcomeingMovies from '../views/UpcomeingMovies'
 
 //export the routes
 export default createAppContainer(createStackNavigator({
     Home: {
-      screen: Cinema,
+      screen: Home,
       navigationOptions: ({navigation}) => ({
         header: null,
     }),
@@ -19,7 +20,13 @@ export default createAppContainer(createStackNavigator({
       navigationOptions: ({navigation}) => ({
         title: 'Cinemas'
       }),
-        headerBackTitle: null,
+    },
+
+    UpcomeingMovies: {
+      screen: UpcomeingMovies,
+      navigationOptions: ({navigation}) => ({
+        title: 'Upcomeing Movies'
+      }),
     }
 
  }));
