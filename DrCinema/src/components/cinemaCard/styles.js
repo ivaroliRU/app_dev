@@ -15,11 +15,13 @@ const styles = StyleSheet.create({
     },
     contactName : {
         fontSize: 20,
-        marginLeft: 10,
     },
     arrow: {
         marginLeft: 'auto',
         paddingRight: 10
+    },
+    textContainer:{
+        marginLeft: 10,
     }
   });
 

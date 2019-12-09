@@ -8,7 +8,7 @@ class SubList extends React.Component{
         var id = 0;
         return (
             this.props.cinemas.elements.map((c) => (
-                <CinemaCard cinema={c} />
+                <CinemaCard key={id++} cinema={c} />
             ))
         );
     }
