@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+import styles from './styles';
 import { updateAuthentication } from '../../actions/authenticationActions';
 import { connect } from 'react-redux';
 
@@ -11,9 +12,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Text style={{backgroundColor: '#E1E8EE'}}>
-          typpi
-      </Text>
+      <Text>ASDF</Text>
     )
   }
 };
