@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
-
-cinemaPhoto = "http://s3-eu-west-1.amazonaws.com/fredassets/uploads/sites/30/2017/09/CinemaAccessibility.jpg"
-upcomeingPhoto = 'https://www.bollyquick.com/wp-content/uploads/2019/11/Ajay-Devgan-Upcoming-Movies.jpg'
+import { Text } from 'react-native';
+import { updateAuthentication } from '../../actions/authenticationActions';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
   constructor (props) {
     super(props);
+    this.props.updateAuthentication();
   }
 
   render() {
@@ -19,4 +19,18 @@ class Home extends React.Component {
   }
 };
 
-export default Home;
+function mapStateToProps(state){  
+    return{
+      authentication: state.authentication
+    };
+  }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateAuthentication: () => {
+        dispatch(updateAuthentication());
+      }
+    };
+  };
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
