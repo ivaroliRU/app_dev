@@ -1,4 +1,4 @@
-const url = 'http://api.kvikmyndir.is/cinemas';
+const url = 'http://api.kvikmyndir.is/theaters';
 
 export const updateCinemas = (token) => {
     return async dispatch => {

@@ -1,8 +1,9 @@
-const url = 'http://api.kvikmyndir.is/movies';
+const movies_url = 'http://api.kvikmyndir.is/movies';
+const upcomming_url = 'http://api.kvikmyndir.is/upcoming';
 
 export const updateMovies = (token) => {
     return async dispatch => {
-        fetch(url+'?token='+token, {
+        fetch(movies_url+'?token='+token, {
             method: 'GET',
             headers: {
               Accept: 'application/json',
@@ -19,7 +20,31 @@ export const updateMovies = (token) => {
     }
 }
 
+export const getRandomUpcommingPoster = (token) => {
+    return async dispatch => {
+        fetch(upcomming_url+'?token='+token, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            }
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          dispatch(updatePoster(responseJson[0].poster));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+};
+
 const updateSuccess = data => ({
   type: "UPDATE_MOVIES",
   payload: data
 });
+
+const updatePoster = data => ({
+    type: "UPDATE_POSTER",
+    payload: data
+  });
