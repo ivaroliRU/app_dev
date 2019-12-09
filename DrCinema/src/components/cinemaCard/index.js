@@ -21,7 +21,10 @@ class CinemaCard extends React.Component {
         return (
             <TouchableOpacity onPress={this.handleNavigation}>
                 <View style={styles.container}>
-                    <Text style={styles.contactName}>{this.props.cinema.name}</Text>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.contactName}>{this.props.cinema.name}</Text>
+                        <Text>{this.props.cinema.website}</Text>
+                    </View>
                     <View style={styles.arrow}>
                         <Icon name='angle-right' type='font-awesome' size={40} color='#AAA' />
                     </View>
