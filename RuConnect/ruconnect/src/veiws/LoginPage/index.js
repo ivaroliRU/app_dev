@@ -22,10 +22,43 @@ var options = {
 class LoginPage extends React.Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      formValue:{
+        email: '',
+        password: ''
+      }
+    }
+
+    this.onChange = this.onChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin(){
-    
+  async handleLogin(){
+    var email = this.state.formValue.email;
+    var password = this.state.formValue.password;
+
+    fetch('192.168.1.126:3000/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({user: {
+        email: email,
+        password: password,
+      }}),
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      log(responseJson)
+    })
+    .catch((error) => {
+      console.error(error); 
+    });
+  }
+
+  onChange(value){
+    this.setState({formValue:{email:value.email, password:value.password}});
   }
 
   render () {
@@ -36,9 +69,11 @@ class LoginPage extends React.Component {
           ref="form"
           type={User}
           options={options}
+          onChange={this.onChange}
+          value={this.state.formValue}
           />
-        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Save</Text>
+        <TouchableHighlight style={styles.button} onPress={this.handleLogin} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Sign In</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Register</Text>

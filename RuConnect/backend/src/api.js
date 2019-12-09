@@ -18,7 +18,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.get('/login', checkNotAuthenticated, passport.authenticate('local'), function(req, res) {
+app.post('/login', checkNotAuthenticated, passport.authenticate('local'), function(req, res) {
   res.status(200).end();
 });
 
