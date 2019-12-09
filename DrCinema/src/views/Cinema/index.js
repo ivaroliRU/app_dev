@@ -1,10 +1,14 @@
 import React from 'react';
-<<<<<<< HEAD
 import { Text, StyleSheet, View } from 'react-native';
-import { updateAuthentication } from '../../actions/authenticationActions';
+import { updateCinemas } from '../../actions/cinemasActions';
 import { connect } from 'react-redux';
 
 class Cinema extends React.Component {
+  constructor (props) {
+    super(props);
+    this.props.updateCinemas(this.props.token);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -14,10 +18,23 @@ class Cinema extends React.Component {
       </View>
     )
   }
-}
+};
 
-export default Cinema;
+function mapStateToProps(state){
+    return{
+      token: state.authentication
+    };
+  }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        updateCinemas: (token) => {
+        dispatch(updateCinemas(token));
+      }
+    };
+  };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
 
 const styles = StyleSheet.create({
   titleText: {
@@ -35,39 +52,3 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
     }
 })
-=======
-import { Text } from 'react-native';
-import { updateCinemas } from '../../actions/cinemasActions';
-import { connect } from 'react-redux';
-
-class Cinema extends React.Component {
-  constructor (props) {
-    super(props);
-    this.props.updateCinemas(this.props.token);
-  }
-
-  render() {
-    return (
-      <Text style={{backgroundColor: '#E1E8EE'}}>
-          typpi
-      </Text>
-    )
-  }
-};
-
-function mapStateToProps(state){  
-    return{
-      token: state.authentication
-    };
-  }
-
-const mapDispatchToProps = dispatch => {
-    return {
-        updateCinemas: (token) => {
-        dispatch(updateCinemas(token));
-      }
-    };
-  };
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
->>>>>>> a7d00caf29828158183574224e9199e2293b5bd3
