@@ -20,7 +20,7 @@ export const updateMovies = (token) => {
     }
 }
 
-export const updapeUpcomingMovies = (token) => {
+export const updateUpcomingMovies = (token) => {
   return async dispatch => {
       fetch(upcomming_url+'?token='+token, {
           method: 'GET',
