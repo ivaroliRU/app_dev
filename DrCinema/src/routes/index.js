@@ -9,7 +9,7 @@ import CinemaDetails from '../views/CinemaDetails';
 //export the routes
 export default createAppContainer(createStackNavigator({
     Home: {
-      screen: CinemaDetails,
+      screen: Home,
       navigationOptions: ({navigation}) => ({
         header: null,
     }),
