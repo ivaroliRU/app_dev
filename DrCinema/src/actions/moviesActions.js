@@ -20,6 +20,25 @@ export const updateMovies = (token) => {
     }
 }
 
+export const updapeUpcomingMovies = (token) => {
+  return async dispatch => {
+      fetch(upcomming_url+'?token='+token, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          }
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        dispatch(updateUpcomingSuccess(responseJson));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}
+
 export const getRandomUpcommingPoster = (token) => {
     return async dispatch => {
         fetch(upcomming_url+'?token='+token, {
@@ -41,6 +60,11 @@ export const getRandomUpcommingPoster = (token) => {
 
 const updateSuccess = data => ({
   type: "UPDATE_MOVIES",
+  payload: data
+});
+
+const updateUpcomingSuccess = data => ({
+  type: "UPDATE_UPCOMING_MOVIES",
   payload: data
 });
 
