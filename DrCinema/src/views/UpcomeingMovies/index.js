@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { updateUpcomingMovies } from '../../actions/moviesActions';
 import { connect } from 'react-redux';
+import UpcomingMovieList from '../../components/upcomingMovieList';
 
 class UpcomingMovies extends React.Component {
   constructor (props) {
@@ -11,18 +12,19 @@ class UpcomingMovies extends React.Component {
   
   render() {
     return (
-      <View>
-        <Text>
-            Upcoming Movies
-        </Text>
-      </View>
+        <SafeAreaView style={{backgroundColor: '#E1E8EE', flex:1}}>
+            <ScrollView>
+                <UpcomingMovieList upcomingMovies={this.props.upcomingMovies} />
+            </ScrollView>
+        </SafeAreaView>
     )
   }
 };
 
 function mapStateToProps(state){
     return{
-      token: state.authentication
+      token: state.authentication,
+      upcomingMovies: state.upcomingMovies
     };
   }
 
