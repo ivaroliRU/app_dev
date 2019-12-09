@@ -13,16 +13,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         marginBottom: -1
     },
-    contactImage:{
-        width: 50,
-        height: 50,
-        marginRight: 10,
-        marginLeft: 10,
-        borderRadius: 50 / 2,
-        overflow: "hidden",
-    },
     contactName : {
         fontSize: 20,
+        marginLeft: 10,
     },
     arrow: {
         marginLeft: 'auto',
