@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { updateCinemas } from '../../actions/cinemasActions';
+import { updateUpcomingMovies } from '../../actions/moviesActions';
 import { connect } from 'react-redux';
 
-class Cinema extends React.Component {
+class UpcomingMovies extends React.Component {
   constructor (props) {
     super(props);
-    this.props.updateCinemas(this.props.token);
+    this.props.updateUpcomingMovies(this.props.token);
   }
   
   render() {
@@ -28,10 +28,10 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateCinemas: (token) => {
-        dispatch(updateCinemas(token));
+        updateUpcomingMovies: (token) => {
+        dispatch(updateUpcomingMovies(token));
       }
     };
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
+export default connect(mapStateToProps, mapDispatchToProps)(UpcomingMovies);
