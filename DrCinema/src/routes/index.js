@@ -10,7 +10,7 @@ import MovieDetails from '../views/MovieDetails';
 //export the routes
 export default createAppContainer(createStackNavigator({
     Home: {
-      screen: MovieDetails,
+      screen: Home,
       navigationOptions: ({navigation}) => ({
         header: null,
     }),
