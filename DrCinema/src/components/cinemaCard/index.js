@@ -24,7 +24,7 @@ class CinemaCard extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.textContainer}>
                         <Text style={styles.contactName}>{this.props.cinema.name}</Text>
-                        <Text>{this.props.cinema.website}</Text>
+                        <Text style={styles.text}>{this.props.cinema.website}</Text>
                     </View>
                     <View style={styles.arrow}>
                         <Icon name='angle-right' type='font-awesome' size={40} color='#AAA' />

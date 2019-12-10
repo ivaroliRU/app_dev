@@ -10,11 +10,15 @@ const styles = StyleSheet.create({
         borderBottomColor: '#EEE',
         borderTopWidth: 1,
         borderTopColor: '#EEE',
-        backgroundColor: '#FFF',
+        backgroundColor: '#303337',
         marginBottom: -1
+    },
+    text:{
+        color: "#FFF"
     },
     contactName : {
         fontSize: 20,
+        color: "#FFF"
     },
     arrow: {
         marginLeft: 'auto',
@@ -22,6 +26,7 @@ const styles = StyleSheet.create({
     },
     textContainer:{
         marginLeft: 10,
+        color: "#FFF"
     }
   });
 
