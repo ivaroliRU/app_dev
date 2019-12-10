@@ -5,6 +5,7 @@ import Home from '../views/Home';
 import Cinema from '../views/Cinema';
 import UpcomeingMovies from '../views/UpcomeingMovies';
 import CinemaDetails from '../views/CinemaDetails';
+import MovieDetails from '../views/MovieDetails';
 
 //export the routes
 export default createAppContainer(createStackNavigator({
@@ -29,10 +30,18 @@ export default createAppContainer(createStackNavigator({
         title: 'Upcomeing Movies'
       }),
     },
+
     CinemaDetails: {
       screen: CinemaDetails,
       navigationOptions: ({navigation}) => ({
         title: 'Cinema Details'
+      }),
+    },
+
+    MovieDetails: {
+      screen: MovieDetails,
+      navigationOptions: ({navigation}) => ({
+        title: 'Movie Details'
       }),
     }
 

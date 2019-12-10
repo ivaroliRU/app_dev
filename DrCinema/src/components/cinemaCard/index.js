@@ -14,13 +14,13 @@ class CinemaCard extends React.Component {
 
     //handle click and navigation
     handleNavigation() {
-      this.props.navigation.navigate('CinemaDetails', {contact:this.props.contact})
+      this.props.navigation.navigate('CinemaDetails', {cinema:this.props.cinema})
     }
 
     render() {
       const {navigate} = this.props.navigation;
         return (
-            <TouchableOpacity onPress={() => navigate(this.props.destination)}>
+            <TouchableOpacity onPress={this.handleNavigation}>
                 <View style={styles.container}>
                     <View style={styles.textContainer}>
                         <Text style={styles.contactName}>{this.props.cinema.name}</Text>
