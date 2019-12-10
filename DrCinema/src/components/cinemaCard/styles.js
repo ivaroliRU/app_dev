@@ -7,9 +7,9 @@ const styles = StyleSheet.create({
         height: 70,
         alignItems: 'center',
         borderBottomWidth: 1,
-        borderBottomColor: '#EEE',
+        //borderBottomColor: '#EEE',
         borderTopWidth: 1,
-        borderTopColor: '#EEE',
+        //borderTopColor: '#EEE',
         backgroundColor: '#303337',
         marginBottom: -1
     },

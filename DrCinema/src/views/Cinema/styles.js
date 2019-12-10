@@ -2,11 +2,17 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     searchContainer:{
-      backgroundColor:'#303337',
+      backgroundColor:'#16171b',
       borderTopWidth: 0
     },
+    searchBox:{
+        backgroundColor:'#16171b',
+        textDecorationLine: 'underline',
+    },
+    searchBoxContainer:{
+        backgroundColor:'#16171b'
+    },
     list:{
-        marginTop: 20
     },
     titleText: {
         fontSize: 40,
