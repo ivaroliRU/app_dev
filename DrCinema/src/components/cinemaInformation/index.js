@@ -11,14 +11,13 @@ class CinemaInformation extends React.Component {
 
     render() {
         return (
-        <View>
-          <Text>{this.props.cinema.name}</Text>
-          <Text>{this.props.cinema.description}</Text>
-          <Text>{this.props.cinema.address}</Text>
-          <Text>{this.props.cinema.phone}</Text>
-          <Text>{this.props.cinema.website}</Text>
-        </View>
-
+          <View style={styles.container}>
+            <Text style={styles.textHeader}>{this.props.cinema.name}</Text>
+            <Text style={styles.information}>{this.props.cinema.description}</Text>
+            <Text style={styles.information}>{this.props.cinema.address}</Text>
+            <Text style={styles.information}>{this.props.cinema.phone}</Text>
+            <Text style={styles.information}>{this.props.cinema.website}</Text>
+          </View>
         );
     }
 }

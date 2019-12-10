@@ -5,6 +5,7 @@ import { updateAuthentication } from '../../actions/authenticationActions';
 import { updateCinemas } from '../../actions/cinemasActions';
 import { connect } from 'react-redux';
 import CinemaInformation from '../../components/cinemaInformation';
+import BackgroundImage from '../../components/backgroundImage'
 
 cinemaPhoto = 'https://en.balsan.com/sites/default/files/media/inspiration_slides/201902/vmaxsphera50.jpg'
 
@@ -25,8 +26,9 @@ handleModal = (statement) => {
     const { navigation } = this.props;
     const cinema = navigation.getParam('cinema' , 'NO-ID');
     return (
-      <SafeAreaView style={{backgroundColor: '#E1E8EE', flex:1}}>
+      <SafeAreaView style={{backgroundColor: '#020302', flex:1 }}>
           <View>
+              <BackgroundImage image={cinemaPhoto} destination='Cinema'></BackgroundImage>
               <CinemaInformation cinema={cinema} />
           </View>
       </SafeAreaView>
