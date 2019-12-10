@@ -21,7 +21,7 @@ export default createAppContainer(createStackNavigator({
       screen: Cinema,
       navigationOptions: ({navigation}) => ({
         headerStyle: {
-          backgroundColor: '#1B1B1B',
+          backgroundColor: '#303337',
         },
         headerTintColor: '#fff',
         title: 'Cinemas'
@@ -32,7 +32,7 @@ export default createAppContainer(createStackNavigator({
       screen: UpcomeingMovies,
       navigationOptions: ({navigation}) => ({
         headerStyle: {
-          backgroundColor: '#1B1B1B',
+          backgroundColor: '#303337',
         },
         headerTintColor: '#fff',
         title: 'Upcomeing Movies'
@@ -43,7 +43,7 @@ export default createAppContainer(createStackNavigator({
       screen: CinemaDetails,
       navigationOptions: ({navigation}) => ({
         headerStyle: {
-          backgroundColor: '#1B1B1B',
+          backgroundColor: '#303337',
         },
         headerTintColor: '#fff',
         title: 'Cinema Details'
@@ -54,7 +54,7 @@ export default createAppContainer(createStackNavigator({
       screen: MovieDetails,
       navigationOptions: ({navigation}) => ({
         headerStyle: {
-          backgroundColor: '#1B1B1B',
+          backgroundColor: '#303337',
         },
         headerTintColor: '#fff',
         title: 'Movie Details'
