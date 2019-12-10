@@ -1,44 +1,39 @@
 import React from 'react';
-import { Text, TouchableOpacity, ImageBackground, View, ScrollView } from 'react-native';
+import { Text, TouchableOpacity, ImageBackground, View, ScrollView, SafeAreaView } from 'react-native';
 import styles from './styles';
 import { updateAuthentication } from '../../actions/authenticationActions';
+import { updateCinemas } from '../../actions/cinemasActions';
 import { connect } from 'react-redux';
-import BackgroundImage from '../../components/backgroundImage'
+import CinemaInformation from '../../components/cinemaInformation';
 
 cinemaPhoto = 'https://en.balsan.com/sites/default/files/media/inspiration_slides/201902/vmaxsphera50.jpg'
 
 class CinemaDetails extends React.Component {
   constructor (props) {
     super(props);
-    this.props.updateAuthentication();
+
+    this.state = {
+      modalVisible: false
+    };
   }
 
+handleModal = (statement) => {
+  this.setState({ modalVisible: statement });
+}
+
   render() {
+    const { navigation } = this.props;
+    const cinema = navigation.getParam('cinema' , 'NO-ID');
     return (
-      <View style={styles.container} >
-        <BackgroundImage text='Cinema 1' image={cinemaPhoto} ></BackgroundImage>
-        <Text style={styles.information}>Description</Text>
-        <Text style={styles.information}>Address</Text>
-        <Text style={styles.information}>Phone</Text>
-        <Text style={styles.information}>Website</Text>
-        <Text style={styles.movies}> Movies in this cinema </Text>
-      </View>
+      <SafeAreaView style={{backgroundColor: '#E1E8EE', flex:1}}>
+          <View>
+              <CinemaInformation cinema={cinema} />
+          </View>
+      </SafeAreaView>
     )
   }
 };
 
-function mapStateToProps(state){
-    return{
-      authentication: state.authentication
-    };
-  }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        updateAuthentication: () => {
-        dispatch(updateAuthentication());
-      }
-    };
-  };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CinemaDetails);
+export default CinemaDetails;

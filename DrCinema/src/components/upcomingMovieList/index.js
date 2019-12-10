@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
-import UpcomingMovieCard from '../upcomingMovieCard';;
+//import UpcomingMovieCard from '../upcomingMovieCard';;
 
 class UpcomingMovieList extends React.Component {
     constructor (props) {
