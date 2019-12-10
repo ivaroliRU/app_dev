@@ -41,8 +41,8 @@ class Cinema extends React.Component {
   render() {
     return (
       <SafeAreaView style={{backgroundColor: '#393E42', flex:1}}>
+      <SearchBar placeholder="Search Cinemas...." onChangeText={this.updateSearch} value={this.state.search} darkTheme containerStyle={{backgroundColor:'#303337', borderTopWidth: 0}} />
         <ScrollView>
-        <SearchBar placeholder="Search Cinemas...." onChangeText={this.updateSearch} value={this.state.search} darkTheme />
           <CinemaList cinemas={(this.state.search.length > 0)?this.state.filterd:this.props.cinemas} destination='CinemaDetails'/>
         </ScrollView>
       </SafeAreaView>
