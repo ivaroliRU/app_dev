@@ -27,7 +27,15 @@ export default createAppContainer(createStackNavigator({
     UpcomeingMovies: {
       screen: UpcomeingMovies,
       navigationOptions: ({navigation}) => ({
-        title: 'Upcomeing Movies'
+        title: 'Upcoming Movies',
+        headerStyle: {
+          backgroundColor: '#16171b',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: '#00cef3'
+        },
       }),
     },
 

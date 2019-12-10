@@ -17,9 +17,7 @@ class UpcomingMovieList extends React.Component {
             sublist.push(this.props.upcomingMovies[i]);
             i++;
 
-            if(i < length){
-                console.log("typpi");
-                
+            if(i < length){                
                 sublist.push(this.props.upcomingMovies[i]);
                 i++;
             }
