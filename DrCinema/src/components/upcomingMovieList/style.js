@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
       },
       infoContainer:{
         paddingLeft: 15,
-        paddingTop: 40,
+        paddingTop: 20,
         flexShrink: 1
       },
       infoHeader:{
