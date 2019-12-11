@@ -8,12 +8,15 @@ const styles = StyleSheet.create({
       },
       infoContainer:{
         paddingLeft: 15,
-        paddingTop: 40
+        paddingTop: 20,
+        flexShrink: 1
       },
       infoHeader:{
         color: "#FFF",
         fontWeight: "bold",
-        fontSize: 20
+        fontSize: 20,
+        flexShrink: 1
+
       },
       info:{
         color: "#FFF",

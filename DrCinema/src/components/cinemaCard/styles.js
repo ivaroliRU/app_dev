@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
+        flex: 1,
         flexDirection: 'row',
         height: 70,
         alignItems: 'center',
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         marginBottom: -1
     },
     text:{
-        color: "#FFF"
+        color: "#00cef3"
     },
     contactName : {
         fontSize: 20,
