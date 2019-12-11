@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { updateMovies } from '../../actions/moviesActions';
 import styles from './styles';
 import CinemaInformation from '../../components/cinemaInformation';
-import BackgroundImage from '../../components/backgroundImage'
 import UpcomingMovieList from '../../components/upcomingMovieList';
 
 const cinemaPhoto = 'https://en.balsan.com/sites/default/files/media/inspiration_slides/201902/vmaxsphera50.jpg';
