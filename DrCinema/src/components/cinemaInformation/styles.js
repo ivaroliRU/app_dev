@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#ffffff',
 
-
   }
 
 });
