@@ -22,7 +22,7 @@ class UpcomingMovieList extends React.Component {
         return (
             <View style={{flex: 1, flexDirection: 'column', width: '100%'}}>
                 {(this.props.upcomingMovies)?this.sortMovies().reverse().map((l) => (
-                    <TouchableOpacity style={{width: '100%', height: 200}} onPress={() => this.props.navigation.navigate('MovieDetails', {movie: c})} key={id++}>
+                    <TouchableOpacity style={{width: '100%', height: 200}} onPress={() => this.props.navigation.navigate('MovieDetails', {movie: l})} key={id++}>
                         <View style={{flex: 1, flexDirection: 'row', backgroundColor: (id%2==0)?'#111216':'#0c0d0f'}}>
                             <Image style={{width: '50%', height: '100%', resizeMode:'cover'}} source={{uri: l.poster}}></Image>
                             <View style={styles.infoContainer}>
