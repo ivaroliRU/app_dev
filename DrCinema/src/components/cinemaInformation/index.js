@@ -3,7 +3,6 @@ import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import styles from './styles';
 
-
 class CinemaInformation extends React.Component {
     constructor (props) {
         super(props);
