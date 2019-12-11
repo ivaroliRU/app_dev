@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 class UpcomingMovieList extends React.Component {
     constructor (props) {
@@ -34,7 +35,7 @@ class UpcomingMovieList extends React.Component {
                 {this.transformData().map((l) => (
                     <View style={{flex: 1, flexDirection: 'row'}} key={id++}>
                         {l.map((c) => (
-                            <TouchableOpacity style={{width: '50%', height: 250}} onPress={() => console.log(c)} key={id++}>
+                            <TouchableOpacity style={{width: '50%', height: 250}} onPress={() => this.props.navigation.navigate('MovieDetails', {movie: c})} key={id++}>
                                 
                                 <Image style={{width: '100%', height: '100%', resizeMode:'cover'}} source={{uri: c.poster}}></Image>
                             </TouchableOpacity>
@@ -46,4 +47,4 @@ class UpcomingMovieList extends React.Component {
     }
 }
 
-export default UpcomingMovieList;
+export default withNavigation(UpcomingMovieList);
