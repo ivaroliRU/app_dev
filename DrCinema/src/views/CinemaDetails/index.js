@@ -37,7 +37,7 @@ class CinemaDetails extends React.Component {
               />
               <CinemaInformation cinema={this.cinema} />
 
-              <Text style={{paddingLeft: 10, fontSize: 20, color: "#FFF"}} >Available movies</Text>
+              <Text style={{paddingLeft: 10, fontSize: 20, color: "#00cef3", lineHeight: 30}} >Available movies</Text>
               <UpcomingMovieList upcomingMovies={this.props.movies} />
           </ScrollView>
       </SafeAreaView>
@@ -49,7 +49,7 @@ function mapStateToProps(state){
   return{
     token: state.authentication,
     movies: state.movies.filter(m => m.showtimes.filter(t => t.cinema.id == id).length > 0)
-  }; 
+  };
 }
 
 const mapDispatchToProps = dispatch => {
