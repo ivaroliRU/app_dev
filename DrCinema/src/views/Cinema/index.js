@@ -4,6 +4,7 @@ import { updateCinemas } from '../../actions/cinemasActions';
 import CinemaList from '../../components/cinemaList';
 import { connect } from 'react-redux';
 import { SearchBar } from 'react-native-elements';
+import styles from './styles';
 
 class Cinema extends React.Component {
   constructor (props) {
@@ -40,9 +41,12 @@ class Cinema extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={{backgroundColor: '#393E42', flex:1}}>
-        <ScrollView>
-        <SearchBar placeholder="Search Cinemas...." onChangeText={this.updateSearch} value={this.state.search} darkTheme />
+      <SafeAreaView style={{backgroundColor: '#16171b', flex:1}}>
+      <SearchBar placeholder="Search Cinemas...." onChangeText={this.updateSearch} value={this.state.search} darkTheme 
+                 containerStyle={styles.searchContainer} 
+                 inputStyle={styles.searchBox}
+                 inputContainerStyle={styles.searchBoxContainer} />
+        <ScrollView style={styles.list}>
           <CinemaList cinemas={(this.state.search.length > 0)?this.state.filterd:this.props.cinemas} destination='CinemaDetails'/>
         </ScrollView>
       </SafeAreaView>
@@ -66,13 +70,3 @@ const mapDispatchToProps = dispatch => {
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
-
-const styles = StyleSheet.create({
-  titleText: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    fontFamily: 'Cochin'
-  },
-  container: {
-    }
-})

@@ -53,14 +53,14 @@ class CinemaList extends React.Component {
     render() {
         var id = 0;
         return (
-            <View>
+            <View style={{paddingTop: 20}}>
                 {(this.props.cinemas.length > 0)?this.orderLists().map((l) => (
                     <View style={styles.container} key={l.char + (id++).toString()}>
                         <Text style={styles.header} key={l.char + (id++).toString()} >{l.char}</Text>
                         {(l.elements)?<SubList cinemas={l} key={l.char + (id++).toString()} />:null}
                     </View>
                 )):null}
-                </View>
+            </View>
         );
     }
 }

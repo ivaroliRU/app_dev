@@ -10,7 +10,7 @@ import MovieDetails from '../views/MovieDetails';
 //export the routes
 export default createAppContainer(createStackNavigator({
     Home: {
-      screen: MovieDetails,
+      screen: Home,
       navigationOptions: ({navigation}) => ({
         header: null,
     }),
@@ -19,13 +19,20 @@ export default createAppContainer(createStackNavigator({
 
     Cinema: {
       screen: Cinema,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: {
         headerStyle: {
-          backgroundColor: '#303337',
+          backgroundColor: '#16171b',
+          elevation: 0,
+          shadowOpacity: 0,
+          borderBottomWidth: 0
         },
-        headerTintColor: '#fff',
-        title: 'Cinemas'
-      }),
+        headerTintColor: '#00cef3',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: '#00cef3'
+        },
+        title: 'Cinemas',
+      },
     },
 
     UpcomeingMovies: {
@@ -35,7 +42,11 @@ export default createAppContainer(createStackNavigator({
         headerStyle: {
           backgroundColor: '#303337',
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#00cef3',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: '#00cef3'
+        },
       }),
     },
 
@@ -43,10 +54,14 @@ export default createAppContainer(createStackNavigator({
       screen: CinemaDetails,
       navigationOptions: ({navigation}) => ({
         headerStyle: {
-          backgroundColor: '#303337',
+          backgroundColor: '#16171b',
         },
-        headerTintColor: '#fff',
-        title: 'Cinema Details'
+        headerTintColor: '#00cef3',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: '#00cef3'
+        },
+        title: 'Cinema Details',
       }),
     },
 
@@ -54,9 +69,13 @@ export default createAppContainer(createStackNavigator({
       screen: MovieDetails,
       navigationOptions: ({navigation}) => ({
         headerStyle: {
-          backgroundColor: '#303337',
+          backgroundColor: '#16171b',
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#00cef3',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: '#00cef3'
+        },
         title: 'Movie Details'
       }),
     }

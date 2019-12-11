@@ -12,7 +12,7 @@ class UpcomingMovies extends React.Component {
   
   render() {
     return (
-        <SafeAreaView style={{backgroundColor: '#E1E8EE', flex:1}}>
+        <SafeAreaView style={{backgroundColor: '#16171b', flex:1}}>
             <ScrollView>
                 <UpcomingMovieList upcomingMovies={this.props.upcomingMovies} />
             </ScrollView>
