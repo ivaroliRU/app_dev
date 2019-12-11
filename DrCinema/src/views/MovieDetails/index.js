@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './style';
-import { withTheme } from 'react-native-elements';
+import { Icon } from 'react-native-material-ui';
 
 class MovieDetails extends React.Component {
   constructor (props) {
@@ -11,14 +10,80 @@ class MovieDetails extends React.Component {
 
   render() {
     return (
-        <View>
-            <ImageBackground style={{width: '100%', height: '75%', flex: 1, flexDirection: "row"}} source={{uri: 'https://kvikmyndir.is/images/poster/12430_500.jpg'}}>
-                <Text style={{fontSize: 30, color: 'white'}}>Godzilla Vs Kong</Text>
-            </ImageBackground>
-        </View>
-    )
-  }
-};
+        <View style={[styles.container, { backgroundColor: '#1B1B1B' }]}>
+            <View style={[styles.item, styles.title]}>
+                <Text style={[styles.text, styles.titleText]}>Title</Text>
+            </View>
+              <View style={styles.line}>
+                <View style={[styles.item, styles.year]}>
+                  <Icon
+                    style={[styles.icon, styles.yearIcon]}
+                    name="md-calendar"
+                    color="white"
+                  />
+                  <Text style={[styles.text, styles.yearText]}>Year</Text>
+                </View>
+                <View style={[styles.item, styles.duration]}>
+                  <Icon
+                    style={[styles.icon, styles.durationIcon]}
+                    name="md-time"
+                    color="white"
+                  />
+                  <Text style={[styles.text, styles.durationText]}>Runtime</Text>
+                </View>
+              </View>
+              <View style={styles.line}>
+                <View style={[styles.item, styles.genre]}>
+                  <Text style={[styles.text, styles.genreText]}>Genres</Text>
+                </View>
+              </View>
+            </View>
+          );
+        }
+    }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+
+  line: {
+    flexDirection: 'row',
+  },
+
+  item: {
+    flexDirection: 'row',
+    marginRight: 15,
+  },
+
+  icon: {
+    marginRight: 5,
+  },
+
+  text: {
+    color: 'white',
+    fontSize: 16,
+  },
+
+  titleText: {
+    fontSize: 24,
+  },
+
+  year: {
+  },
+
+  yearText: {
+  },
+
+  duration: {
+  },
+
+  durationText: {
+  },
+
+  genreText: {
+  },
+});
 
 function mapStateToProps(state){
     return{

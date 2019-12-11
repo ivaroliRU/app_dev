@@ -10,7 +10,7 @@ import MovieDetails from '../views/MovieDetails';
 //export the routes
 export default createAppContainer(createStackNavigator({
     Home: {
-      screen: Home,
+      screen: MovieDetails,
       navigationOptions: ({navigation}) => ({
         header: null,
     }),
@@ -33,13 +33,9 @@ export default createAppContainer(createStackNavigator({
       navigationOptions: ({navigation}) => ({
         title: 'Upcoming Movies',
         headerStyle: {
-          backgroundColor: '#16171b',
+          backgroundColor: '#303337',
         },
         headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color: '#00cef3'
-        },
       }),
     },
 
