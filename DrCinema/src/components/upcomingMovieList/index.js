@@ -37,4 +37,4 @@ class UpcomingMovieList extends React.Component {
     }
 }
 
-export default UpcomingMovieList;
+export default UpcomingMovieList; 
