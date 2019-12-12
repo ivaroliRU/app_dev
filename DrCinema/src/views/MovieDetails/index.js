@@ -34,7 +34,6 @@ class MovieDetails extends React.Component {
               <Image style={styles.headerImage} source={{uri: this.movie.poster}}></Image>
             </View>
           }
-          <View styles={{backgroundColor: '#16171b'}}>
           <Text style={styles.textTitle}>{this.movie.title}</Text>
           <Text style={styles.textRelease}>Release: {this.movie["release-dateIS"]}</Text>
           {this.movie.omdb.length != 0?
@@ -48,7 +47,6 @@ class MovieDetails extends React.Component {
         <Text style={styles.textInformation}>{this.movie.plot}</Text>
         }
         <BuyTicketButton showtimes={this.movie.showtimes.find(element => element.cinema.id == this.cinema.id)} />
-        </View>
         </View>
         </ScrollView>
     )

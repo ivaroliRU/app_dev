@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   headerWebView:{
     flex: 0,
     width: '100%',
-    height: 300
+    height: 225
   },
   textTitle:{
     textAlign: "center",
