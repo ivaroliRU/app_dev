@@ -15,11 +15,10 @@ class MovieDetails extends React.Component {
       this.trailer = this.movie.trailers[0].results[0].url;
     }
 
-    this.plot = this.movie.hasOwnProperty('plot')?this.movie.plot:this.movie.omdb.Plot;
-    console.log("************MOVIE***********");
-    console.log(this.movie);
-    console.log("************PLOT***********");
-    console.log(this.plot);
+    this.release = (this.movie["release-dateIS"])?this.movie["release-dateIS"]:this.movie.omdb.Released;
+    this.plot = this.movie.hasOwnProperty('plot')?this.movie.plot:this.movie.omdb.Plot; 
+    
+    console.log(this.release);
     
   }
 
@@ -29,7 +28,7 @@ class MovieDetails extends React.Component {
         <ScrollView styles={{backgroundColor: '#16171b'}}>
           <MovieHeader movie={{trailer:this.trailer, poster:this.movie.poster}} />
           <Text style={styles.textTitle}>{this.movie.title}</Text>
-          <Text style={styles.textRelease}>Release: {this.movie["release-dateIS"]}</Text>
+          <Text style={styles.textRelease}>Release: {this.release}</Text>
           {this.movie.omdb.length != 0?
           <React.Fragment>
             <Text style={styles.textInformation}>{this.plot}</Text>

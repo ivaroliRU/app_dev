@@ -6,14 +6,16 @@ const styles = StyleSheet.create({
         height: 40,
         backgroundColor: '#16171b',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderWidth: 0
     },
     selected:{
     },
     button:{
-        maxWidth: 100,
+        width: 100,
         backgroundColor: '#AAA',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        borderWidth: 0
     },
     buyButton:{
         width: '60%',

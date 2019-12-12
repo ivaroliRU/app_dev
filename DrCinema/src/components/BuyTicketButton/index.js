@@ -40,6 +40,7 @@ class BuyTicketButton  extends React.Component  {
         containerStyle={styles.buttonGContainer}
         buttonStyle={styles.button}
         selectedButtonStyle={styles.selected}
+        innerBorderStyle={{width:0}}
       />
       <View style={styles.buyButton}>
         <Button
