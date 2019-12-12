@@ -48,9 +48,12 @@ class MovieDetails extends React.Component {
           {this.movie.omdb.length != 0?
           <React.Fragment>
             <Text style={styles.textInformation}>{this.plot}</Text>
-            <Text style={styles.textInformation}>{this.movie.omdb[0].Genre}</Text>
+            <Text style={styles.textInformation}>Genres: {this.movie.genres.map((g)=>(g.Name + ", "))}</Text>
           </React.Fragment>:
+          <React.Fragment>
             <Text style={styles.textInformation}>{this.plot}</Text>
+            <Text style={styles.textInformation}>Genres: {this.movie.genres.map((g)=>(g.Name + ", "))}</Text>
+          </React.Fragment>
           }
           {this.cinema && <BuyTicketButton showtimes={this.movie.showtimes.find(element => element.cinema.id == this.cinema.id)} />}
         </ScrollView>
