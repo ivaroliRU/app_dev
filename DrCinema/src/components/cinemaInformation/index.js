@@ -17,17 +17,20 @@ class CinemaInformation extends React.Component {
         return text
     }
 
+
     render() {
+      console.log(this.props.cinema)
+
         return (
           <View style={styles.container} >
               <Text style={styles.textHeader}>{this.props.cinema.name}</Text>
               <Text style={styles.information}>{this.stripDescription(this.props.cinema.description)}</Text>
-              <Text style={styles.information}>{this.props.cinema.street}</Text>
+              <Text style={styles.information}>{this.props.cinema['address\t']}</Text>
               <Text style={styles.information}>{this.props.cinema.city}</Text>
               <Text style={styles.information}>{this.props.cinema.phone}</Text>
               <Text style={styles.information}>{this.props.cinema.website}</Text>
-
           </View>
+
         );
     }
 }
