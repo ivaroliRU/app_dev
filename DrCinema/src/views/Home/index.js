@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, TouchableOpacity, ImageBackground, View } from 'react-native';
 import styles from './styles';
 import { updateAuthentication } from '../../actions/authenticationActions';
-import { getRandomUpcommingPoster } from '../../actions/moviesActions';
 import { connect } from 'react-redux';
 import BackgroundImage from '../../components/backgroundImage'
 
@@ -11,7 +10,7 @@ upcomeingPhoto = 'https://i.pinimg.com/originals/ac/2f/58/ac2f58d9275e2399279c1f
 
 class Home extends React.Component {
   constructor (props) {
-    super(props);
+    super(props);    
     this.props.updateAuthentication();
   }
 
@@ -28,7 +27,6 @@ class Home extends React.Component {
 function mapStateToProps(state){  
     return{
       authentication: state.authentication,
-      randomPoster: state.randomPoster
     };
   }
 
@@ -36,9 +34,6 @@ const mapDispatchToProps = dispatch => {
     return {
       updateAuthentication: () => {
         dispatch(updateAuthentication());
-      },
-      getRandomUpcommingPoster: (token) => {
-        dispatch(getRandomUpcommingPoster(token));
       },
     };
   };
