@@ -10,16 +10,31 @@ class MovieDetails extends React.Component {
     super(props);
     this.movie = this.props.navigation.state.params.movie;
     this.cinema = this.props.navigation.state.params.cinema;
+    this.duration = this.props.navigation.state.params.duration;
 
+    this.setData = this.setData.bind(this);
+
+    this.setData(); 
+  }
+
+  setData(){
     if(this.movie.trailers.length != 0 && this.movie.trailers[0].results.length){
       this.trailer = this.movie.trailers[0].results[0].url;
     }
 
-    this.release = (this.movie["release-dateIS"])?this.movie["release-dateIS"]:this.movie.omdb.Released;
-    this.plot = this.movie.hasOwnProperty('plot')?this.movie.plot:this.movie.omdb.Plot; 
-    
-    console.log(this.release);
-    
+    if(this.movie.hasOwnProperty('plot')) {
+      this.plot = this.movie.plot
+    }
+    else if(!this.movie.hasOwnProperty('plot') && this.movie.omdb.length > 0){
+      this.plot = this.movie.omdb[0].Plot
+    }
+
+    if(this.movie.hasOwnProperty('release-dateIS')) {
+      this.release = this.movie['release-dateIS']
+    }
+    else if(this.movie.omdb.length > 0){
+      this.release = this.movie.omdb[0].Released
+    }
   }
 
   render() {
@@ -29,6 +44,7 @@ class MovieDetails extends React.Component {
           <MovieHeader movie={{trailer:this.trailer, poster:this.movie.poster}} />
           <Text style={styles.textTitle}>{this.movie.title}</Text>
           <Text style={styles.textRelease}>Release: {this.release}</Text>
+          {this.duration? <Text style={styles.textRelease}>Duration: {this.duration}min </Text>: <React.Fragment></React.Fragment>}
           {this.movie.omdb.length != 0?
           <React.Fragment>
             <Text style={styles.textInformation}>{this.plot}</Text>
