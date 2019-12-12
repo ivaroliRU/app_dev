@@ -13,12 +13,14 @@ class MovieDetails extends React.Component {
 
   render() {
     return (
-        <View style={styles.container}>
+      <ScrollView styles={{backgroundColor: '#16171b'}}>
+          <View styles={styles.container}>
           {this.movie.trailers.length != 0?
             this.movie.trailers[0].results.length != 0?
               <View style={styles.headerImageContainer}> 
                 <WebView
                   style={styles.headerWebView}
+                  scrollEnabled={false}
                   javaScriptEnabled={true}
                   domStorageEnabled={true}
                   source={{ uri: this.movie.trailers[0].results[0].url }}
@@ -32,6 +34,7 @@ class MovieDetails extends React.Component {
               <Image style={styles.headerImage} source={{uri: this.movie.poster}}></Image>
             </View>
           }
+          <View styles={{backgroundColor: '#16171b'}}>
           <Text style={styles.textTitle}>{this.movie.title}</Text>
           <Text style={styles.textRelease}>Release: {this.movie["release-dateIS"]}</Text>
           {this.movie.omdb.length != 0?
@@ -46,6 +49,8 @@ class MovieDetails extends React.Component {
         }
         <BuyTicketButton showtimes={this.movie.showtimes.find(element => element.cinema.id == this.cinema.id)} />
         </View>
+        </View>
+        </ScrollView>
     )
   }
 };
