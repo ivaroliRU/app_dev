@@ -50,6 +50,7 @@ export const getRandomUpcommingPoster = (token) => {
         })
         .then((response) => response.json())
         .then((responseJson) => {
+          console.log(responseJson)
           dispatch(updatePoster(responseJson[0].poster));
         })
         .catch((error) => {
