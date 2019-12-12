@@ -5,19 +5,25 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         height: 40,
         backgroundColor: '#16171b',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     selected:{
     },
     button:{
         maxWidth: 100,
-        backgroundColor: '#AAA'
+        backgroundColor: '#AAA',
+        alignSelf: 'center'
     },
     buyButton:{
         width: '60%',
         marginTop: 20,
         height: 40,
         justifyContent: 'center'
+    },
+    container:{
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
