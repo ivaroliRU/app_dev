@@ -10,16 +10,25 @@ class MovieDetails extends React.Component {
     super(props);
     this.movie = this.props.navigation.state.params.movie;
     this.cinema = this.props.navigation.state.params.cinema;
+    this.duration = this.props.navigation.state.params.duration;
 
     if(this.movie.trailers.length != 0 && this.movie.trailers[0].results.length){
       this.trailer = this.movie.trailers[0].results[0].url;
     }
 
-    this.plot = this.movie.hasOwnProperty('plot')?this.movie.plot:this.movie.omdb.Plot;
+    if(this.movie.hasOwnProperty('plot')) {
+      this.plot = this.movie.plot
+    }
+    if(!this.movie.hasOwnProperty('plot') && this.movie.omdb.length > 0){
+      this.plot = this.movie.omdb[0].Plot
+    }
+
     console.log("************MOVIE***********");
     console.log(this.movie);
     console.log("************PLOT***********");
     console.log(this.plot);
+    console.log("***********DURATION**********")
+    console.log(this.duration)
     
   }
 
@@ -30,6 +39,7 @@ class MovieDetails extends React.Component {
           <MovieHeader movie={{trailer:this.trailer, poster:this.movie.poster}} />
           <Text style={styles.textTitle}>{this.movie.title}</Text>
           <Text style={styles.textRelease}>Release: {this.movie["release-dateIS"]}</Text>
+          {this.duration? <Text style={styles.textRelease}>Duration: {this.duration}min </Text>: <React.Fragment></React.Fragment>}
           {this.movie.omdb.length != 0?
           <React.Fragment>
             <Text style={styles.textInformation}>{this.plot}</Text>
