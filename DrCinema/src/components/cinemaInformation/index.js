@@ -9,7 +9,7 @@ class CinemaInformation extends React.Component {
     }
 
     stripDescription(text) {
-        console.log(text)
+        //console.log(text)
         if (text != null){
             text = text.replace(/<br>/gi, "\n")
             text = text.replace(/<(?:.|\s)*?>/g, "")
