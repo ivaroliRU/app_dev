@@ -31,7 +31,8 @@ class BuyTicketButton  extends React.Component  {
 
   render() {
     return( 
-    <View>
+    <View style={styles.container}>
+      <Text>Buy a ticket!</Text>
       <ButtonGroup
         onPress={this.updateIndex}
         selectedIndex={this.state.selectedIndex}
