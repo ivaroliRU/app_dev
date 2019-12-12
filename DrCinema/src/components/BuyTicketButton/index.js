@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, Button, View } from 'react-native';
+import { Text, TouchableOpacity, Button, View, Linking } from 'react-native';
 import { ButtonGroup } from 'react-native-elements';
 import {withNavigation} from 'react-navigation'
 import styles from './styles';
@@ -13,16 +13,20 @@ class BuyTicketButton  extends React.Component  {
       selectedIndex: 0
     }
 
-    this.updateIndex = this.updateIndex.bind(this)
+    this.updateIndex = this.updateIndex.bind(this);
+    this.handleBuyTicket = this.handleBuyTicket.bind(this);
 
-    console.log(this.props);
-    
     this.times = this.props.showtimes.schedule.map((t) => t.time);
     this.urls = this.props.showtimes.schedule.map((t) => t.purchase_url);
   }
   
   updateIndex (selectedIndex) {
     this.setState({selectedIndex})
+  }
+
+  handleBuyTicket(){
+    const url = this.urls[this.state.selectedIndex];
+    Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
   }
 
   render() {
@@ -32,12 +36,16 @@ class BuyTicketButton  extends React.Component  {
         onPress={this.updateIndex}
         selectedIndex={this.state.selectedIndex}
         buttons={this.times}
-        containerStyle={{height: 100}}
+        containerStyle={styles.buttonGContainer}
+        buttonStyle={styles.button}
+        selectedButtonStyle={styles.selected}
       />
-      <Button
+      <View style={styles.buyButton}>
+        <Button
           title="Buy Ticket"
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => this.handleBuyTicket()}
         />
+      </View>
     </View>
     );
   }
